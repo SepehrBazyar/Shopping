@@ -41,10 +41,7 @@ class Category(DynamicTranslation):
         verbose_name=_("Main Category"), help_text=_("Please Select the Main Category"))
     
     def __str__(self) -> str:
-        result = ""
-        if self.root:
-            result += self.root.__str__() + ' > '
-        return result + self.title
+        return self.title
 
 
 class Brand(DynamicTranslation):
@@ -56,7 +53,7 @@ class Brand(DynamicTranslation):
         verbose_name, verbose_name_plural = _("Brand"), _("Brands")
 
     logo = models.FileField(upload_to="product/brands/", verbose_name=_("Logo"),
-                            default="product/brands/Unknown.jpg",
+                            default="product/brands/Unknown.jpg", blank=True,
                             help_text=_("Please Upload the Logo Icon of Brand"))
     link = models.URLField(max_length=200, default=None, null=True, blank=True,
                         verbose_name=_("Website Address"), validators=[URLValidator],

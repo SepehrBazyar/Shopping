@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-28 00:00+0430\n"
+"POT-Creation-Date: 2021-07-28 02:21+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,71 +18,79 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#: .\product\admin.py:14
+msgid "Detail Information"
+msgstr "اطلاعات اولیه"
+
+#: .\product\admin.py:30 .\product\admin.py:42
+msgid "Optional Information"
+msgstr "اطلاعات اضافه"
+
 #: .\product\apps.py:8
 msgid "Product"
 msgstr "محصولات"
 
-#: .\product\models.py:15
+#: .\product\models.py:16
 msgid "English Title"
 msgstr "عنوان انگلیسی"
 
-#: .\product\models.py:16
+#: .\product\models.py:17
 msgid "Please Enter the Title of the Name in English"
 msgstr "لطفا نام عنوان را به زبان انگلیسی وارد نمایید"
 
-#: .\product\models.py:17
+#: .\product\models.py:18
 msgid "Persian Title"
 msgstr "عنوان فارسی"
 
-#: .\product\models.py:18
+#: .\product\models.py:19
 msgid "Please Enter the Title of the Name in Persian"
 msgstr "لطفا نام عنوان را به زبان فارسی وارد نمایید"
 
-#: .\product\models.py:19
+#: .\product\models.py:20
 msgid "Slug"
 msgstr "آدرس"
 
-#: .\product\models.py:19
+#: .\product\models.py:20
 msgid "Please Type Your Slug"
 msgstr "لطفا آدرس مربوطه را وارد نمایید"
 
-#: .\product\models.py:37
+#: .\product\models.py:38
 msgid "Category"
 msgstr "دسته بندی"
 
-#: .\product\models.py:37
+#: .\product\models.py:38
 msgid "Categories"
 msgstr "دسته بندی ها"
 
-#: .\product\models.py:40
+#: .\product\models.py:41
 msgid "Main Category"
 msgstr "دسته اصلی"
 
-#: .\product\models.py:40
+#: .\product\models.py:41
 msgid "Please Select the Main Category"
 msgstr "لطفا دسته اصلی را انتخاب نمایید"
 
-#: .\product\models.py:55
+#: .\product\models.py:53
 msgid "Brand"
 msgstr "شرکت"
 
-#: .\product\models.py:55
+#: .\product\models.py:53
 msgid "Brands"
 msgstr "شرکت ها"
 
-#: .\product\models.py:57
+#: .\product\models.py:55
 msgid "Logo"
 msgstr "لوگو"
 
-#: .\product\models.py:59
+#: .\product\models.py:57
 msgid "Please Upload the Logo Icon of Brand"
 msgstr "لطفا آیکون لوگوی شرکت خود را بارگذاری نمایید"
 
-#: .\product\models.py:61
+#: .\product\models.py:59
 msgid "Website Address"
 msgstr "آدرس وب سایت"
 
-#: .\product\models.py:61
+#: .\product\models.py:60
 msgid "Please Enter Your Website Address"
 msgstr "لطفا آدرس وب سایت خود را وارد نمایید"
 
@@ -127,7 +135,7 @@ msgstr ""
 #: .\venv\Lib\site-packages\django\core\validators.py:93
 #: .\venv\Lib\site-packages\django\forms\fields.py:664
 msgid "Enter a valid URL."
-msgstr ""
+msgstr "لطفا یک آدرس معتبر وارد نمایید"
 
 #: .\venv\Lib\site-packages\django\core\validators.py:150
 msgid "Enter a valid integer."
