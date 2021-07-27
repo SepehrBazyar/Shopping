@@ -26,7 +26,7 @@ class BasicModel(models.Model):
     
     objects = BasicManager()
 
-    deleted = models.BooleanField(default=False)
+    deleted = models.BooleanField(default=False, db_index=True)  # column indexing
     create_timestamp = models.DateTimeField(auto_now_add=True)
     modify_timestamp = models.DateTimeField(auto_now=True)
     delete_timestamp = models.DateTimeField(default=None, null=True, blank=True)
@@ -41,7 +41,7 @@ class BasicModel(models.Model):
         self.save()
 
 
-class BasicTestModel(BasicModel):
+class TestModel(BasicModel):
     """
     This Class Just Written to Unit Test Basic Test Class Model
     """
