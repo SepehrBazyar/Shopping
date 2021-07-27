@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-27 21:15+0430\n"
+"POT-Creation-Date: 2021-07-28 00:00+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,21 +38,53 @@ msgstr "عنوان فارسی"
 msgid "Please Enter the Title of the Name in Persian"
 msgstr "لطفا نام عنوان را به زبان فارسی وارد نمایید"
 
-#: .\product\models.py:36
+#: .\product\models.py:19
+msgid "Slug"
+msgstr "آدرس"
+
+#: .\product\models.py:19
+msgid "Please Type Your Slug"
+msgstr "لطفا آدرس مربوطه را وارد نمایید"
+
+#: .\product\models.py:37
 msgid "Category"
 msgstr "دسته بندی"
 
-#: .\product\models.py:36
+#: .\product\models.py:37
 msgid "Categories"
 msgstr "دسته بندی ها"
 
-#: .\product\models.py:39
+#: .\product\models.py:40
 msgid "Main Category"
 msgstr "دسته اصلی"
 
-#: .\product\models.py:39
+#: .\product\models.py:40
 msgid "Please Select the Main Category"
 msgstr "لطفا دسته اصلی را انتخاب نمایید"
+
+#: .\product\models.py:55
+msgid "Brand"
+msgstr "شرکت"
+
+#: .\product\models.py:55
+msgid "Brands"
+msgstr "شرکت ها"
+
+#: .\product\models.py:57
+msgid "Logo"
+msgstr "لوگو"
+
+#: .\product\models.py:59
+msgid "Please Upload the Logo Icon of Brand"
+msgstr "لطفا آیکون لوگوی شرکت خود را بارگذاری نمایید"
+
+#: .\product\models.py:61
+msgid "Website Address"
+msgstr "آدرس وب سایت"
+
+#: .\product\models.py:61
+msgid "Please Enter Your Website Address"
+msgstr "لطفا آدرس وب سایت خود را وارد نمایید"
 
 #: .\venv\Lib\site-packages\django\contrib\messages\apps.py:7
 msgid "Messages"

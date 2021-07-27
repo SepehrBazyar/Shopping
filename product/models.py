@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import URLValidator
 from django.utils.translation import get_language, gettext_lazy as _
 
 from core.models import BasicModel
@@ -10,12 +11,13 @@ class DynamicTranslation(BasicModel):
     """
 
     class Meta:
-        abstract = True
+        abstract = True  # can't create instance object from this class
 
     title_en = models.CharField(max_length=100, unique=True, verbose_name=_("English Title"),
                                 help_text=_("Please Enter the Title of the Name in English"))
     title_fa = models.CharField(max_length=100, unique=True, verbose_name=_("Persian Title"),
                                 help_text=_("Please Enter the Title of the Name in Persian"))
+    slug = models.SlugField(verbose_name=_("Slug"), help_text=_("Please Type Your Slug"))
     
     @property
     def title(self) -> str:
@@ -43,3 +45,22 @@ class Category(DynamicTranslation):
         if self.root:
             result += self.root.__str__() + ' > '
         return result + self.title
+
+
+class Brand(DynamicTranslation):
+    """
+    Model of Brand for Save Company Informations and Products
+    """
+
+    class Meta:
+        verbose_name, verbose_name_plural = _("Brand"), _("Brands")
+
+    logo = models.FileField(upload_to="product/brands/", verbose_name=_("Logo"),
+                            default="product/brands/Unknown.jpg",
+                            help_text=_("Please Upload the Logo Icon of Brand"))
+    link = models.URLField(max_length=200, default=None, null=True, blank=True,
+                        verbose_name=_("Website Address"), validators=[URLValidator],
+                        help_text=_("Please Enter Your Website Address"))
+    
+    def __str__(self) -> str:
+        return self.title
