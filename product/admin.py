@@ -61,7 +61,9 @@ class DiscountAdmin(TranslateAdmin):
             'fields': [('unit', 'amount', 'roof')],
         }),
         (_("Date Information"), {
+            'classes': ('collapse',),
             'fields': [('start_date', 'end_date')],
         }),
     ]
     list_display = TranslateAdmin.list_display + ['start_date', 'end_date']
+    list_filter = ('unit', 'start_date', 'end_date')

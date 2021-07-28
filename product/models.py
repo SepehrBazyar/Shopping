@@ -90,6 +90,13 @@ class Discount(DynamicTranslation):
     end_date = models.DateTimeField(default=None, null=True, blank=True,
         verbose_name=_("End Date"), help_text=_("Please Select the End Date of the Discount"))
 
+    def calculate_price(self, price: int) -> int:
+        """
+        Calculate the Price Paid After Applying the Discount
+        """
+
+        pass
+
     def clean(self):
         """
         Validating Field Data Based on Another Field's Value
