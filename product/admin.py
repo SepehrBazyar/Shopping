@@ -48,3 +48,20 @@ class BrandAdmin(TranslateAdmin):
         }),
     ]
     list_display = TranslateAdmin.list_display + ['link']
+
+
+@admin.register(Discount)
+class DiscountAdmin(TranslateAdmin):
+    """
+    Manage Discount Class Model and Show Fields in Panel Admin
+    """
+
+    fieldsets = TranslateAdmin.fieldsets + [
+        (_("Value Information"), {
+            'fields': [('unit', 'amount', 'roof')],
+        }),
+        (_("Date Information"), {
+            'fields': [('start_date', 'end_date')],
+        }),
+    ]
+    list_display = TranslateAdmin.list_display + ['start_date', 'end_date']

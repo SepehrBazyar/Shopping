@@ -1,8 +1,11 @@
 from django.db import models
+from django.utils import timezone
 from django.core.validators import URLValidator
+from django.core.exceptions import *
 from django.utils.translation import get_language, gettext_lazy as _
 
 from core.models import BasicModel
+from .validators import *
 
 # Create your models here.
 class DynamicTranslation(BasicModel):
@@ -61,3 +64,41 @@ class Brand(DynamicTranslation):
     
     def __str__(self) -> str:
         return self.title
+
+
+class Discount(DynamicTranslation):
+    """
+    Model of Discount for Apply on Product Items Price
+    """
+
+    class Meta:
+        verbose_name, verbose_name_plural = _("Discount"), _("Discounts")
+    
+    UNITS = {
+        'P': _("Percent"),
+        'T': _("Toman"),
+    }
+
+    unit = models.CharField(max_length=1, choices=[(key, value) for key, value in UNITS.items()],
+                            verbose_name=_("Unit"), help_text=_("Please Select the Discount Unit"))
+    amount = models.PositiveBigIntegerField(default=0, verbose_name=_("Discount Amount"),
+                                            help_text=_("Please Enter Discount Amount"))
+    roof = models.PositiveBigIntegerField(default=None, null=True, blank=True,
+        verbose_name=_("Discount Ceiling"), help_text=_("Please Enter Discount Ceiling(Optional)"))
+    start_date = models.DateTimeField(default=timezone.now, null=True, blank=True,
+        verbose_name=_("Start Date"), help_text=_("Please Select the Start Date of the Discount"))
+    end_date = models.DateTimeField(default=None, null=True, blank=True,
+        verbose_name=_("End Date"), help_text=_("Please Select the End Date of the Discount"))
+
+    def clean(self):
+        """
+        Validating Field Data Based on Another Field's Value
+        """
+
+        DiscountValidator(self.unit)(self.amount)
+        DatesValidator(self.start_date)(self.end_date)
+
+    def __str__(self) -> str:
+        mx_trans = _("Maximum")
+        desc = f"({mx_trans}: {self.roof} {self.UNITS['T']})" if self.roof else ""
+        return f"{self.amount} {self.UNITS[self.unit]}{desc}"

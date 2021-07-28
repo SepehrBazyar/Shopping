@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-28 02:21+0430\n"
+"POT-Creation-Date: 2021-07-28 18:50+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,77 +22,153 @@ msgstr ""
 msgid "Detail Information"
 msgstr "اطلاعات اولیه"
 
-#: .\product\admin.py:30 .\product\admin.py:42
+#: .\product\admin.py:32 .\product\admin.py:46
 msgid "Optional Information"
 msgstr "اطلاعات اضافه"
+
+#: .\product\admin.py:60
+msgid "Value Information"
+msgstr "اطلاعات مقادیر"
+
+#: .\product\admin.py:63
+msgid "Date Information"
+msgstr "اطلاعات تاریخ و زمان"
 
 #: .\product\apps.py:8
 msgid "Product"
 msgstr "محصولات"
 
-#: .\product\models.py:16
+#: .\product\models.py:19
 msgid "English Title"
 msgstr "عنوان انگلیسی"
 
-#: .\product\models.py:17
+#: .\product\models.py:20
 msgid "Please Enter the Title of the Name in English"
 msgstr "لطفا نام عنوان را به زبان انگلیسی وارد نمایید"
 
-#: .\product\models.py:18
+#: .\product\models.py:21
 msgid "Persian Title"
 msgstr "عنوان فارسی"
 
-#: .\product\models.py:19
+#: .\product\models.py:22
 msgid "Please Enter the Title of the Name in Persian"
 msgstr "لطفا نام عنوان را به زبان فارسی وارد نمایید"
 
-#: .\product\models.py:20
+#: .\product\models.py:23
 msgid "Slug"
 msgstr "آدرس"
 
-#: .\product\models.py:20
+#: .\product\models.py:23
 msgid "Please Type Your Slug"
 msgstr "لطفا آدرس مربوطه را وارد نمایید"
 
-#: .\product\models.py:38
+#: .\product\models.py:41
 msgid "Category"
 msgstr "دسته بندی"
 
-#: .\product\models.py:38
+#: .\product\models.py:41
 msgid "Categories"
 msgstr "دسته بندی ها"
 
-#: .\product\models.py:41
+#: .\product\models.py:44
 msgid "Main Category"
 msgstr "دسته اصلی"
 
-#: .\product\models.py:41
+#: .\product\models.py:44
 msgid "Please Select the Main Category"
 msgstr "لطفا دسته اصلی را انتخاب نمایید"
 
-#: .\product\models.py:53
+#: .\product\models.py:56
 msgid "Brand"
 msgstr "شرکت"
 
-#: .\product\models.py:53
+#: .\product\models.py:56
 msgid "Brands"
 msgstr "شرکت ها"
 
-#: .\product\models.py:55
+#: .\product\models.py:58
 msgid "Logo"
 msgstr "لوگو"
 
-#: .\product\models.py:57
+#: .\product\models.py:60
 msgid "Please Upload the Logo Icon of Brand"
 msgstr "لطفا آیکون لوگوی شرکت خود را بارگذاری نمایید"
 
-#: .\product\models.py:59
+#: .\product\models.py:62
 msgid "Website Address"
 msgstr "آدرس وب سایت"
 
-#: .\product\models.py:60
+#: .\product\models.py:63
 msgid "Please Enter Your Website Address"
 msgstr "لطفا آدرس وب سایت خود را وارد نمایید"
+
+#: .\product\models.py:75
+msgid "Discount"
+msgstr "تخفیف"
+
+#: .\product\models.py:75
+msgid "Discounts"
+msgstr "تخفیف ها"
+
+#: .\product\models.py:78
+msgid "Percent"
+msgstr "درصد"
+
+#: .\product\models.py:79
+msgid "Toman"
+msgstr "تومان"
+
+#: .\product\models.py:83
+msgid "Unit"
+msgstr "واحد"
+
+#: .\product\models.py:83
+msgid "Please Select the Discount Unit"
+msgstr "لطفا واحد تخفیف را انتخاب نمایید"
+
+#: .\product\models.py:84
+msgid "Discount Amount"
+msgstr "میزان تخفیف"
+
+#: .\product\models.py:85
+msgid "Please Enter Discount Amount"
+msgstr "لطفا مقدار تخفیف را وارد نمایید"
+
+#: .\product\models.py:87
+msgid "Discount Ceiling"
+msgstr "سقف تخفیف"
+
+#: .\product\models.py:87
+msgid "Please Enter Discount Ceiling(Optional)"
+msgstr "لطفا سقف تخفیف را وارد نمایید(اختیاری)"
+
+#: .\product\models.py:89
+msgid "Start Date"
+msgstr "تاریخ آغاز"
+
+#: .\product\models.py:89
+msgid "Please Select the Start Date of the Discount"
+msgstr "لطفا زمان شروع تخفیف را انتخاب نمایید"
+
+#: .\product\models.py:91
+msgid "End Date"
+msgstr "تاریخ اتمام"
+
+#: .\product\models.py:91
+msgid "Please Select the End Date of the Discount"
+msgstr "لطفا زمان پایان تخفیف را انتخاب نمایید"
+
+#: .\product\models.py:102
+msgid "Maximum"
+msgstr "بیشینه"
+
+#: .\product\validators.py:14
+msgid "Percentage Rate Must be Between 0 & 100"
+msgstr "درصد می بایست عددی بین 0 تا 100 باشد"
+
+#: .\product\validators.py:27
+msgid "End Date Should be After the Start Date"
+msgstr "تاریخ اتمام نمی تواند قبل از تاریخ شروع باشد"
 
 #: .\venv\Lib\site-packages\django\contrib\messages\apps.py:7
 msgid "Messages"
