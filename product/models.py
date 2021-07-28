@@ -95,7 +95,14 @@ class Discount(DynamicTranslation):
         Calculate the Price Paid After Applying the Discount
         """
 
-        pass
+        if self.unit == 'T':
+            decrease = self.amount
+        else:
+            decrease = price * self.amount // 100
+            if self.roof:
+                decrease = min(decrease, self.roof)
+
+        return max(price - decrease, 0)
 
     def clean(self):
         """

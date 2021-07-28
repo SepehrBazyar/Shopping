@@ -12,6 +12,7 @@ class TestDiscountModel(TestCase):
             'slug': "test",
         }
 
+    # tests for discount with toman unit and discount < price
     def test_toman_positive_1(self):
         d = Discount.objects.create(**self.info, unit='T', amount=5_000)
         self.assertEqual(d.calculate_price(75_000), 70_000)
@@ -24,10 +25,12 @@ class TestDiscountModel(TestCase):
         d = Discount.objects.create(**self.info, unit='T', amount=7_000)
         self.assertEqual(d.calculate_price(17_500), 10_500)
 
+    # tests for discount with toman unit and discount > price
     def test_toman_zero_1(self):
         d = Discount.objects.create(**self.info, unit='T', amount=12_000)
         self.assertEqual(d.calculate_price(10_000), 0)
     
+    # tests for discount with percent unit and without ceiling value
     def test_percent_without_roof_1(self):
         d = Discount.objects.create(**self.info, unit='P', amount=12)
         self.assertEqual(d.calculate_price(250_000), 220_000)
@@ -44,6 +47,7 @@ class TestDiscountModel(TestCase):
         d = Discount.objects.create(**self.info, unit='P', amount=15)
         self.assertEqual(d.calculate_price(1_000_000), 850_000)
 
+    # tests for discount with percent unit and with ceiling value but less than
     def test_percent_with_roof_fewer_1(self):
         d = Discount.objects.create(**self.info, unit='P', amount=10, roof=20_000)
         self.assertEqual(d.calculate_price(120_000), 108_000)
@@ -56,6 +60,7 @@ class TestDiscountModel(TestCase):
         d = Discount.objects.create(**self.info, unit='P', amount=50, roof=25_000)
         self.assertEqual(d.calculate_price(20_000), 10_000)
     
+    # tests for discount with percent unit and with ceiling value but not less than
     def test_percent_with_roof_bigger_1(self):
         d = Discount.objects.create(**self.info, unit='P', amount=25, roof=15_000)
         self.assertEqual(d.calculate_price(80_000), 65_000)
