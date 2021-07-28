@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-28 18:50+0430\n"
+"POT-Creation-Date: 2021-07-28 21:12+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -162,11 +162,15 @@ msgstr "لطفا زمان پایان تخفیف را انتخاب نمایید"
 msgid "Maximum"
 msgstr "بیشینه"
 
-#: .\product\validators.py:14
+#: .\product\validators.py:16
 msgid "Percentage Rate Must be Between 0 & 100"
 msgstr "درصد می بایست عددی بین 0 تا 100 باشد"
 
-#: .\product\validators.py:27
+#: .\product\validators.py:18
+msgid "Ceiling Just in Percent Unit Available"
+msgstr "تعیین سقف فقط برای تخفیف درصدی امکان پذیر است"
+
+#: .\product\validators.py:31
 msgid "End Date Should be After the Start Date"
 msgstr "تاریخ اتمام نمی تواند قبل از تاریخ شروع باشد"
 

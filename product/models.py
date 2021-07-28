@@ -95,7 +95,7 @@ class Discount(DynamicTranslation):
         Validating Field Data Based on Another Field's Value
         """
 
-        DiscountValidator(self.unit)(self.amount)
+        DiscountValidator(self.unit)(self.amount, self.roof)
         DatesValidator(self.start_date)(self.end_date)
 
     def __str__(self) -> str:

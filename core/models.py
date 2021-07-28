@@ -11,6 +11,11 @@ class BasicManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().exclude(deleted=True)
 
+    # override delete method to change deleted field to logical delete
+    def delete(self):
+        for obj in self:
+            obj.delete()
+
     # create new method to set new all() function for show deleted item
     def archive(self):
         return super().get_queryset()

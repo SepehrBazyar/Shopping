@@ -1,6 +1,8 @@
 from django.core.exceptions import *
 from django.utils.translation import gettext_lazy as _
 
+from typing import Optional
+
 class DiscountValidator:
     """
     Validator Callable Class for Check Percent Discount Between 0 and 100 Numbers
@@ -9,9 +11,11 @@ class DiscountValidator:
     def __init__(self, unit: str):
         self.unit = unit
     
-    def __call__(self, value: int):
-        if self.unit == 'P' and value > 100:
+    def __call__(self, amount: int, roof: Optional[int]):
+        if self.unit == 'P' and amount > 100:
             raise ValidationError(_("Percentage Rate Must be Between 0 & 100"))
+        if self.unit == 'T' and roof:
+            raise ValidationError(_("Ceiling Just in Percent Unit Available"))
 
 
 class DatesValidator:
