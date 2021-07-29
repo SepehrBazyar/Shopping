@@ -4,6 +4,8 @@ from django.core.validators import URLValidator
 from django.core.exceptions import *
 from django.utils.translation import get_language, gettext_lazy as _
 
+from pymongo import MongoClient
+
 from core.models import BasicModel
 from .validators import *
 
@@ -29,6 +31,9 @@ class DynamicTranslation(BasicModel):
         """
 
         return self.title_fa if get_language() == 'fa' else self.title_en
+    
+    def __str__(self) -> str:
+        return self.title
 
 
 class Category(DynamicTranslation):
@@ -42,9 +47,6 @@ class Category(DynamicTranslation):
     
     root = models.ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True,
         verbose_name=_("Main Category"), help_text=_("Please Select the Main Category"))
-    
-    def __str__(self) -> str:
-        return self.title
 
 
 class Brand(DynamicTranslation):
@@ -61,9 +63,6 @@ class Brand(DynamicTranslation):
     link = models.URLField(max_length=200, default=None, null=True, blank=True,
                         verbose_name=_("Website Address"), validators=[URLValidator],
                         help_text=_("Please Enter Your Website Address"))
-    
-    def __str__(self) -> str:
-        return self.title
 
 
 class Discount(DynamicTranslation):
@@ -117,5 +116,45 @@ class Discount(DynamicTranslation):
 
     def __str__(self) -> str:
         mx_trans = _("Maximum")
-        desc = f"({mx_trans}: {self.roof} {self.UNITS['T']})" if self.roof else ""
+        desc = f"({mx_trans}: {self.roof} {self.UNITS['T']})" if self.roof is not None else ""
         return f"{self.amount} {self.UNITS[self.unit]}{desc}"
+
+
+class Product(DynamicTranslation):
+    """
+    Model of Product Items for Save Detail Information for Show in Home Page
+    """
+
+    class Meta:
+        verbose_name, verbose_name_plural = _("Product"), _("Products")
+    
+    image = models.FileField(upload_to="product/products/", verbose_name=_("Picture"),
+                            default="product/products/Unknown.jpg", blank=True,
+                            help_text=_("Please Upload a Picture of the Product Item"))
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="products",
+        verbose_name=_("Category"), help_text=_("Please Select the Category of the Product Item"))
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name="products",
+        verbose_name=_("Brand"), help_text=_("Please Select the Brand of the Product Item"))
+    price = models.PositiveBigIntegerField(verbose_name=_("Price"),
+        help_text=_("Please Enter the Price of Product Item without Apply Discount"))
+    inventory = models.PositiveBigIntegerField(verbose_name=_("Number of Inventory"),
+        help_text=_("Please Enter the Number of this Product Item into the Stock"))
+    discount = models.ForeignKey(Discount, on_delete=models.CASCADE, related_name="products",
+                                verbose_name=_("Discount"), default=None, null=True, blank=True,
+                                help_text=_("Please Select the Type of Discount if Available"))
+
+    @property
+    def final_price(self) -> int:
+        """
+        Property Method to Calculate Final Price by Apply Discount Changes
+        """
+
+        result = self.price
+        if self.discount is not None:
+            result = self.discount.calculate_price(result)
+        return result
+
+    def __str__(self) -> str:
+        toman_trans = _("Toman")
+        final = f"({self.final_price})" if self.discount is not None else ""
+        return f"{self.title} {self.price}{final} {toman_trans}"

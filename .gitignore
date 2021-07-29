@@ -150,3 +150,5 @@ dmypy.json
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
+
+media/

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-28 21:12+0430\n"
+"POT-Creation-Date: 2021-07-29 22:32+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,129 +38,173 @@ msgstr "اطلاعات تاریخ و زمان"
 msgid "Product"
 msgstr "محصولات"
 
-#: .\product\models.py:19
+#: .\product\models.py:21
 msgid "English Title"
 msgstr "عنوان انگلیسی"
 
-#: .\product\models.py:20
+#: .\product\models.py:22
 msgid "Please Enter the Title of the Name in English"
 msgstr "لطفا نام عنوان را به زبان انگلیسی وارد نمایید"
 
-#: .\product\models.py:21
+#: .\product\models.py:23
 msgid "Persian Title"
 msgstr "عنوان فارسی"
 
-#: .\product\models.py:22
+#: .\product\models.py:24
 msgid "Please Enter the Title of the Name in Persian"
 msgstr "لطفا نام عنوان را به زبان فارسی وارد نمایید"
 
-#: .\product\models.py:23
+#: .\product\models.py:25
 msgid "Slug"
 msgstr "آدرس"
 
-#: .\product\models.py:23
+#: .\product\models.py:25
 msgid "Please Type Your Slug"
 msgstr "لطفا آدرس مربوطه را وارد نمایید"
 
-#: .\product\models.py:41
+#: .\product\models.py:46 .\product\models.py:135
 msgid "Category"
 msgstr "دسته بندی"
 
-#: .\product\models.py:41
+#: .\product\models.py:46
 msgid "Categories"
 msgstr "دسته بندی ها"
 
-#: .\product\models.py:44
+#: .\product\models.py:49
 msgid "Main Category"
 msgstr "دسته اصلی"
 
-#: .\product\models.py:44
+#: .\product\models.py:49
 msgid "Please Select the Main Category"
 msgstr "لطفا دسته اصلی را انتخاب نمایید"
 
-#: .\product\models.py:56
+#: .\product\models.py:58 .\product\models.py:137
 msgid "Brand"
 msgstr "شرکت"
 
-#: .\product\models.py:56
+#: .\product\models.py:58
 msgid "Brands"
 msgstr "شرکت ها"
 
-#: .\product\models.py:58
+#: .\product\models.py:60
 msgid "Logo"
 msgstr "لوگو"
 
-#: .\product\models.py:60
+#: .\product\models.py:62
 msgid "Please Upload the Logo Icon of Brand"
 msgstr "لطفا آیکون لوگوی شرکت خود را بارگذاری نمایید"
 
-#: .\product\models.py:62
+#: .\product\models.py:64
 msgid "Website Address"
 msgstr "آدرس وب سایت"
 
-#: .\product\models.py:63
+#: .\product\models.py:65
 msgid "Please Enter Your Website Address"
 msgstr "لطفا آدرس وب سایت خود را وارد نمایید"
 
-#: .\product\models.py:75
+#: .\product\models.py:74 .\product\models.py:143
 msgid "Discount"
 msgstr "تخفیف"
 
-#: .\product\models.py:75
+#: .\product\models.py:74
 msgid "Discounts"
 msgstr "تخفیف ها"
 
-#: .\product\models.py:78
+#: .\product\models.py:77
 msgid "Percent"
 msgstr "درصد"
 
-#: .\product\models.py:79
+#: .\product\models.py:78 .\product\models.py:158
 msgid "Toman"
 msgstr "تومان"
 
-#: .\product\models.py:83
+#: .\product\models.py:82
 msgid "Unit"
 msgstr "واحد"
 
-#: .\product\models.py:83
+#: .\product\models.py:82
 msgid "Please Select the Discount Unit"
 msgstr "لطفا واحد تخفیف را انتخاب نمایید"
 
-#: .\product\models.py:84
+#: .\product\models.py:83
 msgid "Discount Amount"
 msgstr "میزان تخفیف"
 
-#: .\product\models.py:85
+#: .\product\models.py:84
 msgid "Please Enter Discount Amount"
 msgstr "لطفا مقدار تخفیف را وارد نمایید"
 
-#: .\product\models.py:87
+#: .\product\models.py:86
 msgid "Discount Ceiling"
 msgstr "سقف تخفیف"
 
-#: .\product\models.py:87
+#: .\product\models.py:86
 msgid "Please Enter Discount Ceiling(Optional)"
 msgstr "لطفا سقف تخفیف را وارد نمایید(اختیاری)"
 
-#: .\product\models.py:89
+#: .\product\models.py:88
 msgid "Start Date"
 msgstr "تاریخ آغاز"
 
-#: .\product\models.py:89
+#: .\product\models.py:88
 msgid "Please Select the Start Date of the Discount"
 msgstr "لطفا زمان شروع تخفیف را انتخاب نمایید"
 
-#: .\product\models.py:91
+#: .\product\models.py:90
 msgid "End Date"
 msgstr "تاریخ اتمام"
 
-#: .\product\models.py:91
+#: .\product\models.py:90
 msgid "Please Select the End Date of the Discount"
 msgstr "لطفا زمان پایان تخفیف را انتخاب نمایید"
 
-#: .\product\models.py:102
+#: .\product\models.py:118
 msgid "Maximum"
 msgstr "بیشینه"
+
+#: .\product\models.py:129
+msgid "Product"
+msgstr "محصول"
+
+#: .\product\models.py:129
+msgid "Products"
+msgstr "محصولات"
+
+#: .\product\models.py:131
+msgid "Picture"
+msgstr "تصویر"
+
+#: .\product\models.py:133
+msgid "Please Upload a Picture of the Product Item"
+msgstr "لطفا تصویری از محصول مورد نظر بارگذاری نمایید"
+
+#: .\product\models.py:135
+msgid "Please Select the Category of the Product Item"
+msgstr "لطفا دسته بندی مربوط به محصول را انتخاب نمایید"
+
+#: .\product\models.py:137
+msgid "Please Select the Brand of the Product Item"
+msgstr "لطفا شرکت سازنده محصول را انتخاب نمایید"
+
+#: .\product\models.py:138
+msgid "Price"
+msgstr "قیمت"
+
+#: .\product\models.py:139
+msgid "Please Enter the Price of Product Item without Apply Discount"
+msgstr "لطفا قیمت محصول را بدون در نظر گرفتن تخفیف وارد نمایید"
+
+#: .\product\models.py:140
+msgid "Number of Inventory"
+msgstr "تعداد موجودی انبار"
+
+#: .\product\models.py:141
+msgid "Please Enter the Number of this Product Item into the Stock"
+msgstr "لطفا تعداد موجود از این محصول در انبار را وارد نمایید"
+
+#: .\product\models.py:144
+msgid "Please Select the Type of Discount if Available"
+msgstr "لطفا نوع تخفیف را در صورت وجود برای محصول انتخاب نمایید"
 
 #: .\product\validators.py:16
 msgid "Percentage Rate Must be Between 0 & 100"
