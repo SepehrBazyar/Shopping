@@ -95,12 +95,15 @@ class Discount(DynamicTranslation):
         Calculate the Price Paid After Applying the Discount
         """
 
-        if self.unit == 'T':
-            decrease = self.amount
-        else:
-            decrease = price * self.amount // 100
-            if self.roof:
-                decrease = min(decrease, self.roof)
+        decrease, present = 0, timezone.now()
+        if self.start_date <= present:
+            if self.end_date is None or present <= self.end_date:
+                if self.unit == 'T':
+                    decrease = self.amount
+                else:
+                    decrease = price * self.amount // 100
+                    if self.roof is not None:
+                        decrease = min(decrease, self.roof)
 
         return max(price - decrease, 0)
 

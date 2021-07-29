@@ -64,3 +64,21 @@ class TestDiscountModel(TestCase):
     def test_percent_with_roof_bigger_1(self):
         d = Discount.objects.create(**self.info, unit='P', amount=25, roof=15_000)
         self.assertEqual(d.calculate_price(80_000), 65_000)
+
+    # tests for discount with start date time in the future so dont apply on price
+    def test_datetime_start_future_1(self):
+        d = Discount.objects.create(**self.info, unit='T', amount=12_000,
+                                    start_date=now() + timedelta(days=1))
+        self.assertEqual(d.calculate_price(10_000), 10_000)
+    
+    # tests for discount with end date time in the past so dont apply on price
+    def test_datetime_end_past_1(self):
+        d = Discount.objects.create(**self.info, unit='P', amount=25, roof=15_000, 
+                                    start_date=now(), end_date=now() - timedelta(days=1))
+        self.assertEqual(d.calculate_price(80_000), 80_000)
+
+    # tests for discount with has end time in the future and similar to null value
+    def test_datetime_end_not_null_1(self):
+        d = Discount.objects.create(**self.info, unit='P', amount=10, roof=20_000,
+                                    start_date=now(), end_date=now() + timedelta(days=1))
+        self.assertEqual(d.calculate_price(120_000), 108_000)
