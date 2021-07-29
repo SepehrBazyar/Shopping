@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-29 22:32+0430\n"
+"POT-Creation-Date: 2021-07-30 01:44+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,8 +34,12 @@ msgstr "اطلاعات مقادیر"
 msgid "Date Information"
 msgstr "اطلاعات تاریخ و زمان"
 
-#: .\product\apps.py:8
-msgid "Product"
+#: .\product\admin.py:79
+msgid "Further information"
+msgstr "اطلاعات تکمیلی"
+
+#: .\product\apps.py:8 .\product\models.py:129
+msgid "Products"
 msgstr "محصولات"
 
 #: .\product\models.py:21
@@ -114,7 +118,7 @@ msgstr "تخفیف ها"
 msgid "Percent"
 msgstr "درصد"
 
-#: .\product\models.py:78 .\product\models.py:158
+#: .\product\models.py:78 .\product\models.py:160
 msgid "Toman"
 msgstr "تومان"
 
@@ -166,10 +170,6 @@ msgstr "بیشینه"
 msgid "Product"
 msgstr "محصول"
 
-#: .\product\models.py:129
-msgid "Products"
-msgstr "محصولات"
-
 #: .\product\models.py:131
 msgid "Picture"
 msgstr "تصویر"
@@ -205,6 +205,10 @@ msgstr "لطفا تعداد موجود از این محصول در انبار ر
 #: .\product\models.py:144
 msgid "Please Select the Type of Discount if Available"
 msgstr "لطفا نوع تخفیف را در صورت وجود برای محصول انتخاب نمایید"
+
+#: .\product\models.py:157
+msgid "Final Price"
+msgstr "قیمت نهایی"
 
 #: .\product\validators.py:16
 msgid "Percentage Rate Must be Between 0 & 100"

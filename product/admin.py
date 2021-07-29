@@ -67,3 +67,23 @@ class DiscountAdmin(TranslateAdmin):
     ]
     list_display = TranslateAdmin.list_display + ['start_date', 'end_date']
     list_filter = ('unit', 'start_date', 'end_date')
+
+
+@admin.register(Product)
+class ProductAdmin(TranslateAdmin):
+    """
+    Manage Product Item Class Model and Show Fields in Panel Admin
+    """
+
+    fieldsets = TranslateAdmin.fieldsets + [
+        (_("Further information"), {
+            'fields': (
+                ('image', 'inventory'),
+                ('category', 'brand'),
+                ('price', 'discount'),
+            ),
+        }),
+    ]
+    list_display = TranslateAdmin.list_display + \
+        ['category', 'brand', 'price', 'discount', 'final_price']
+    list_filter = ('category', 'brand', 'discount')

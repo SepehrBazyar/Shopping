@@ -154,7 +154,8 @@ class Product(DynamicTranslation):
             result = self.discount.calculate_price(result)
         return result
 
+    final_price.fget.short_description = _("Final Price")
+
     def __str__(self) -> str:
         toman_trans = _("Toman")
-        final = f"({self.final_price})" if self.discount is not None else ""
-        return f"{self.title} {self.price}{final} {toman_trans}"
+        return f"{self.title} - {self.final_price} {toman_trans}"
