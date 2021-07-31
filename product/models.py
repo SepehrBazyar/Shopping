@@ -154,7 +154,7 @@ class Product(DynamicTranslation):
             result = self.discount.calculate_price(result)
         return result
 
-    final_price.fget.short_description = _("Final Price")
+    final_price.fget.short_description = _("Final Price")  # like verbose name for panel admin
 
     def __str__(self) -> str:
         toman_trans = _("Toman")

@@ -87,3 +87,5 @@ class ProductAdmin(TranslateAdmin):
     list_display = TranslateAdmin.list_display + \
         ['category', 'brand', 'price', 'discount', 'final_price']
     list_filter = ('category', 'brand', 'discount')
+    search_fields = ['title_en', 'title_fa']
+    list_editable = ['price']

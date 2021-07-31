@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-30 01:44+0430\n"
+"POT-Creation-Date: 2021-07-31 15:26+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -221,6 +221,14 @@ msgstr "تعیین سقف فقط برای تخفیف درصدی امکان پذ�
 #: .\product\validators.py:31
 msgid "End Date Should be After the Start Date"
 msgstr "تاریخ اتمام نمی تواند قبل از تاریخ شروع باشد"
+
+#: .\templates\admin\base_site.html:4
+msgid "Admin Panel"
+msgstr "میز مدیریت"
+
+#: .\templates\admin\base_site.html:7
+msgid "Sepehr Shopping System"
+msgstr "سیستم فروشگاهی سپهر"
 
 #: .\venv\Lib\site-packages\django\contrib\messages\apps.py:7
 msgid "Messages"
