@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 from core.admin import *
@@ -67,6 +68,33 @@ class DiscountAdmin(TranslateAdmin):
     ]
     list_display = TranslateAdmin.list_display + ['start_date', 'end_date']
     list_filter = ('unit', 'start_date', 'end_date')
+    actions = ['beginning', 'finishing']
+
+    @admin.action(description=_("Beginning Selected Discount"))
+    def beginning(self, request, queryset):
+        """
+        Action for Change Start Date of Selected Discount to Now
+        """
+
+        updated = queryset.update(start_date=timezone.now())
+        if updated == 1:
+            message = _(" Discount was Successfully Beginning.")
+        else:
+            message = _(" Discounts were Successfully Beginning.")
+        self.message_user(request, str(updated) + message)
+
+    @admin.action(description=_("Finishing Selected Discount"))
+    def finishing(self, request, queryset):
+        """
+        Action for Change End Date of Selected Discount to Now
+        """
+
+        updated = queryset.update(end_date=timezone.now())
+        if updated == 1:
+            message = _(" Discount was Successfully Finishing.")
+        else:
+            message = _(" Discounts were Successfully Finishing.")
+        self.message_user(request, str(updated) + message)
 
 
 @admin.register(Product)
@@ -87,5 +115,4 @@ class ProductAdmin(TranslateAdmin):
     list_display = TranslateAdmin.list_display + \
         ['category', 'brand', 'price', 'discount', 'final_price']
     list_filter = ('category', 'brand', 'discount')
-    search_fields = ['title_en', 'title_fa']
     list_editable = ['price']

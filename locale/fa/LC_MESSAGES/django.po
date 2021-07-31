@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-31 15:44+0430\n"
+"POT-Creation-Date: 2021-07-31 18:49+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,23 +18,47 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: .\product\admin.py:14
+#: .\product\admin.py:15
 msgid "Detail Information"
 msgstr "اطلاعات اولیه"
 
-#: .\product\admin.py:32 .\product\admin.py:46
+#: .\product\admin.py:33 .\product\admin.py:47
 msgid "Optional Information"
 msgstr "اطلاعات اضافه"
 
-#: .\product\admin.py:60
+#: .\product\admin.py:61
 msgid "Value Information"
 msgstr "اطلاعات مقادیر"
 
-#: .\product\admin.py:63
+#: .\product\admin.py:64
 msgid "Date Information"
 msgstr "اطلاعات تاریخ و زمان"
 
-#: .\product\admin.py:79
+#: .\product\admin.py:73
+msgid "Beginning Selected Discount"
+msgstr "آغاز اعمال تخفیف های انتخاب شده"
+
+#: .\product\admin.py:81
+msgid " Discount was Successfully Beginning."
+msgstr " تخفیف با موفقیت آغاز شد."
+
+#: .\product\admin.py:83
+msgid " Discounts were Successfully Beginning."
+msgstr " تخفیف با موفقیت آغاز شدند."
+
+#: .\product\admin.py:86
+msgid "Finishing Selected Discount"
+msgstr "خاتمه یافتن تخفیف های انتخاب شده"
+
+#: .\product\admin.py:94
+msgid " Discount was Successfully Finishing."
+msgstr " تخفیف با موفقیت خاتمه یافت."
+
+#: .\product\admin.py:96
+msgid " Discounts were Successfully Finishing."
+msgstr " تخفیف با موفقیت خاتمه یافتند."
+
+#: .\product\admin.py:107
 msgid "Further information"
 msgstr "اطلاعات تکمیلی"
 
@@ -226,27 +250,27 @@ msgstr "تاریخ اتمام نمی تواند قبل از تاریخ شروع 
 msgid "Sepehr Shopping"
 msgstr "فروشگاه سپهر"
 
-#: .\templates\admin\base.html:39
+#: .\templates\admin\base.html:40
 msgid "Welcome,"
 msgstr "خوش آمدید"
 
-#: .\templates\admin\base.html:44
+#: .\templates\admin\base.html:45
 msgid "View site"
 msgstr "مشاهده وبسایت"
 
-#: .\templates\admin\base.html:49
+#: .\templates\admin\base.html:50
 msgid "Documentation"
 msgstr "اسناد"
 
-#: .\templates\admin\base.html:53
+#: .\templates\admin\base.html:54
 msgid "Change password"
-msgstr "تغییر گذرواژه"
+msgstr "ویرایش گذرواژه"
 
-#: .\templates\admin\base.html:55
+#: .\templates\admin\base.html:56
 msgid "Log out"
 msgstr "خروج"
 
-#: .\templates\admin\base.html:65
+#: .\templates\admin\base.html:66
 msgid "Home"
 msgstr "خانه"
 
@@ -307,7 +331,7 @@ msgstr ""
 
 #: .\venv\Lib\site-packages\django\core\validators.py:161
 msgid "Enter a valid email address."
-msgstr ""
+msgstr "لطفا یک نشانی پستی معتبر وارد نمایید"
 
 #. Translators: "letters" means latin letters: a-z and A-Z.
 #: .\venv\Lib\site-packages\django\core\validators.py:262
@@ -927,179 +951,179 @@ msgstr ""
 
 #: .\venv\Lib\site-packages\django\utils\dateformat.py:66
 msgid "p.m."
-msgstr ""
+msgstr "عصر"
 
 #: .\venv\Lib\site-packages\django\utils\dateformat.py:67
 msgid "a.m."
-msgstr ""
+msgstr "صبح"
 
 #: .\venv\Lib\site-packages\django\utils\dateformat.py:72
 msgid "PM"
-msgstr ""
+msgstr "عصر"
 
 #: .\venv\Lib\site-packages\django\utils\dateformat.py:73
 msgid "AM"
-msgstr ""
+msgstr "صبح"
 
 #: .\venv\Lib\site-packages\django\utils\dateformat.py:146
 msgid "midnight"
-msgstr ""
+msgstr "شب"
 
 #: .\venv\Lib\site-packages\django\utils\dateformat.py:148
 msgid "noon"
-msgstr ""
+msgstr "ظهر"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:6
 msgid "Monday"
-msgstr ""
+msgstr "دوشنبه"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:6
 msgid "Tuesday"
-msgstr ""
+msgstr "سه شنبه"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:6
 msgid "Wednesday"
-msgstr ""
+msgstr "چهارشنبه"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:6
 msgid "Thursday"
-msgstr ""
+msgstr "پنج شنبه"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:6
 msgid "Friday"
-msgstr ""
+msgstr "جمعه"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:7
 msgid "Saturday"
-msgstr ""
+msgstr "شنبه"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:7
 msgid "Sunday"
-msgstr ""
+msgstr "یکشنبه"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:10
 msgid "Mon"
-msgstr ""
+msgstr "دوشنبه"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:10
 msgid "Tue"
-msgstr ""
+msgstr "سه شنبه"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:10
 msgid "Wed"
-msgstr ""
+msgstr "چهارشنبه"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:10
 msgid "Thu"
-msgstr ""
+msgstr "پنج شنبه"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:10
 msgid "Fri"
-msgstr ""
+msgstr "جمعه"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:11
 msgid "Sat"
-msgstr ""
+msgstr "شنبه"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:11
 msgid "Sun"
-msgstr ""
+msgstr "یکشنبه"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:14
 msgid "January"
-msgstr ""
+msgstr "ژانویه"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:14
 msgid "February"
-msgstr ""
+msgstr "فوریه"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:14
 msgid "March"
-msgstr ""
+msgstr "مارچ"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:14
 msgid "April"
-msgstr ""
+msgstr "آپریل"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:14
 msgid "May"
-msgstr ""
+msgstr "می"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:14
 msgid "June"
-msgstr ""
+msgstr "ژوئن"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:15
 msgid "July"
-msgstr ""
+msgstr "جولای"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:15
 msgid "August"
-msgstr ""
+msgstr "آگوست"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:15
 msgid "September"
-msgstr ""
+msgstr "سپتامبر"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:15
 msgid "October"
-msgstr ""
+msgstr "اکتبر"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:15
 msgid "November"
-msgstr ""
+msgstr "نوامبر"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:16
 msgid "December"
-msgstr ""
+msgstr "دسامبر"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:19
 msgid "jan"
-msgstr ""
+msgstr "ژانویه"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:19
 msgid "feb"
-msgstr ""
+msgstr "فوریه"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:19
 msgid "mar"
-msgstr ""
+msgstr "مارچ"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:19
 msgid "apr"
-msgstr ""
+msgstr "آپریل"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:19
 msgid "may"
-msgstr ""
+msgstr "می"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:19
 msgid "jun"
-msgstr ""
+msgstr "ژوئن"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:20
 msgid "jul"
-msgstr ""
+msgstr "جولای"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:20
 msgid "aug"
-msgstr ""
+msgstr "آگوست"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:20
 msgid "sep"
-msgstr ""
+msgstr "سپتامبر"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:20
 msgid "oct"
-msgstr ""
+msgstr "اکتبر"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:20
 msgid "nov"
-msgstr ""
+msgstr "نوامبر"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:20
 msgid "dec"
-msgstr ""
+msgstr "دسامبر"
 
 #: .\venv\Lib\site-packages\django\utils\dates.py:23
 msgctxt "abbrev. month"

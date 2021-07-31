@@ -6,17 +6,17 @@
 
 /* VARIABLE DEFINITIONS */
 :root {
-  --primary: #79aec8;
-  --secondary: #417690;
-  --accent: #f5dd5d;
+  --primary: #34495E;
+  --secondary: #1B2631;
+  --accent: #1E8449;
   --primary-fg: #fff;
 
   --body-fg: #333;
-  --body-bg: #fff;
+  --body-bg: #F4F6F6;
   --body-quiet-color: #666;
   --body-loud-color: #000;
 
-  --header-color: #ffc;
+  --header-color: #F9E79F;
   --header-branding-color: var(--accent);
   --header-bg: var(--secondary);
   --header-link-color: var(--primary-fg);
@@ -40,7 +40,7 @@
 
   --darkened-bg: #f8f8f8; /* A bit darker than --body-bg */
   --selected-bg: #e4e4e4; /* E.g. selected table cells */
-  --selected-row: #ffc;
+  --selected-row: #A9CCE3;
 
   --button-fg: #fff;
   --button-bg: var(--primary);

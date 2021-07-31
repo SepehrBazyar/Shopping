@@ -9,3 +9,4 @@ class BasicAdmin(admin.ModelAdmin):
     """
 
     exclude = ('deleted', 'delete_timestamp')
+    search_fields = ['title_en', 'title_fa']
