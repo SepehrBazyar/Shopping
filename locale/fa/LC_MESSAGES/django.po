@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-31 18:49+0430\n"
+"POT-Creation-Date: 2021-07-31 20:46+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,47 +18,55 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: .\product\admin.py:15
+#: .\product\admin.py:35
+msgid "Subcategories"
+msgstr "زیر دسته ها"
+
+#: .\product\admin.py:44
+msgid "Manufactured Products"
+msgstr "محصولات تولیدی"
+
+#: .\product\admin.py:58
 msgid "Detail Information"
 msgstr "اطلاعات اولیه"
 
-#: .\product\admin.py:33 .\product\admin.py:47
+#: .\product\admin.py:76 .\product\admin.py:91
 msgid "Optional Information"
 msgstr "اطلاعات اضافه"
 
-#: .\product\admin.py:61
+#: .\product\admin.py:106
 msgid "Value Information"
 msgstr "اطلاعات مقادیر"
 
-#: .\product\admin.py:64
+#: .\product\admin.py:109
 msgid "Date Information"
 msgstr "اطلاعات تاریخ و زمان"
 
-#: .\product\admin.py:73
+#: .\product\admin.py:118
 msgid "Beginning Selected Discount"
 msgstr "آغاز اعمال تخفیف های انتخاب شده"
 
-#: .\product\admin.py:81
+#: .\product\admin.py:126
 msgid " Discount was Successfully Beginning."
 msgstr " تخفیف با موفقیت آغاز شد."
 
-#: .\product\admin.py:83
+#: .\product\admin.py:128
 msgid " Discounts were Successfully Beginning."
 msgstr " تخفیف با موفقیت آغاز شدند."
 
-#: .\product\admin.py:86
+#: .\product\admin.py:131
 msgid "Finishing Selected Discount"
 msgstr "خاتمه یافتن تخفیف های انتخاب شده"
 
-#: .\product\admin.py:94
+#: .\product\admin.py:139
 msgid " Discount was Successfully Finishing."
 msgstr " تخفیف با موفقیت خاتمه یافت."
 
-#: .\product\admin.py:96
+#: .\product\admin.py:141
 msgid " Discounts were Successfully Finishing."
 msgstr " تخفیف با موفقیت خاتمه یافتند."
 
-#: .\product\admin.py:107
+#: .\product\admin.py:152
 msgid "Further information"
 msgstr "اطلاعات تکمیلی"
 

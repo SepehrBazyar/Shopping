@@ -58,7 +58,7 @@ class Brand(DynamicTranslation):
         verbose_name, verbose_name_plural = _("Brand"), _("Brands")
 
     logo = models.FileField(upload_to="product/brands/", verbose_name=_("Logo"),
-                            default="product/brands/Unknown.jpg", blank=True,
+                            default="Unknown.jpg", blank=True,
                             help_text=_("Please Upload the Logo Icon of Brand"))
     link = models.URLField(max_length=200, default=None, null=True, blank=True,
                         verbose_name=_("Website Address"), validators=[URLValidator],
@@ -129,7 +129,7 @@ class Product(DynamicTranslation):
         verbose_name, verbose_name_plural = _("Product"), _("Products")
     
     image = models.FileField(upload_to="product/products/", verbose_name=_("Picture"),
-                            default="product/products/Unknown.jpg", blank=True,
+                            default="Unknown.jpg", blank=True,
                             help_text=_("Please Upload a Picture of the Product Item"))
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="products",
         verbose_name=_("Category"), help_text=_("Please Select the Category of the Product Item"))

@@ -6,6 +6,49 @@ from core.admin import *
 from .models import *
 
 # Register your models here.
+class BasicTabularInline(admin.TabularInline):
+    """
+    Basic Tabular Model Admin for Inheritance All Other Models
+    """
+
+    fields = [('title_fa', 'title_en', 'slug')]
+    exclude = ('deleted', 'delete_timestamp')
+    extra = 1
+
+
+class BasicStackedInline(admin.StackedInline):
+    """
+    Basic Stacked Model Admin for Inheritance All Other Models
+    """
+
+    fields = ['title_fa', 'title_en', 'slug']
+    exclude = ('deleted', 'delete_timestamp')
+    extra = 1
+
+
+class CategoryInline(BasicTabularInline):
+    """
+    Create New Category Instance in Category Admin Page with Tabular Inline Model
+    """
+
+    model = Category
+    verbose_name_plural = _("Subcategories")
+
+
+class ProductInline(BasicStackedInline):
+    """
+    Create New Product Instance in Brand Admin Page with Stacked Inline Model
+    """
+
+    model = Product
+    verbose_name_plural = _("Manufactured Products")
+    fields = BasicTabularInline.fields + [
+        'category',
+        ('image', 'inventory'),
+        ('price', 'discount')
+    ]
+
+
 class TranslateAdmin(BasicAdmin):
     """
     Tranlation Admin Class to Fix Titles & Slug in All Inheritanced Class
@@ -35,6 +78,7 @@ class CategoryAdmin(TranslateAdmin):
         }),
     ]
     list_display = TranslateAdmin.list_display + ['root']
+    inlines = [CategoryInline]
 
 
 @admin.register(Brand)
@@ -49,6 +93,7 @@ class BrandAdmin(TranslateAdmin):
         }),
     ]
     list_display = TranslateAdmin.list_display + ['link']
+    inlines = [ProductInline]
 
 
 @admin.register(Discount)
