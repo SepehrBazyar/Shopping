@@ -10,4 +10,4 @@ def change_language(request):
     language = 'en' if translation.get_language() == 'fa' else 'fa'
     translation.activate(language)
     request.session[translation.LANGUAGE_SESSION_KEY] = language
-    return redirect(request.GET.get('current'))
+    return redirect(request.GET.get('current', '/'))

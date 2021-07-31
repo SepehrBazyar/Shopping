@@ -13,6 +13,9 @@ class BasicTabularInline(admin.TabularInline):
 
     fields = [('title_fa', 'title_en', 'slug')]
     exclude = ('deleted', 'delete_timestamp')
+    prepopulated_fields = {
+        'slug': ('title_en',),
+    }
     extra = 1
 
 
@@ -23,6 +26,9 @@ class BasicStackedInline(admin.StackedInline):
 
     fields = ['title_fa', 'title_en', 'slug']
     exclude = ('deleted', 'delete_timestamp')
+    prepopulated_fields = {
+        'slug': ('title_en',),
+    }
     extra = 1
 
 
