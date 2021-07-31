@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-31 15:26+0430\n"
+"POT-Creation-Date: 2021-07-31 15:44+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -222,11 +222,39 @@ msgstr "تعیین سقف فقط برای تخفیف درصدی امکان پذ�
 msgid "End Date Should be After the Start Date"
 msgstr "تاریخ اتمام نمی تواند قبل از تاریخ شروع باشد"
 
-#: .\templates\admin\base_site.html:4
+#: .\templates\admin\base.html:5
+msgid "Sepehr Shopping"
+msgstr "فروشگاه سپهر"
+
+#: .\templates\admin\base.html:39
+msgid "Welcome,"
+msgstr "خوش آمدید"
+
+#: .\templates\admin\base.html:44
+msgid "View site"
+msgstr "مشاهده وبسایت"
+
+#: .\templates\admin\base.html:49
+msgid "Documentation"
+msgstr "اسناد"
+
+#: .\templates\admin\base.html:53
+msgid "Change password"
+msgstr "تغییر گذرواژه"
+
+#: .\templates\admin\base.html:55
+msgid "Log out"
+msgstr "خروج"
+
+#: .\templates\admin\base.html:65
+msgid "Home"
+msgstr "خانه"
+
+#: .\templates\admin\base_site.html:5
 msgid "Admin Panel"
 msgstr "میز مدیریت"
 
-#: .\templates\admin\base_site.html:7
+#: .\templates\admin\base_site.html:9
 msgid "Sepehr Shopping System"
 msgstr "سیستم فروشگاهی سپهر"
 
