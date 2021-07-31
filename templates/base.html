@@ -1,0 +1,102 @@
+{% load i18n static %}
+<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html class="no-js" lang="{{ LANGUAGE_CODE|default:"en-us" }}" dir="{{ LANGUAGE_BIDI|yesno:'rtl,ltr,auto' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="{% static 'shared/css/bootstrap.min.css' %}">
+    <script src="{% static 'shared/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'shared/js/popper.min.js' %}"></script>
+
+    <link rel="stylesheet" href="{% static 'shared/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'shared/css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'shared/css/custom.css' %}">
+
+    <title>{% trans "Sepehr Shopping" %} | {% block title %}{% endblock %}</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'shared/img/Cart-icon.png' %}">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <style>
+        body {
+            height: 2000px;
+        }
+        .navbar .navbar-brand {
+            font-size: 30px;
+        }
+        .navbar .nav-item {
+            padding: 10px 20px;
+        }
+        .navbar .nav-link {
+            font-size: 20px;
+            margin-left: 10px;
+        }
+        .fa-bars {
+            color: #007bff;
+            font-size: 30px;
+        }
+    </style>
+
+    <!-- Extra Head & Style Css -->
+    {% block extra_head %}{% endblock %}
+
+</head>
+<body>
+
+<!-- NavBar -->
+<nav class="navbar sticky-top navbar-expand-lg bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">Logo</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+   <i class="fas fa-bars"></i>
+  </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto w-100 justify-content-end">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Services</a>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Other</a>
+                </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+<!-- Body -->
+{% block body %}{% endblock %}
+
+    <!-- JS Plugins -->
+    <script src="{% static 'shared/js/jquery.superslides.min.js' %}"></script>
+    <script src="{% static 'shared/js/bootstrap-select.js' %}"></script>
+    <script src="{% static 'shared/js/inewsticker.js' %}"></script>
+    <script src="{% static 'shared/js/bootsnav.js' %}"></script>
+    <script src="{% static 'shared/js/images-loded.min.js' %}"></script>
+    <script src="{% static 'shared/js/isotope.min.js' %}"></script>
+    <script src="{% static 'shared/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'shared/js/baguetteBox.min.js' %}"></script>
+    <script src="{% static 'shared/js/form-validator.min.js' %}"></script>
+    <script src="{% static 'shared/js/contact-form-script.js' %}"></script>
+    <script src="{% static 'shared/js/custom.js' %}"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+<!-- Other Java Scripts File -->
+{% block extra_js %}{% endblock %}
+
+</body>
+</html>
