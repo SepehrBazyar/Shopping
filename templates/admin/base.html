@@ -5,6 +5,7 @@
 <title>{% trans "Sepehr Shopping" %} | {% block title %}{% endblock %}</title>
 <link rel="shortcut icon" type="image/x-icon" href="{% static 'shared/img/Cart-icon.png' %}">
 <link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static "shared/css/base.css" %}{% endblock %}">
+<script src="{% static 'shared/js/jquery.min.js' %}"></script>
 {% if not is_popup and is_nav_sidebar_enabled %}
   <link rel="stylesheet" type="text/css" href="{% static "admin/css/nav_sidebar.css" %}">
   <script src="{% static 'admin/js/nav_sidebar.js' %}" defer></script>
@@ -53,6 +54,7 @@
                 {% if user.has_usable_password %}
                 <a href="{% url 'admin:password_change' %}">{% translate 'Change password' %}</a> /
                 {% endif %}
+                <a href="{% url 'change_language' %}" id="lang">{% translate 'Change Language' %}</a> /
                 <a href="{% url 'admin:logout' %}">{% translate 'Log out' %}</a>
             {% endblock %}
         </div>
@@ -101,5 +103,11 @@
     </div>
 </div>
 <!-- END Container -->
+
+<!-- Change href Value for redirect to Self Page -->
+<script>
+  $("#lang").attr("href", "/language/?current=" + window.location.href);
+</script>
+
 </body>
 </html>

@@ -1,12 +1,16 @@
 {% extends "admin/base.html" %}
 {% load i18n static %}
 
+{% block extrastyle %}
+    <link rel="stylesheet" type="text/css" href="{% static "shared/css/gorbe-font.css" %}">
+{% endblock %}
+
 {% block title %}
     {% trans "Admin Panel" %}
 {% endblock %}
 
 {% block branding %}
-<h1 id="site-name"><a href="{% url 'admin:index' %}">{% trans "Sepehr Shopping System" %}</a></h1>
+<h1 id="site-name"><i class="gb gb_shopping_cart" style="margin: 1rem;"></i><a href="{% url 'admin:index' %}">{% trans "Sepehr Shopping System" %}</a></h1>
 {% endblock %}
 
 {% block extrahead %}

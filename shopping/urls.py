@@ -19,7 +19,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls.i18n import i18n_patterns
 
+from core.views import *
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('language/', change_language, name="change_language"),
     # path('product/', include('product.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
