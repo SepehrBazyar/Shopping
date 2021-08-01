@@ -12,7 +12,7 @@ class BasicTabularInline(admin.TabularInline):
     """
 
     fields = [('title_fa', 'title_en', 'slug')]
-    exclude = ('deleted', 'delete_timestamp')
+    exclude = ['deleted', 'delete_timestamp']
     prepopulated_fields = {
         'slug': ('title_en',),
     }
@@ -38,6 +38,7 @@ class CategoryInline(BasicTabularInline):
     """
 
     model = Category
+    exclude = BasicTabularInline.exclude + ['properties']
     verbose_name_plural = _("Subcategories")
 
 
@@ -78,6 +79,7 @@ class CategoryAdmin(TranslateAdmin):
     Manage Category Class Model and Show Fields in Panel Admin
     """
 
+    exclude = TranslateAdmin.exclude + ['properties']
     fieldsets = TranslateAdmin.fieldsets + [
         (_("Optional Information"), {
             'fields': ('root',),

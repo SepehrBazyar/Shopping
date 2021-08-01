@@ -45,9 +45,23 @@ class Category(DynamicTranslation):
 
     class Meta:
         verbose_name, verbose_name_plural = _("Category"), _("Categories")
-    
+
     root = models.ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True,
         verbose_name=_("Main Category"), help_text=_("Please Select the Main Category"))
+    properties = models.CharField(max_length=24, null=True, default=None)  # mongodb object id
+
+    def save(self):
+        if self.properties is None:
+            with MongoClient('mongodb://localhost:27017/') as client:
+                categories = client.shopping.categories
+                result = categories.insert_one({
+                    self.slug: {
+                        "en": [],
+                        "fa": [],
+                    }
+                })
+                self.properties = result.inserted_id
+        return super().save()
 
 
 class Brand(DynamicTranslation):

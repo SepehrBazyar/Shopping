@@ -8,5 +8,5 @@ class BasicAdmin(admin.ModelAdmin):
     Excluded logical Delete Fields for All Model in Panel Admin
     """
 
-    exclude = ('deleted', 'delete_timestamp')
+    exclude = ['deleted', 'delete_timestamp']
     search_fields = ['title_en', 'title_fa']
