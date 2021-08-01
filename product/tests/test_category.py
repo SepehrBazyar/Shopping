@@ -1,5 +1,8 @@
 from django.test import TestCase
 
+from pymongo import MongoClient
+from bson.objectid import ObjectId
+
 from ..models import *
 
 # Create your tests here.
@@ -42,3 +45,11 @@ class TestCategoryModel(TestCase):
         self.c.add_property("Test", "تست")
         self.c.delete_property("Akbar")
         self.assertListEqual(self.c.property_list('fa'), ["تست"])
+
+    def tearDown(self):  # end of any test function for delete in db
+        with MongoClient('mongodb://localhost:27017/') as client:
+            categories = client.shopping.categories
+            result = categories.delete_one({
+                "_id": ObjectId(self.c.properties)
+            })
+        self.assertEqual(result.deleted_count, 1)

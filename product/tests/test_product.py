@@ -100,3 +100,11 @@ class TestProductModel(TestCase):
         p = Product.objects.create(title_en="Test", title_fa="تست", slug="test", price=14_782_000,
             inventory=1_000, category=self.category, brand=self.brand)
         self.assertEqual(p.readable_price, "14/782/000")
+
+    def tearDown(self):  # end of any test function for delete in db
+        with MongoClient('mongodb://localhost:27017/') as client:
+            categories = client.shopping.categories
+            result = categories.delete_one({
+                "_id": ObjectId(self.category.properties)
+            })
+        self.assertEqual(result.deleted_count, 1)
