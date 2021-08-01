@@ -81,6 +81,42 @@ class Category(DynamicTranslation):
                     }
                 }
             )
+    
+    def delete_property(self, name: str) -> List[str]:
+        """
+        Delete a Property by Get the Name and Find it in Language Code Lists
+        """
+
+        with MongoClient('mongodb://localhost:27017/') as client:
+            categories = client.shopping.categories
+            props = categories.find_one({
+                "_id": ObjectId(self.properties)
+                },
+                {
+                    "_id": 0, "en": 1, "fa": 1
+                }
+            )
+            
+            try:
+                index = props[get_language()].index(name)
+            except ValueError:
+                pass
+            else:
+                props["en"].pop(index)
+                props["fa"].pop(index)
+
+                categories.update_one({
+                    "_id": ObjectId(self.properties)
+                    },
+                    {
+                        '$set': {
+                            "en": props["en"],
+                            "fa": props["fa"]
+                        }
+                    }
+                )
+
+        return self.property_list
 
     @property
     def property_list(self) -> List[str]:
