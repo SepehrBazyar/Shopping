@@ -1,0 +1,125 @@
+{% load i18n static %}
+<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html class="no-js" lang="{{ LANGUAGE_CODE|default:"en-us" }}" dir="{{ LANGUAGE_BIDI|yesno:'rtl,ltr,auto' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="{% static 'shared/css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" href="{% static "shared/css/base.css" %}">
+
+    <!-- Gorbe Icon Font -->
+    <link rel="stylesheet" type="text/css" href="{% static "shared/css/gorbe-font.css" %}">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    <title>{% trans "Sepehr Shopping" %} | {% block title %}{% endblock %}</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'shared/img/Cart-icon.png' %}">
+
+    <style>
+      {% comment %} :root {
+        --link-fg: #1E8449;
+        --link-hover-color: #0B5345;
+      } {% endcomment %}
+
+      body {
+        background-color: #B3B6B7;
+      }
+
+      a[class="nav-link"]:link, a[class="nav-link"]:visited, 
+      a[class="sabz"]:link, a[class="sabz"]:visited {
+        color: #1E8449;
+        text-decoration: none;
+        transition: color 0.15s, background 0.15s;
+      }
+
+      a[class="nav-link"]:focus, a[class="nav-link"]:hover,
+      a[class="sabz"]:focus, a[class="sabz"]:hover {
+          color: #0B5345;
+      }
+
+      .navbar .nav-item {
+          text-align: center;
+          padding: 0.5rem 0.75rem;
+      }
+
+      .navbar .nav-link {
+          text-align: center;
+          font-size: 1.5rem;
+      }
+
+      .fa-bars {
+          color: #34495E;
+          font-size: 2rem;
+      }
+
+      #navmenubar {
+        color: #1B2631;
+        background-color: #1B2631;
+      }
+    </style>
+
+    <!-- Extra Head & Style Css -->
+    {% block extra_head %}{% endblock %}
+
+</head>
+<body>
+
+<!-- NavBar -->
+<nav class="navbar sticky-top navbar-expand-lg bg-dark" id="navmenubar">
+  <div class="container">
+    <h1 style="color: #1E8449; font-size: 2rem; padding-top: 0.5rem;">
+      <a href="#" class="sabz"><i class="gb gb_shopping_cart"></i></a>
+      <a class="navbar-brand" href="#">
+        <a href="#" class="sabz">{% trans "Sepehr Shopping" %}</a>
+      </a>
+    </h1>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto w-100 justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link" href="#">{% trans "Home" %}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">{% trans "About Me" %}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">{% trans "Contact Me" %}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">{% trans "Account" %}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'change_language' %}" id="lang">{% trans "Change Language" %}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Body -->
+{% block body %}{% endblock %}
+
+<!-- JS Plugins -->
+<script src="{% static 'shared/js/jquery.slim.min.js' %}"></script>
+<script src="{% static 'shared/js/popper.min.js' %}"></script>
+<script src="{% static 'shared/js/bootstrap.min.js' %}"></script>
+
+<!-- Change href Value for redirect to Self Page -->
+<script>
+  $("#lang").attr("href", "/language/?current=" + window.location.href);
+</script>
+
+<!-- Other Java Scripts File -->
+{% block extra_js %}{% endblock %}
+
+</body>
+</html>
