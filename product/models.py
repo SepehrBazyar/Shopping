@@ -84,7 +84,7 @@ class Category(DynamicTranslation):
         
         return self.property_list()
     
-    def delete_property(self, name: str) -> List[str]:
+    def delete_property(self, name: str, lang: str = get_language()) -> List[str]:
         """
         Delete a Property by Get the Name and Find it in Language Code Lists
         """
@@ -100,7 +100,7 @@ class Category(DynamicTranslation):
             )
             
             try:
-                index = props[get_language()].index(name)
+                index = props[lang].index(name)
             except ValueError:
                 pass
             else:
@@ -137,13 +137,13 @@ class Category(DynamicTranslation):
 
         return props[lang]
 
-    def save(self):
+    def save(self, *args, **kwargs):
         if self.properties is None:
             with MongoClient('mongodb://localhost:27017/') as client:
                 categories = client.shopping.categories
                 result = categories.insert_one({"en": [], "fa": []})
                 self.properties = result.inserted_id
-        return super().save()
+        return super(self.__class__, self).save(*args, **kwargs)
 
 
 class Brand(DynamicTranslation):
@@ -328,7 +328,7 @@ class Product(DynamicTranslation):
 
         return self.read_property(lang=lang)
 
-    def save(self):
+    def save(self, *args, **kwargs):
         if self.properties is None:
             with MongoClient('mongodb://localhost:27017/') as client:
                 products = client.shopping.products
@@ -339,7 +339,7 @@ class Product(DynamicTranslation):
                     fa[item] = ""
                 result = products.insert_one({"en": en, "fa": fa})
                 self.properties = result.inserted_id
-        return super().save()
+        return super(self.__class__, self).save(*args, **kwargs)
 
     def __str__(self) -> str:
         toman_trans = _("Toman")
