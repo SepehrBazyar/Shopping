@@ -53,7 +53,7 @@ class Category(DynamicTranslation):
         verbose_name=_("Main Category"), help_text=_("Please Select the Main Category"))
     properties = models.CharField(max_length=24, null=True, default=None)  # mongodb object id
 
-    def add_property(self, en_name: str, fa_name: str):
+    def add_property(self, en_name: str, fa_name: str) -> List[str]:
         """
         Create New Property for this Category with Name in Two Languages
         """
@@ -81,6 +81,8 @@ class Category(DynamicTranslation):
                     }
                 }
             )
+        
+        return self.property_list()
     
     def delete_property(self, name: str) -> List[str]:
         """
@@ -116,10 +118,9 @@ class Category(DynamicTranslation):
                     }
                 )
 
-        return self.property_list
+        return self.property_list()
 
-    @property
-    def property_list(self) -> List[str]:
+    def property_list(self, lang: str = get_language()) -> List[str]:
         """
         Show a List of All the Property for this Category by Language
         """
@@ -134,7 +135,7 @@ class Category(DynamicTranslation):
                 }
             )
 
-        return props[get_language()]
+        return props[lang]
 
     def save(self):
         if self.properties is None:
@@ -238,6 +239,7 @@ class Product(DynamicTranslation):
     discount = models.ForeignKey(Discount, on_delete=models.CASCADE, related_name="products",
                                 verbose_name=_("Discount"), default=None, null=True, blank=True,
                                 help_text=_("Please Select the Type of Discount if Available"))
+    properties = models.CharField(max_length=24, null=True, default=None)  # mongodb object id
 
     @property
     def final_price(self) -> int:
@@ -275,6 +277,19 @@ class Product(DynamicTranslation):
 
         return self.price != self.final_price
     
+    def save(self):
+        if self.properties is None:
+            with MongoClient('mongodb://localhost:27017/') as client:
+                products = client.shopping.products
+                en, fa = {}, {}
+                for item in self.category.property_list("en"):
+                    en[item] = ""
+                for item in self.category.property_list("fa"):
+                    fa[item] = ""
+                result = products.insert_one({"en": en, "fa": fa})
+                self.properties = result.inserted_id
+        return super().save()
+
     def __str__(self) -> str:
         toman_trans = _("Toman")
         return f"{self.title} - {self.readable_final_price} {toman_trans}"

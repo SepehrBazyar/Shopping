@@ -25,7 +25,7 @@ class BasicStackedInline(admin.StackedInline):
     """
 
     fields = ['title_fa', 'title_en', 'slug']
-    exclude = ('deleted', 'delete_timestamp')
+    exclude = ['deleted', 'delete_timestamp']
     prepopulated_fields = {
         'slug': ('title_en',),
     }
@@ -48,6 +48,7 @@ class ProductInline(BasicStackedInline):
     """
 
     model = Product
+    exclude = BasicStackedInline.exclude + ['properties']
     verbose_name_plural = _("Manufactured Products")
     fields = BasicTabularInline.fields + [
         'category',
@@ -156,6 +157,7 @@ class ProductAdmin(TranslateAdmin):
     Manage Product Item Class Model and Show Fields in Panel Admin
     """
 
+    exclude = TranslateAdmin.exclude + ['properties']
     fieldsets = TranslateAdmin.fieldsets + [
         (_("Further information"), {
             'fields': (
