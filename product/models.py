@@ -7,7 +7,7 @@ from django.utils.translation import get_language, gettext_lazy as _
 from pymongo import MongoClient
 from bson.objectid import ObjectId  # for convert string id to searchable id mongodb
 
-from typing import List
+from typing import List, Dict
 
 from core.models import BasicModel
 from .validators import *
@@ -277,6 +277,23 @@ class Product(DynamicTranslation):
 
         return self.price != self.final_price
     
+    def read_property(self, property_name: str = None, language: str = get_language()):
+        """
+        Read All or One Property of this Product Item by Category List in MongoDB
+        """
+
+        with MongoClient('mongodb://localhost:27017/') as client:
+            products = client.shopping.products
+            props = products.find_one({
+                "_id": ObjectId(self.properties)
+                },
+                {
+                    "_id": 0, "en": 1, "fa": 1
+                }
+            )
+        
+        return props[language].get(property_name, props[language])
+
     def save(self):
         if self.properties is None:
             with MongoClient('mongodb://localhost:27017/') as client:
