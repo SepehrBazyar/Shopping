@@ -15,8 +15,8 @@ class TestCategoryModel(TestCase):
         self.assertListEqual(self.c.property_list(), [])
 
     def test_add_1_default(self):
-        self.c.add_property("Test", "تست")
-        self.assertListEqual(self.c.property_list(), ["تست"])
+        res = self.c.add_property("Test", "تست")
+        self.assertListEqual(res, ["تست"])
     
     def test_add_2_fa(self):
         self.c.add_property("Test", "تست")
@@ -28,8 +28,8 @@ class TestCategoryModel(TestCase):
 
     def test_delete_1_default(self):
         self.c.add_property("Test", "تست")
-        self.c.delete_property("تست")
-        self.assertListEqual(self.c.property_list(), [])
+        res = self.c.delete_property("تست")
+        self.assertListEqual(res, [])
     
     def test_delete_2_fa(self):
         self.c.add_property("Test", "تست")
@@ -39,7 +39,7 @@ class TestCategoryModel(TestCase):
     def test_delete_3_en(self):
         self.c.add_property("Test", "تست")
         self.c.delete_property("Test", 'en')
-        self.assertListEqual(self.c.property_list(), [])
+        self.assertListEqual(self.c.property_list('en'), [])
     
     def test_delete_4_except(self):
         self.c.add_property("Test", "تست")

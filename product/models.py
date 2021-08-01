@@ -118,7 +118,7 @@ class Category(DynamicTranslation):
                     }
                 )
 
-        return self.property_list()
+        return self.property_list(lang)
 
     def property_list(self, lang: str = get_language()) -> List[str]:
         """
@@ -277,6 +277,14 @@ class Product(DynamicTranslation):
 
         return self.price != self.final_price
     
+    @property
+    def property_list(self) -> Dict[str, str]:
+        """
+        Property Method to Return Dict of Properties for Templates
+        """
+
+        return self.read_property()
+
     def read_property(self, property_name: str = None, lang: str = get_language()):
         """
         Read All or One Property of this Product Item by Category List in MongoDB
