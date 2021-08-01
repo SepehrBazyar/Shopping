@@ -8,6 +8,7 @@ from pymongo import MongoClient
 
 from core.models import BasicModel
 from .validators import *
+from .utils import *
 
 # Create your models here.
 class DynamicTranslation(BasicModel):
@@ -153,9 +154,32 @@ class Product(DynamicTranslation):
         if self.discount is not None:
             result = self.discount.calculate_price(result)
         return result
-
     final_price.fget.short_description = _("Final Price")  # like verbose name for panel admin
 
+    @property
+    def readable_price(self) -> str:
+        """
+        Spilted Digites of Price Product with / by Step 3
+        """
+
+        return readable(self.price)
+    
+    @property
+    def readable_final_price(self) -> str:
+        """
+        Spilted Digites of Final Price Product with / by Step 3
+        """
+
+        return readable(self.final_price)
+    
+    @property
+    def check_discount(self) -> bool:
+        """
+        Check Discount is Apply or Not For Example Expire End Date
+        """
+
+        return self.price != self.final_price
+    
     def __str__(self) -> str:
         toman_trans = _("Toman")
-        return f"{self.title} - {self.final_price} {toman_trans}"
+        return f"{self.title} - {self.readable_final_price} {toman_trans}"

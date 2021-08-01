@@ -21,13 +21,8 @@ from django.conf.urls.i18n import i18n_patterns
 
 from core.views import *
 
-def home(request):
-    from django.shortcuts import render
-    return render(request, "base.html")
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('language/', change_language, name="change_language"),
-    # path('product/', include('product.urls')),
-    path('', home, name="home")
+    path('product/', include('product.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

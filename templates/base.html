@@ -21,13 +21,25 @@
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'shared/img/Cart-icon.png' %}">
 
     <style>
-      :root {
+      {% comment %} :root {
         --link-fg: #1E8449;
         --link-hover-color: #0B5345;
-      }
+      } {% endcomment %}
 
       body {
         background-color: #B3B6B7;
+      }
+
+      a[class="nav-link"]:link, a[class="nav-link"]:visited, 
+      a[class="sabz"]:link, a[class="sabz"]:visited {
+        color: #1E8449;
+        text-decoration: none;
+        transition: color 0.15s, background 0.15s;
+      }
+
+      a[class="nav-link"]:focus, a[class="nav-link"]:hover,
+      a[class="sabz"]:focus, a[class="sabz"]:hover {
+          color: #0B5345;
       }
 
       .navbar .nav-item {
@@ -61,9 +73,9 @@
 <nav class="navbar sticky-top navbar-expand-lg bg-dark" id="navmenubar">
   <div class="container">
     <h1 style="color: #1E8449; font-size: 2rem; padding-top: 0.5rem;">
-      <i class="gb gb_shopping_cart"></i>
+      <a href="#" class="sabz"><i class="gb gb_shopping_cart"></i></a>
       <a class="navbar-brand" href="#">
-        <a href="{% url 'admin:index' %}">{% trans "Sepehr Shopping" %}</a>
+        <a href="#" class="sabz">{% trans "Sepehr Shopping" %}</a>
       </a>
     </h1>
 
@@ -83,10 +95,10 @@
           <a class="nav-link" href="#">{% trans "Contact Me" %}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">{% trans "Cart" %}</a>
+          <a class="nav-link" href="#">{% trans "Account" %}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">{% trans "Account" %}</a>
+          <a class="nav-link" href="{% url 'change_language' %}" id="lang">{% trans "Change Language" %}</a>
         </li>
       </ul>
     </div>
@@ -100,6 +112,11 @@
 <script src="{% static 'shared/js/jquery.slim.min.js' %}"></script>
 <script src="{% static 'shared/js/popper.min.js' %}"></script>
 <script src="{% static 'shared/js/bootstrap.min.js' %}"></script>
+
+<!-- Change href Value for redirect to Self Page -->
+<script>
+  $("#lang").attr("href", "/language/?current=" + window.location.href);
+</script>
 
 <!-- Other Java Scripts File -->
 {% block extra_js %}{% endblock %}
