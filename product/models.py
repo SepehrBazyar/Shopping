@@ -277,7 +277,7 @@ class Product(DynamicTranslation):
 
         return self.price != self.final_price
     
-    def read_property(self, property_name: str = None, language: str = get_language()):
+    def read_property(self, property_name: str = None, lang: str = get_language()):
         """
         Read All or One Property of this Product Item by Category List in MongoDB
         """
@@ -292,7 +292,41 @@ class Product(DynamicTranslation):
                 }
             )
         
-        return props[language].get(property_name, props[language])
+        return props[lang].get(property_name, props[lang])
+
+    def write_property(self, property_name: str, new_value, lang: str = get_language()):
+        """
+        Write a Value for Property Name in MongoDB Document by Language Code Default
+        """
+
+        with MongoClient('mongodb://localhost:27017/') as client:
+            products = client.shopping.products
+            props = products.find_one({
+                "_id": ObjectId(self.properties)
+                },
+                {
+                    "_id": 0, "en": 1, "fa": 1
+                }
+            )
+
+            prop = props[lang]
+            try:
+                prop[property_name]
+            except KeyError:
+                pass
+            else:
+                prop[property_name] = new_value
+                products.update_one({
+                    "_id": ObjectId(self.properties)
+                    },
+                    {
+                        '$set': {
+                            lang: prop
+                        }
+                    }
+                )
+
+        return self.read_property(lang=lang)
 
     def save(self):
         if self.properties is None:
