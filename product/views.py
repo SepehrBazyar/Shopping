@@ -10,9 +10,17 @@ class ProductsListView(generic.ListView):
     Generic Class Based View for Show List of All Active Products Item
     """
 
-    model = Product
     context_object_name = "products"
     paginate_by = 10
+
+    def get_queryset(self):
+        result = Product.objects.all()
+        kwargs = self.request.GET
+        if "category" in kwargs:
+            result = result.filter(category__slug=kwargs["category"])
+        if "brand" in kwargs:
+            result = result.filter(brand__slug=kwargs["brand"])
+        return result
 
 
 class ProductDetailView(generic.DetailView):
