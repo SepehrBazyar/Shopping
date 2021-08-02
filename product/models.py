@@ -283,7 +283,7 @@ class Product(DynamicTranslation):
         Property Method to Return Dict of Properties for Templates
         """
 
-        return self.read_property()
+        return self.read_property(lang=get_language())
 
     def read_property(self, property_name: str = None, lang: str = get_language()):
         """
@@ -299,7 +299,7 @@ class Product(DynamicTranslation):
                     "_id": 0, "en": 1, "fa": 1
                 }
             )
-        
+
         return props[lang].get(property_name, props[lang])
 
     def write_property(self, property_name: str, new_value, lang: str = get_language()):

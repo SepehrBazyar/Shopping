@@ -14,11 +14,10 @@
                 {% endif %}
                 <strong>{{ product.readable_final_price }}</strong> {% trans "Toman" %}
                 <br>
-                {{ product.property_list }}
             </p>
-            <a href="{% url 'product:details' product.slug %}" class="btn" style="background-color: #A9CCE3;">
-                {% trans "Add to Cart" %}
-            </a>
+            {% for key, value in product.property_list.items %}
+                <span><b>{{ key }}: </b> {{ value }}</span><br>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
