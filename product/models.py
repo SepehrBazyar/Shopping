@@ -53,45 +53,21 @@ class Category(DynamicTranslation):
         verbose_name=_("Main Category"), help_text=_("Please Select the Main Category"))
     properties = models.CharField(max_length=24, null=True, default=None)  # mongodb object id
 
-    def add_property(self, en_name: str, fa_name: str) -> List[str]:
+    def add_property(self, en_name: str, fa_name: str):
         """
         Create New Property for this Category with Name in Two Languages
         """
 
         with MongoClient('mongodb://localhost:27017/') as client:
             categories = client.shopping.categories
-            # props = categories.find_one({
-            #     "_id": ObjectId(self.properties)
-            #     },
-            #     {
-            #         "_id": 0, "en": 1, "fa": 1
-            #     }
-            # )
-
-            # props["en"].append(en_name)
-            # props["fa"].append(fa_name)
-
-            # categories.update_one({
-            #     "_id": ObjectId(self.properties)
-            #     },
-            #     {
-            #         '$set': {
-            #             "en": props["en"],
-            #             "fa": props["fa"]
-            #         }
-            #     }
-            # )
-
             categories.update_one({
                 "_id": ObjectId(self.properties)
                 },{
                     '$push': {"en": en_name, "fa": fa_name}
             })
-
+        
         for product in self.products.all():
-            product.update_properties()
-
-        return self.property_list()
+            product.add_property(en_name, fa_name)
 
     def delete_property(self, name: str, lang: str = get_language()) -> List[str]:
         """
@@ -100,34 +76,31 @@ class Category(DynamicTranslation):
 
         with MongoClient('mongodb://localhost:27017/') as client:
             categories = client.shopping.categories
-            props = categories.find_one({
+            temp = categories.find_one({
                 "_id": ObjectId(self.properties)
                 },
                 {
                     "_id": 0, "en": 1, "fa": 1
                 }
             )
-            
+
             try:
-                index = props[lang].index(name)
+                index = temp[lang].index(name)
             except ValueError:
                 pass
             else:
-                props["en"].pop(index)
-                props["fa"].pop(index)
-
+                en, fa = temp["en"][index], temp["fa"][index]
                 categories.update_one({
                     "_id": ObjectId(self.properties)
-                    },
-                    {
-                        '$set': {
-                            "en": props["en"],
-                            "fa": props["fa"]
+                    },{
+                        '$pull': {
+                            "en": en,
+                            "fa": fa
                         }
-                    }
-                )
-
-        return self.property_list(lang)
+                })
+        
+        for product in self.products.all():
+            product.delete_property(en, fa)
 
     def property_list(self, lang: str = get_language()) -> List[str]:
         """
@@ -140,11 +113,11 @@ class Category(DynamicTranslation):
                 "_id": ObjectId(self.properties)
                 },
                 {
-                    "_id": 0, "en": 1, "fa": 1
+                    "_id": 0, lang: 1
                 }
-            )
+            )[lang]
 
-        return props[lang]
+        return props
 
     def save(self, *args, **kwargs):
         if self.properties is None:
@@ -305,11 +278,11 @@ class Product(DynamicTranslation):
                 "_id": ObjectId(self.properties)
                 },
                 {
-                    "_id": 0, "en": 1, "fa": 1
+                    "_id": 0, lang: 1
                 }
-            )
+            )[lang]
 
-        return props[lang].get(property_name, props[lang])
+        return props.get(property_name, props)
 
     def write_property(self, property_name: str, new_value, lang: str = get_language()):
         """
@@ -318,69 +291,43 @@ class Product(DynamicTranslation):
 
         with MongoClient('mongodb://localhost:27017/') as client:
             products = client.shopping.products
-            props = products.find_one({
-                "_id": ObjectId(self.properties)
-                },
-                {
-                    "_id": 0, "en": 1, "fa": 1
-                }
-            )
-
-            prop = props[lang]
-            try:
-                prop[property_name]
-            except KeyError:
-                pass
-            else:
-                prop[property_name] = new_value
-                products.update_one({
-                    "_id": ObjectId(self.properties)
-                    },
-                    {
-                        '$set': {
-                            lang: prop
-                        }
-                    }
-                )
-
-        return self.read_property(lang=lang)
-    
-    def update_properties(self) -> Dict[str, str]:
-        """
-        Updated Property Dict by Read Property List in Category Field
-        """
-
-        en_prop, fa_prop = self.category.property_list('en'), self.category.property_list('fa')
-        with MongoClient('mongodb://localhost:27017/') as client:
-            products = client.shopping.products
-            props = products.find_one({
-                "_id": ObjectId(self.properties)
-                },
-                {
-                    "_id": 0, "en": 1, "fa": 1
-                }
-            )
-            
-            for item in en_prop:
-                if item not in props["en"]:
-                    props["en"][item] = ""
-            
-            for item in fa_prop:
-                if item not in props["fa"]:
-                    props["fa"][item] = ""
-
             products.update_one({
                 "_id": ObjectId(self.properties)
-                },
-                {
+                },{
+                    '$set': {f"{lang}.{property_name}": new_value}
+            })
+    
+    def add_property(self, en_name: str, fa_name: str):
+        """
+        Add New Property in Two Language Objects for Update with Category Items
+        """
+
+        with MongoClient('mongodb://localhost:27017/') as client:
+            products = client.shopping.products
+            products.update_one({
+                "_id": ObjectId(self.properties)
+                },{
                     '$set': {
-                        "en": props["en"],
-                        "fa": props["fa"]
+                        f"en.{en_name}": "",
+                        f"fa.{fa_name}": ""
                     }
-                }
-            )
-        
-        return self.property_list
+            })
+    
+    def delete_property(self, en_name: str, fa_name: str):
+        """
+        Delete a Property in Two Language Objects for Update with Category Items
+        """
+
+        with MongoClient('mongodb://localhost:27017/') as client:
+            products = client.shopping.products
+            products.update_one({
+                "_id": ObjectId(self.properties)
+                },{
+                    '$unset': {
+                        f"en.{en_name}": 1,
+                        f"fa.{fa_name}": 1
+                    }
+            })
 
     def save(self, *args, **kwargs):
         if self.properties is None:
