@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "Products" %}{% endblock %}
+
+{% block body %}
+    {% for product in products %}
+        <div class="card my-4 mx-4" style="width:400px">
+            <img class="card-img-top" src="/media/{{ product.image }}" alt="{{ product.title_en}}" style="width:100%">
+            <div class="card-body" style="text-align:center;">
+                <h2 class="card-title">{{ product.title }}</h4>
+                <p class="card-text">
+                    {% if product.check_discount %}
+                        <del style="color: tomato;">({{ product.readable_price }})</del>
+                    {% endif %}
+                    <strong>{{ product.readable_final_price }}</strong> {% trans "Toman" %}
+                </p>
+                <a href="{% url 'product:details' product.slug %}" class="btn" style="background-color: #A9CCE3;">
+                    {% trans "More Informations" %}
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

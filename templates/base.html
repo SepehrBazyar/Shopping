@@ -21,11 +21,6 @@
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'shared/img/Cart-icon.png' %}">
 
     <style>
-      {% comment %} :root {
-        --link-fg: #1E8449;
-        --link-hover-color: #0B5345;
-      } {% endcomment %}
-
       body {
         background-color: #B3B6B7;
       }
@@ -107,6 +102,13 @@
 
 <!-- Body -->
 {% block body %}{% endblock %}
+
+<!-- Footer -->
+<div style="position: fixed; left: 0; bottom: 0; width: 100%; background-color: #1B2631; color: #B3B6B7; text-align: center;">
+  <center>
+    <p><b style="font-size: 1.25rem;">©</b> {% trans "Copyright 2021, All Right Reserved Sepehr Bazyar" %}</p>
+  </center>
+</div>
 
 <!-- JS Plugins -->
 <script src="{% static 'shared/js/jquery.slim.min.js' %}"></script>
