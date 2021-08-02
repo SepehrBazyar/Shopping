@@ -60,28 +60,34 @@ class Category(DynamicTranslation):
 
         with MongoClient('mongodb://localhost:27017/') as client:
             categories = client.shopping.categories
-            props = categories.find_one({
-                "_id": ObjectId(self.properties)
-                },
-                {
-                    "_id": 0, "en": 1, "fa": 1
-                }
-            )
+            # props = categories.find_one({
+            #     "_id": ObjectId(self.properties)
+            #     },
+            #     {
+            #         "_id": 0, "en": 1, "fa": 1
+            #     }
+            # )
 
-            props["en"].append(en_name)
-            props["fa"].append(fa_name)
+            # props["en"].append(en_name)
+            # props["fa"].append(fa_name)
+
+            # categories.update_one({
+            #     "_id": ObjectId(self.properties)
+            #     },
+            #     {
+            #         '$set': {
+            #             "en": props["en"],
+            #             "fa": props["fa"]
+            #         }
+            #     }
+            # )
 
             categories.update_one({
                 "_id": ObjectId(self.properties)
-                },
-                {
-                    '$set': {
-                        "en": props["en"],
-                        "fa": props["fa"]
-                    }
-                }
-            )
-        
+                },{
+                    '$push': {"en": en_name, "fa": fa_name}
+            })
+
         for product in self.products.all():
             product.update_properties()
 
