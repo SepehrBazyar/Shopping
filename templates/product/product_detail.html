@@ -16,7 +16,7 @@
                 <br>
             </p>
             {% for key, value in product.property_list.items %}
-                <span><b>{{ key }}: </b> {{ value }}</span><br>
+                <span><b>{{ key }}: </b> {% if value %}{{ value }}{% else %}-{% endif %}</span><br>
             {% endfor %}
         </div>
     </div>

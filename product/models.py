@@ -82,8 +82,11 @@ class Category(DynamicTranslation):
                 }
             )
         
+        for product in self.products.all():
+            product.update_properties()
+
         return self.property_list()
-    
+
     def delete_property(self, name: str, lang: str = get_language()) -> List[str]:
         """
         Delete a Property by Get the Name and Find it in Language Code Lists
@@ -335,6 +338,43 @@ class Product(DynamicTranslation):
                 )
 
         return self.read_property(lang=lang)
+    
+    def update_properties(self) -> Dict[str, str]:
+        """
+        Updated Property Dict by Read Property List in Category Field
+        """
+
+        en_prop, fa_prop = self.category.property_list('en'), self.category.property_list('fa')
+        with MongoClient('mongodb://localhost:27017/') as client:
+            products = client.shopping.products
+            props = products.find_one({
+                "_id": ObjectId(self.properties)
+                },
+                {
+                    "_id": 0, "en": 1, "fa": 1
+                }
+            )
+            
+            for item in en_prop:
+                if item not in props["en"]:
+                    props["en"][item] = ""
+            
+            for item in fa_prop:
+                if item not in props["fa"]:
+                    props["fa"][item] = ""
+
+            products.update_one({
+                "_id": ObjectId(self.properties)
+                },
+                {
+                    '$set': {
+                        "en": props["en"],
+                        "fa": props["fa"]
+                    }
+                }
+            )
+        
+        return self.property_list
 
     def save(self, *args, **kwargs):
         if self.properties is None:
