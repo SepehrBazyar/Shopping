@@ -21,7 +21,7 @@
         {% for product in products %}
             <div class="col-12 col-md-6 col-lg-3">
                 <!-- Card -->
-                <div class="card mb-4">
+                <div class="card" style="bottom: 1.5rem;">
                     <!--Card image-->
                     <div class="view overlay">
                         <img class="card-img-top" src="/media/{{ product.image }}" alt="{{ product.title_en}}">
@@ -31,9 +31,9 @@
                     </div>
 
                     <!--Card content-->
-                    <div class="card-body">
+                    <div class="card-body" style="text-align: center;">
                         <!--Title-->
-                        <h4 class="card-title">{{ product.title }}</h4>
+                        <h2 class="card-title">{{ product.title }}</h2>
                         <!--Text-->
                         <p class="card-text">
                             {% if product.check_discount %}
@@ -51,23 +51,4 @@
         {% endfor %}
     </div>
 </div>
-
-    {% comment %} {% for product in products %}
-        <div class="card mx-4" style="width: 25%;">
-            <img class="card-img-top" src="/media/{{ product.image }}" alt="{{ product.title_en}}" style="width:100%">
-            <div class="card-body" style="text-align:center;">
-                <h2 class="card-title">{{ product.title }}</h4>
-                <p class="card-text">
-                    {% if product.check_discount %}
-                        <del style="color: tomato;">({{ product.readable_price }})</del>
-                    {% endif %}
-                    <strong>{{ product.readable_final_price }}</strong> {% trans "Toman" %}
-                </p>
-                <a href="{% url 'product:details' product.slug %}" class="btn" style="background-color: #A9CCE3;">
-                    {% trans "More Informations" %}
-                </a>
-            </div>
-        </div>
-        <br>
-    {% endfor %} {% endcomment %}
 {% endblock %}
