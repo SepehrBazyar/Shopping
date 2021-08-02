@@ -56,6 +56,9 @@
         color: #1B2631;
         background-color: #1B2631;
       }
+
+      {% block extra_style %}{% endblock %}
+
     </style>
 
     <!-- Extra Head & Style Css -->
@@ -65,7 +68,7 @@
 <body>
 
 <!-- NavBar -->
-<nav class="navbar sticky-top navbar-expand-lg bg-dark" id="navmenubar">
+<nav class="navbar sticky-top navbar-expand-lg bg-dark mb-4" id="navmenubar">
   <div class="container">
     <h1 style="color: #1E8449; font-size: 2rem; padding-top: 0.5rem;">
       <a href="#" class="sabz"><i class="gb gb_shopping_cart"></i></a>
@@ -104,11 +107,11 @@
 {% block body %}{% endblock %}
 
 <!-- Footer -->
-<div style="position: fixed; left: 0; bottom: 0; width: 100%; background-color: #1B2631; color: #B3B6B7; text-align: center;">
+{% comment %} <div style="position: fixed; left: 0; bottom: 0; width: 100%; background-color: #1B2631; color: #B3B6B7; text-align: center;">
   <center>
     <p><b style="font-size: 1.25rem;">©</b> {% trans "Copyright 2021, All Right Reserved Sepehr Bazyar" %}</p>
   </center>
-</div>
+</div> {% endcomment %}
 
 <!-- JS Plugins -->
 <script src="{% static 'shared/js/jquery.slim.min.js' %}"></script>

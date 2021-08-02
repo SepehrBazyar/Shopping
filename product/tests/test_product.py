@@ -121,6 +121,19 @@ class TestProductModel(TestCase):
         self.p.write_property("Test", "اکبر", 'en')
         self.assertEqual(self.p.read_property("Test", 'en'), "اکبر")
 
+    # tests for check updated properties with the property list in the category
+    def test_product_update_property_1_fa(self):
+        self.p = Product.objects.create(title_en="Test", title_fa="تست", slug="test", price=128_500,
+            inventory=1_000, category=self.category, brand=self.brand)
+        self.category.add_property("Sosk", "سوسک")
+        self.assertIn("سوسک", self.p.read_property(lang='fa'))
+    
+    def test_product_update_property_2_en(self):
+        self.p = Product.objects.create(title_en="Test", title_fa="تست", slug="test", price=128_500,
+            inventory=1_000, category=self.category, brand=self.brand)
+        self.category.add_property("Sosk", "سوسک")
+        self.assertIn("Sosk", self.p.read_property(lang='en'))
+
     def tearDown(self):  # end of any test function for delete in db
         with MongoClient('mongodb://localhost:27017/') as client:
             categories = client.shopping.categories

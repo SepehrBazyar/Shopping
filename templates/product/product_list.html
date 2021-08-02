@@ -3,9 +3,57 @@
 
 {% block title %}{% trans "Products" %}{% endblock %}
 
+{% block extra_style %}
+    .card{
+        margin: 5% 0%;
+    }
+
+    .card-body{
+        margin: 0% 0% 0% 3%;
+        padding: 6% 0%;
+    }
+{% endblock %}
+
 {% block body %}
-    {% for product in products %}
-        <div class="card my-4 mx-4" style="width:400px">
+<div class="container-fluid">
+    <!-- Card deck -->
+    <div class="card-deck row">
+        {% for product in products %}
+            <div class="col-12 col-md-6 col-lg-3">
+                <!-- Card -->
+                <div class="card mb-4">
+                    <!--Card image-->
+                    <div class="view overlay">
+                        <img class="card-img-top" src="/media/{{ product.image }}" alt="{{ product.title_en}}">
+                        <a href="#!">
+                            <div class="mask rgba-white-slight"></div>
+                        </a>
+                    </div>
+
+                    <!--Card content-->
+                    <div class="card-body">
+                        <!--Title-->
+                        <h4 class="card-title">{{ product.title }}</h4>
+                        <!--Text-->
+                        <p class="card-text">
+                            {% if product.check_discount %}
+                                <del style="color: tomato;">({{ product.readable_price }})</del>
+                            {% endif %}
+                            <strong>{{ product.readable_final_price }}</strong> {% trans "Toman" %}
+                        </p>
+                        <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+                        <a href="{% url 'product:details' product.slug %}" class="btn" style="background-color: #A9CCE3;">
+                            {% trans "More Informations" %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+    {% comment %} {% for product in products %}
+        <div class="card mx-4" style="width: 25%;">
             <img class="card-img-top" src="/media/{{ product.image }}" alt="{{ product.title_en}}" style="width:100%">
             <div class="card-body" style="text-align:center;">
                 <h2 class="card-title">{{ product.title }}</h4>
@@ -20,5 +68,6 @@
                 </a>
             </div>
         </div>
-    {% endfor %}
+        <br>
+    {% endfor %} {% endcomment %}
 {% endblock %}

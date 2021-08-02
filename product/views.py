@@ -7,7 +7,7 @@ from .models import *
 # Create your views here.
 class ProductsListView(generic.ListView):
     """
-    
+    Generic Class Based View for Show List of All Active Products Item
     """
 
     model = Product
@@ -17,7 +17,7 @@ class ProductsListView(generic.ListView):
 
 class ProductDetailView(generic.DetailView):
     """
-    
+    Generic Class Based View for Show Detail of a Product Item
     """
 
     model = Product
