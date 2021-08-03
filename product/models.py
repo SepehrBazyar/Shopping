@@ -333,11 +333,8 @@ class Product(DynamicTranslation):
         if self.properties is None:
             with MongoClient('mongodb://localhost:27017/') as client:
                 products = client.shopping.products
-                en, fa = {}, {}
-                for item in self.category.property_list("en"):
-                    en[item] = ""
-                for item in self.category.property_list("fa"):
-                    fa[item] = ""
+                en = {item: "" for item in self.category.property_list("en")}
+                fa = {item: "" for item in self.category.property_list("fa")}
                 result = products.insert_one({"en": en, "fa": fa})
                 self.properties = result.inserted_id
         return super(self.__class__, self).save(*args, **kwargs)
