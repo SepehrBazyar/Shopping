@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-03 22:59+0430\n"
+"POT-Creation-Date: 2021-08-04 03:09+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,6 +45,50 @@ msgstr "لطفا شماره تلفن همراه خود را وارد نمایی�
 #: .\core\validators.py:21
 msgid "Phone Number Must be Start with 09 & Length is 11 Char."
 msgstr "شماره تلفن همراه می بایست با 09 آغاز شود و حاوی 11 رقم باشد"
+
+#: .\customer\apps.py:8 .\customer\models.py:14
+msgid "Cutomers"
+msgstr "مشتریان"
+
+#: .\customer\models.py:14
+msgid "Customer"
+msgstr "مشتری"
+
+#: .\customer\models.py:17
+msgid "Male"
+msgstr "مرد"
+
+#: .\customer\models.py:18
+msgid "Female"
+msgstr "زن"
+
+#: .\customer\models.py:19
+msgid "Non-Binary"
+msgstr "بدون جنسیت"
+
+#: .\customer\models.py:22
+msgid "Profile Picture"
+msgstr "نمایه کاربری"
+
+#: .\customer\models.py:23
+msgid "Please Upload Uour Image if You Wish."
+msgstr "در صورت تمایل لطفا عکس خود را بارگذاری فرمایید"
+
+#: .\customer\models.py:26
+msgid "Gender"
+msgstr "جنسیت"
+
+#: .\customer\models.py:26
+msgid "Please Select Your Gender if You Wish."
+msgstr "در صورت تمایل لطفا جنسیت خود را انتخاب فرمایید"
+
+#: .\customer\models.py:28
+msgid "Birth Day"
+msgstr "تاریخ تولد"
+
+#: .\customer\models.py:28
+msgid "Please Enter Your Birth Day if You Wish."
+msgstr "در صورت تمایل لطفا تاریخ تولد خود را وارد فرمایید"
 
 #: .\product\admin.py:42
 msgid "Subcategories"
