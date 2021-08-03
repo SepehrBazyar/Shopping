@@ -49,8 +49,9 @@ class Category(DynamicTranslation):
     class Meta:
         verbose_name, verbose_name_plural = _("Category"), _("Categories")
 
-    root = models.ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True,
-        verbose_name=_("Main Category"), help_text=_("Please Select the Main Category"))
+    root = models.ForeignKey("self", default=None, null=True, blank=True,
+        on_delete=models.SET_NULL, related_name="subcategories", 
+        verbose_name=_("Main Category"),help_text=_("Please Select the Main Category"))
     properties = models.CharField(max_length=24, null=True, default=None)  # mongodb object id
 
     def add_property(self, en_name: str, fa_name: str):
@@ -218,7 +219,7 @@ class Product(DynamicTranslation):
         help_text=_("Please Enter the Price of Product Item without Apply Discount"))
     inventory = models.PositiveBigIntegerField(verbose_name=_("Number of Inventory"),
         help_text=_("Please Enter the Number of this Product Item into the Stock"))
-    discount = models.ForeignKey(Discount, on_delete=models.CASCADE, related_name="products",
+    discount = models.ForeignKey(Discount, on_delete=models.SET_NULL, related_name="products",
                                 verbose_name=_("Discount"), default=None, null=True, blank=True,
                                 help_text=_("Please Select the Type of Discount if Available"))
     properties = models.CharField(max_length=24, null=True, default=None)  # mongodb object id
