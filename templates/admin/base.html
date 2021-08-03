@@ -39,7 +39,7 @@
         <div id="user-tools">
             {% block welcome-msg %}
                 {% translate 'Welcome,' %}
-                <strong>{% firstof user.get_short_name user.get_username %}</strong>.
+                <strong>{{ user.get_short_name }}</strong>.
             {% endblock %}
             {% block userlinks %}
                 {% if site_url %}
@@ -54,7 +54,7 @@
                 {% if user.has_usable_password %}
                 <a href="{% url 'admin:password_change' %}">{% translate 'Change password' %}</a> /
                 {% endif %}
-                <a href="{% url 'change_language' %}" id="lang">{% translate 'Change Language(Fa)' %}</a> /
+                <a href="{% url 'change_language' %}" id="lang">{% translate 'Change Language(فا)' %}</a> /
                 <a href="{% url 'admin:logout' %}">{% translate 'Log out' %}</a>
             {% endblock %}
         </div>
