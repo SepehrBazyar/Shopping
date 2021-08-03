@@ -1,7 +1,32 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import UserManager, AbstractUser
+from django.utils.translation import gettext_lazy as _
+
+from .validators import Validators
 
 # Create your models here.
+class MyUserManager(UserManager):
+    """
+    Customizing Manager of User for Change Auth Field to Phone Number for Default Username
+    """
+
+    def create_superuser(self, username=None, email=None, password=None, **extra_fields):
+        username = extra_fields["phone_number"]
+        return super().create_superuser(username, email, password, **extra_fields)
+
+
+class User(AbstractUser):
+    """
+    Customization User Model for Change Default User Name to Phone Number for Auth Pages
+    """
+
+    USERNAME_FIELD = 'phone_number'
+
+    phone_number = models.CharField(max_length=11, unique=True, verbose_name=_("Phone Number"),
+        validators=[Validators.check_phone_number], help_text=_("Please Enter Your Phone Number"))
+
+
 class BasicManager(models.Manager):
     """
     Basic Class Manager for Customize the Query Set and Filter by Deleted
