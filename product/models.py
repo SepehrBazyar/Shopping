@@ -10,8 +10,8 @@ from bson.objectid import ObjectId  # for convert string id to searchable id mon
 from typing import List, Dict
 
 from core.models import BasicModel
+from core.utils import readable
 from .validators import *
-from .utils import *
 
 # Create your models here.
 class DynamicTranslation(BasicModel):
@@ -233,7 +233,7 @@ class Product(DynamicTranslation):
         result = self.price
         if self.discount is not None:
             result = self.discount.calculate_price(result)
-            if result == self.price:
+            if result == self.price:  # delete discount if not change on product price
                 self.price = None
                 self.save()
         return result
