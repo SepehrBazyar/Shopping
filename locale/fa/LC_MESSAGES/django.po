@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-04 20:34+0430\n"
+"POT-Creation-Date: 2021-08-04 21:42+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -159,6 +159,10 @@ msgstr "ادامه آدرس(خیابان و کوچه)"
 msgid "Please Enter the Rest of Your Address Accurately"
 msgstr "لطفا ادامه آدرس خود را بطور کامل و دقیق وارد فرمایید"
 
+#: .\order\admin.py:17 .\order\models.py:76
+msgid "Order Items"
+msgstr "موارد سفارش"
+
 #: .\order\apps.py:8 .\order\models.py:34
 msgid "Orders"
 msgstr "سفارشات"
@@ -177,7 +181,8 @@ msgstr "کد شناسایی"
 
 #: .\order\models.py:20
 msgid "Please Enter Identification Code to Check Validation in Order Model"
-msgstr "لطفا کد شناسایی را جهت اعتبار سنجی کد تخفیف هنگام ثبت سفارش وارد نمایید"
+msgstr ""
+"لطفا کد شناسایی را جهت اعتبار سنجی کد تخفیف هنگام ثبت سفارش وارد نمایید"
 
 #: .\order\models.py:22
 msgid "Users Used"
@@ -210,7 +215,8 @@ msgstr "وضعیت سفارش"
 
 #: .\order\models.py:44
 msgid "Please Select the Status of Order(By Default Unpaid is Considered)"
-msgstr "لطفا وضعیت سفارش را تعیین نمایید(بطور پیش فرض پردخت نشده درنظر گرفته می شود)"
+msgstr ""
+"لطفا وضعیت سفارش را تعیین نمایید(بطور پیش فرض پردخت نشده درنظر گرفته می شود)"
 
 #: .\order\models.py:46
 msgid "Please Select Customer Owner this Order"
@@ -255,10 +261,6 @@ msgstr "تومان"
 msgid "Order Item"
 msgstr "مورد سفارش"
 
-#: .\order\models.py:76
-msgid "Order Items"
-msgstr "موارد سفارش"
-
 #: .\order\models.py:79
 msgid "Recepite Order"
 msgstr "صورتحساب سفارش"
@@ -281,7 +283,9 @@ msgstr "تعداد مورد سفارش"
 
 #: .\order\models.py:83
 msgid "Please Selcet the Count of this Order Item(Minimum Value is 1)."
-msgstr "لطفا تعداد مورد سفارش خود را وارد نمایید(بطور پیش فرض حداقل مقدار 1 درنظر گرفته می شود)"
+msgstr ""
+"لطفا تعداد مورد سفارش خود را وارد نمایید(بطور پیش فرض حداقل مقدار 1 درنظر "
+"گرفته می شود)"
 
 #: .\order\validators.py:14
 msgid "Inventory of Product Item isn't Enough!"
