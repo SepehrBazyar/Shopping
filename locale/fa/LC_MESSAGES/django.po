@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-04 14:38+0430\n"
+"POT-Creation-Date: 2021-08-04 20:34+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,7 +70,7 @@ msgstr "اطلاعات اضافه"
 msgid "Customers"
 msgstr "مشتریان"
 
-#: .\customer\models.py:15 .\customer\models.py:45
+#: .\customer\models.py:15 .\customer\models.py:45 .\order\models.py:46
 msgid "Customer"
 msgstr "مشتری"
 
@@ -140,7 +140,8 @@ msgstr "استان"
 
 #: .\customer\models.py:51
 msgid "Please Enter Your Province For Example Tehran or Alborz or ..."
-msgstr "لطفا استان محل سکونت خود را انتخاب نمایید(برای مثال تهران یا البرز یا ...)"
+msgstr ""
+"لطفا استان محل سکونت خود را انتخاب نمایید(برای مثال تهران یا البرز یا ...)"
 
 #: .\customer\models.py:52
 msgid "City"
@@ -157,6 +158,142 @@ msgstr "ادامه آدرس(خیابان و کوچه)"
 #: .\customer\models.py:55
 msgid "Please Enter the Rest of Your Address Accurately"
 msgstr "لطفا ادامه آدرس خود را بطور کامل و دقیق وارد فرمایید"
+
+#: .\order\apps.py:8 .\order\models.py:34
+msgid "Orders"
+msgstr "سفارشات"
+
+#: .\order\models.py:17 .\order\models.py:52
+msgid "Discount Code"
+msgstr "کد تخفیف"
+
+#: .\order\models.py:17
+msgid "Discount Codes"
+msgstr "کدهای تخفیف"
+
+#: .\order\models.py:19
+msgid "Identification Code"
+msgstr "کد شناسایی"
+
+#: .\order\models.py:20
+msgid "Please Enter Identification Code to Check Validation in Order Model"
+msgstr "لطفا کد شناسایی را جهت اعتبار سنجی کد تخفیف هنگام ثبت سفارش وارد نمایید"
+
+#: .\order\models.py:22
+msgid "Users Used"
+msgstr "کابران استفاده شده"
+
+#: .\order\models.py:22
+msgid "Show Which Users have Used this Code?"
+msgstr "نشان دهنده کاربرانی که از این کد تخفیف استفاده کرده اند"
+
+#: .\order\models.py:34 .\venv\Lib\site-packages\django\forms\formsets.py:405
+#: .\venv\Lib\site-packages\django\forms\formsets.py:412
+msgid "Order"
+msgstr "سفارش"
+
+#: .\order\models.py:37
+msgid "Paid"
+msgstr "پرداخت شده"
+
+#: .\order\models.py:38
+msgid "Unpaid"
+msgstr "در انتظار پرداخت"
+
+#: .\order\models.py:39
+msgid "Canceled"
+msgstr "لغو شده"
+
+#: .\order\models.py:42
+msgid "Status of Order"
+msgstr "وضعیت سفارش"
+
+#: .\order\models.py:44
+msgid "Please Select the Status of Order(By Default Unpaid is Considered)"
+msgstr "لطفا وضعیت سفارش را تعیین نمایید(بطور پیش فرض پردخت نشده درنظر گرفته می شود)"
+
+#: .\order\models.py:46
+msgid "Please Select Customer Owner this Order"
+msgstr "لطفا مشتری صاحب این سفارش را انتخاب نمایید"
+
+#: .\order\models.py:47
+msgid "Total Price"
+msgstr "مجموع قیمت"
+
+#: .\order\models.py:48
+msgid "Total Price is Sum of Pure Price of Product Items for this Order"
+msgstr "مجموع قیمت حاصل جمع قیمت خالص موارد سفارش می باشد"
+
+#: .\order\models.py:49 .\product\models.py:240
+msgid "Final Price"
+msgstr "قیمت نهایی"
+
+#: .\order\models.py:50
+msgid ""
+"Final Price is Sum of Price of Product Items for this Order After Dicount"
+msgstr "قیمت نهایی حاصل جمع قیمت موارد سفارش پس از اعمال تخفیف می باشد"
+
+#: .\order\models.py:52
+msgid "If You have a Discount Code Please Enter it"
+msgstr "اگر کد تخفیفی دارید لطفا آن را وارد نمایید"
+
+#: .\order\models.py:54
+msgid "Discount Value"
+msgstr "مقدار تخفیف"
+
+#: .\order\models.py:55
+msgid "Please Select Discount from Discount Codes to Apply on Price"
+msgstr "لطفا تخفیفی را از میان کدهای تخفیف انتخاب فرمایید"
+
+#: .\order\models.py:64 .\product\models.py:158 .\product\models.py:347
+#: .\templates\product\product_detail.html:27
+#: .\templates\product\product_list.html:42
+msgid "Toman"
+msgstr "تومان"
+
+#: .\order\models.py:76
+msgid "Order Item"
+msgstr "مورد سفارش"
+
+#: .\order\models.py:76
+msgid "Order Items"
+msgstr "موارد سفارش"
+
+#: .\order\models.py:79
+msgid "Recepite Order"
+msgstr "صورتحساب سفارش"
+
+#: .\order\models.py:79
+msgid "Please Select Your Order"
+msgstr "لطفا سفارش مربوطه خود را انتخاب نمایید"
+
+#: .\order\models.py:81
+msgid "Product Item"
+msgstr "مورد محصول"
+
+#: .\order\models.py:81
+msgid "Please Select Product Item to Add"
+msgstr "لطفا مورد محصول را جهت اضافه شدن انتخاب فرمایید"
+
+#: .\order\models.py:82
+msgid "Count of Order Item"
+msgstr "تعداد مورد سفارش"
+
+#: .\order\models.py:83
+msgid "Please Selcet the Count of this Order Item(Minimum Value is 1)."
+msgstr "لطفا تعداد مورد سفارش خود را وارد نمایید(بطور پیش فرض حداقل مقدار 1 درنظر گرفته می شود)"
+
+#: .\order\validators.py:14
+msgid "Inventory of Product Item isn't Enough!"
+msgstr "موجودی انبار برای این محصول کافی نمی باشد!"
+
+#: .\order\validators.py:30
+msgid "This Discount Code has Expired for You!"
+msgstr "این کد تخفیف برای شما استفاده و منقضی گردیده است!"
+
+#: .\order\validators.py:34
+msgid "Not Found Matching Any Discount Code!"
+msgstr "هیچ کد تخفیف منطبقی با این مقدار یافت نشد!"
 
 #: .\product\admin.py:42
 msgid "Subcategories"
@@ -292,12 +429,6 @@ msgstr "تخفیف ها"
 msgid "Percent"
 msgstr "درصد"
 
-#: .\product\models.py:158 .\product\models.py:347
-#: .\templates\product\product_detail.html:27
-#: .\templates\product\product_list.html:42
-msgid "Toman"
-msgstr "تومان"
-
 #: .\product\models.py:162
 msgid "Unit"
 msgstr "واحد"
@@ -382,10 +513,6 @@ msgstr "لطفا تعداد موجود از این محصول در انبار ر
 msgid "Please Select the Type of Discount if Available"
 msgstr "لطفا نوع تخفیف را در صورت وجود برای محصول انتخاب نمایید"
 
-#: .\product\models.py:240
-msgid "Final Price"
-msgstr "قیمت نهایی"
-
 #: .\product\validators.py:16
 msgid "Percentage Rate Must be Between 0 & 100"
 msgstr "درصد می بایست عددی بین 0 تا 100 باشد"
@@ -428,6 +555,7 @@ msgid "Log out"
 msgstr "خروج"
 
 #: .\templates\admin\base.html:68 .\templates\base.html:87
+#: .\templates\registration\logged_out.html:4
 msgid "Home"
 msgstr "خانه"
 
@@ -438,6 +566,31 @@ msgstr "میز مدیریت"
 #: .\templates\admin\base_site.html:13
 msgid "Sepehr Shopping System"
 msgstr "سیستم فروشگاهی سپهر"
+
+#: .\templates\admin\login.html:35
+msgid "Please correct the error below."
+msgstr ""
+
+#: .\templates\admin\login.html:35
+msgid "Please correct the errors below."
+msgstr ""
+
+#: .\templates\admin\login.html:51
+#, python-format
+msgid ""
+"You are authenticated as %(username)s, but are not authorized to access this "
+"page. Would you like to login to a different account?"
+msgstr ""
+
+#: .\templates\admin\login.html:71
+msgid "Forgotten your password or username?"
+msgstr ""
+
+#: .\templates\admin\login.html:75
+#, fuzzy
+#| msgid "Log out"
+msgid "Log in"
+msgstr "خروج"
 
 #: .\templates\base.html:90
 msgid "Contact Me"
@@ -450,6 +603,14 @@ msgstr "حساب کاربری"
 #: .\templates\product\product_list.html:46
 msgid "More Informations"
 msgstr "اطلاعات بیشتر"
+
+#: .\templates\registration\logged_out.html:21
+msgid "Thanks for spending some quality time with the Web site today."
+msgstr ""
+
+#: .\templates\registration\logged_out.html:23
+msgid "Log in again"
+msgstr ""
 
 #: .\venv\Lib\site-packages\django\contrib\messages\apps.py:7
 msgid "Messages"
@@ -1005,11 +1166,6 @@ msgid "Please submit at least %d form."
 msgid_plural "Please submit at least %d forms."
 msgstr[0] ""
 msgstr[1] ""
-
-#: .\venv\Lib\site-packages\django\forms\formsets.py:405
-#: .\venv\Lib\site-packages\django\forms\formsets.py:412
-msgid "Order"
-msgstr ""
 
 #: .\venv\Lib\site-packages\django\forms\formsets.py:417
 msgid "Delete"

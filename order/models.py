@@ -50,8 +50,9 @@ class Order(BasicModel):
         help_text=_("Final Price is Sum of Price of Product Items for this Order After Dicount"))
     code = models.CharField(max_length=10, default=None, null=True, blank=True,
         verbose_name=_("Discount Code"), help_text=_("If You have a Discount Code Please Enter it"))
-    discount = models.ForeignKey(DiscountCode, related_name='+', default=None, null=True,
-        verbose_name=_("Discount Value"), help_text=_("Please Select Discount from Discount Codes"))
+    discount = models.ForeignKey(DiscountCode, on_delete=models.SET_NULL,
+        related_name='+', default=None, null=True, verbose_name=_("Discount Value"),
+        help_text=_("Please Select Discount from Discount Codes to Apply on Price"))
 
     def clean(self) -> None:
         if self.code is not None:

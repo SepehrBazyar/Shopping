@@ -121,7 +121,7 @@ class DiscountAdmin(TranslateAdmin):
         }),
     ]
     list_display = TranslateAdmin.list_display + ['start_date', 'end_date']
-    list_filter = ('unit', 'start_date', 'end_date')
+    list_filter = ['unit', 'start_date', 'end_date']
     actions = ['beginning', 'finishing']
 
     @admin.action(description=_("Beginning Selected Discount"))
