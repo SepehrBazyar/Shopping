@@ -233,6 +233,9 @@ class Product(DynamicTranslation):
         result = self.price
         if self.discount is not None:
             result = self.discount.calculate_price(result)
+            if result == self.price:
+                self.price = None
+                self.save()
         return result
     final_price.fget.short_description = _("Final Price")  # like verbose name for panel admin
 

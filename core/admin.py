@@ -19,6 +19,11 @@ class MyUserAdmin(UserAdmin):
         }),
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
+    list_display = ('phone_number', 'first_name', 'last_name', 'email', 'is_staff')
+    list_filter = ('is_staff', 'is_superuser', 'is_active', 'groups')
+    search_fields = ('username', 'first_name', 'last_name', 'phone_number', 'email')
+    ordering = ('-id',)
+    filter_horizontal = ('groups', 'user_permissions',)
 
 
 class BasicAdmin(admin.ModelAdmin):

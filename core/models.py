@@ -27,11 +27,6 @@ class User(AbstractUser):
     phone_number = models.CharField(max_length=11, unique=True, verbose_name=_("Phone Number"),
         validators=[Validators.check_phone_number], help_text=_("Please Enter Your Phone Number"))
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.is_staff = True
-        self.phone_number = self.username
-
 
 class BasicManager(models.Manager):
     """

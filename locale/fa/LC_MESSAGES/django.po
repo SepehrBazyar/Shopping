@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-04 03:09+0430\n"
+"POT-Creation-Date: 2021-08-04 04:32+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: .\core\admin.py:16
+#: .\core\admin.py:16 .\customer\admin.py:16
 msgid "Personal info"
 msgstr "اطلاعات شخصی"
 
@@ -26,7 +26,7 @@ msgstr "اطلاعات شخصی"
 msgid "Permissions"
 msgstr "اجازه ها"
 
-#: .\core\admin.py:20
+#: .\core\admin.py:20 .\customer\admin.py:21
 msgid "Important dates"
 msgstr "تاریخ های مهم"
 
@@ -34,11 +34,19 @@ msgstr "تاریخ های مهم"
 msgid "Core"
 msgstr "مرکز"
 
-#: .\core\models.py:27
+#: .\core\models.py:25
+msgid "User"
+msgstr "کاربر"
+
+#: .\core\models.py:25
+msgid "Users"
+msgstr "کاربران"
+
+#: .\core\models.py:31
 msgid "Phone Number"
 msgstr "شماره تلفن همراه"
 
-#: .\core\models.py:28
+#: .\core\models.py:32
 msgid "Please Enter Your Phone Number"
 msgstr "لطفا شماره تلفن همراه خود را وارد نمایید"
 
@@ -46,8 +54,12 @@ msgstr "لطفا شماره تلفن همراه خود را وارد نمایی�
 msgid "Phone Number Must be Start with 09 & Length is 11 Char."
 msgstr "شماره تلفن همراه می بایست با 09 آغاز شود و حاوی 11 رقم باشد"
 
+#: .\customer\admin.py:17
+msgid "Extra info"
+msgstr "اطلاعات اضافه"
+
 #: .\customer\apps.py:8 .\customer\models.py:14
-msgid "Cutomers"
+msgid "Customers"
 msgstr "مشتریان"
 
 #: .\customer\models.py:14
@@ -104,7 +116,7 @@ msgstr "اطلاعات اولیه"
 
 #: .\product\admin.py:85 .\product\admin.py:100
 msgid "Optional Information"
-msgstr "اطلاعات اضافه"
+msgstr "اطلاعات اختیاری"
 
 #: .\product\admin.py:115
 msgid "Value Information"
@@ -224,7 +236,7 @@ msgstr "تخفیف ها"
 msgid "Percent"
 msgstr "درصد"
 
-#: .\product\models.py:158 .\product\models.py:344
+#: .\product\models.py:158 .\product\models.py:347
 #: .\templates\product\product_detail.html:27
 #: .\templates\product\product_list.html:42
 msgid "Toman"
@@ -314,7 +326,7 @@ msgstr "لطفا تعداد موجود از این محصول در انبار ر
 msgid "Please Select the Type of Discount if Available"
 msgstr "لطفا نوع تخفیف را در صورت وجود برای محصول انتخاب نمایید"
 
-#: .\product\models.py:237
+#: .\product\models.py:240
 msgid "Final Price"
 msgstr "قیمت نهایی"
 
@@ -1574,6 +1586,9 @@ msgstr ""
 #: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:249
 msgid "Connect, get help, or contribute"
 msgstr ""
+
+#~ msgid "Cutomers"
+#~ msgstr "مشتریان"
 
 #~ msgid "About Me"
 #~ msgstr "درباره من"
