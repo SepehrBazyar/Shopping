@@ -21,11 +21,19 @@ class User(AbstractUser):
     Customization User Model for Change Default User Name to Phone Number for Auth Pages
     """
 
+    class Meta:
+        verbose_name, verbose_name_plural = _("User"), _("Users")
+        # unique_together = ('first_name', 'last_name')
+
     objects = MyUserManager()
     USERNAME_FIELD = 'phone_number'
 
     phone_number = models.CharField(max_length=11, unique=True, verbose_name=_("Phone Number"),
         validators=[Validators.check_phone_number], help_text=_("Please Enter Your Phone Number"))
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.phone_number = self.username
 
 
 class BasicManager(models.Manager):

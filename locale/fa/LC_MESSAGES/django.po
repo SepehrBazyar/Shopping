@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-04 04:32+0430\n"
+"POT-Creation-Date: 2021-08-04 14:38+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: .\core\admin.py:16 .\customer\admin.py:16
+#: .\core\admin.py:16 .\customer\admin.py:28
 msgid "Personal info"
 msgstr "اطلاعات شخصی"
 
-#: .\core\admin.py:17
+#: .\core\admin.py:17 .\customer\admin.py:33
 msgid "Permissions"
 msgstr "اجازه ها"
 
-#: .\core\admin.py:20 .\customer\admin.py:21
+#: .\core\admin.py:20 .\customer\admin.py:37
 msgid "Important dates"
 msgstr "تاریخ های مهم"
 
@@ -50,57 +50,113 @@ msgstr "شماره تلفن همراه"
 msgid "Please Enter Your Phone Number"
 msgstr "لطفا شماره تلفن همراه خود را وارد نمایید"
 
-#: .\core\validators.py:21
+#: .\core\validators.py:22
 msgid "Phone Number Must be Start with 09 & Length is 11 Char."
 msgstr "شماره تلفن همراه می بایست با 09 آغاز شود و حاوی 11 رقم باشد"
 
-#: .\customer\admin.py:17
+#: .\core\validators.py:31
+msgid "Postal Code Must be 10 Digits."
+msgstr "کد پستی می بایست دقیقا حاوی 10 رقم باشد"
+
+#: .\customer\admin.py:15 .\customer\models.py:42
+msgid "Addresses"
+msgstr "نشانی ها"
+
+#: .\customer\admin.py:29
 msgid "Extra info"
 msgstr "اطلاعات اضافه"
 
-#: .\customer\apps.py:8 .\customer\models.py:14
+#: .\customer\apps.py:8 .\customer\models.py:15
 msgid "Customers"
 msgstr "مشتریان"
 
-#: .\customer\models.py:14
+#: .\customer\models.py:15 .\customer\models.py:45
 msgid "Customer"
 msgstr "مشتری"
 
-#: .\customer\models.py:17
+#: .\customer\models.py:18
 msgid "Male"
 msgstr "مرد"
 
-#: .\customer\models.py:18
+#: .\customer\models.py:19
 msgid "Female"
 msgstr "زن"
 
-#: .\customer\models.py:19
+#: .\customer\models.py:20
 msgid "Non-Binary"
 msgstr "بدون جنسیت"
 
-#: .\customer\models.py:22
+#: .\customer\models.py:23
 msgid "Profile Picture"
 msgstr "نمایه کاربری"
 
-#: .\customer\models.py:23
+#: .\customer\models.py:24
 msgid "Please Upload Uour Image if You Wish."
 msgstr "در صورت تمایل لطفا عکس خود را بارگذاری فرمایید"
 
-#: .\customer\models.py:26
+#: .\customer\models.py:27
 msgid "Gender"
 msgstr "جنسیت"
 
-#: .\customer\models.py:26
+#: .\customer\models.py:27
 msgid "Please Select Your Gender if You Wish."
 msgstr "در صورت تمایل لطفا جنسیت خود را انتخاب فرمایید"
 
-#: .\customer\models.py:28
+#: .\customer\models.py:29
 msgid "Birth Day"
 msgstr "تاریخ تولد"
 
-#: .\customer\models.py:28
+#: .\customer\models.py:29
 msgid "Please Enter Your Birth Day if You Wish."
 msgstr "در صورت تمایل لطفا تاریخ تولد خود را وارد فرمایید"
+
+#: .\customer\models.py:42
+msgid "Address"
+msgstr "نشانی"
+
+#: .\customer\models.py:45
+msgid "Please Select Customer Owner this Address"
+msgstr "لطفا مشتری صاحب این آدرس را انتخاب فرمایید"
+
+#: .\customer\models.py:46
+msgid "Postal Code"
+msgstr "کد پستی"
+
+#: .\customer\models.py:47
+msgid "Please Enter Your Postal Code"
+msgstr "لطفا کد پستی خود را وارد نمایید"
+
+#: .\customer\models.py:48
+msgid "Country"
+msgstr "کشور"
+
+#: .\customer\models.py:49
+msgid "Please Enter Your Country(By Default Iran is Considered)."
+msgstr "لطفا کشور خود را انتخاب نمایید(بطور پیش فرض ایران در نظر گرفته می شود)"
+
+#: .\customer\models.py:50
+msgid "Province"
+msgstr "استان"
+
+#: .\customer\models.py:51
+msgid "Please Enter Your Province For Example Tehran or Alborz or ..."
+msgstr "لطفا استان محل سکونت خود را انتخاب نمایید(برای مثال تهران یا البرز یا ...)"
+
+#: .\customer\models.py:52
+msgid "City"
+msgstr "شهر"
+
+#: .\customer\models.py:53
+msgid "Please Enter Your City For Example Tehran or Karaj or ..."
+msgstr "لطفا شهر محل سکونت خود را انتخاب نمایید(برای مثال تهران یا کرج یا ...)"
+
+#: .\customer\models.py:54
+msgid "Continue Address(Street and Alley)"
+msgstr "ادامه آدرس(خیابان و کوچه)"
+
+#: .\customer\models.py:55
+msgid "Please Enter the Rest of Your Address Accurately"
+msgstr "لطفا ادامه آدرس خود را بطور کامل و دقیق وارد فرمایید"
 
 #: .\product\admin.py:42
 msgid "Subcategories"

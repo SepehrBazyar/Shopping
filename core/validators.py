@@ -9,6 +9,7 @@ class Validators:
     """
 
     PHONE_NUMBER_PATTERN = r"^(09)([0-9]{9})$"
+    POSTAL_CODE_PATTERN = r"^([0-9]{10})$"
 
     @classmethod
     def check_phone_number(cls, phone_number: str):
@@ -19,3 +20,12 @@ class Validators:
 
         if not regex.search(cls.PHONE_NUMBER_PATTERN, phone_number):
             raise ValidationError(_("Phone Number Must be Start with 09 & Length is 11 Char."))
+
+    @classmethod
+    def check_postal_code(cls, postal_code: str):
+        """
+        Check Validation Postal Code 10 Digits
+        """
+
+        if not regex.search(cls.POSTAL_CODE_PATTERN, postal_code):
+            raise ValidationError(_("Postal Code Must be 10 Digits."))
