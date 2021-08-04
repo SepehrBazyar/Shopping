@@ -1,0 +1,24 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block breadcrumbs %}<div class="breadcrumbs"><a href="{% url 'admin:index' %}">{% translate 'Home' %}</a></div>{% endblock %}
+
+{% block extrastyle %}
+    <link rel="stylesheet" type="text/css" href="{% static "shared/css/gorbe-font.css" %}">
+    <style>
+      .content {
+        background-color: #A9CCE3;
+        text-align: center;
+      }
+    </style>
+{% endblock %}
+
+{% block nav-sidebar %}{% endblock %}
+
+{% block content %}
+
+<p>{% translate "Thanks for spending some quality time with the Web site today." %}</p>
+
+<p><a href="{% url 'admin:index' %}">{% translate 'Log in again' %}</a></p>
+
+{% endblock %}
