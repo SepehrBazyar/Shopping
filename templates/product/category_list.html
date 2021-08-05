@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "Categories" %}{% endblock %}
+
+{% block extra_style %}
+    .card{
+        margin: 5% 0%;
+    }
+
+    .card-body{
+        margin: 0% 0% 0% 3%;
+        padding: 6% 0%;
+    }
+{% endblock %}
+
+{% block body %}
+
+<div class="container" style="text-align: center;">
+  <div id="accordion">
+    {% for parent in parents %}
+        <div class="card" style="background-color: #A9CCE3;">
+        <div class="card-header">
+            <h2>
+                <a class="card-link" data-toggle="collapse" href="#{{ parent.slug }}">
+                    {{ parent.title }}
+                </a>
+            </h2>
+        </div>
+        <div id="{{ parent.slug }}" class="collapse show" data-parent="#accordion">
+            <div class="card-body">
+                {% for child in parent.subcategories.all %}
+                    <h3>
+                        <a href="{% url 'product:lists' %}?category={{ child.slug }}">
+                            {{ child.title }}
+                        </a><br>
+                    </h3>
+                {% endfor %}
+            </div>
+        </div>
+        </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

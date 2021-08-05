@@ -57,6 +57,10 @@
         background-color: #1B2631;
       }
 
+      li.nav-item::marker {
+        visibility:hidden;
+      }
+
       {% block extra_style %}{% endblock %}
 
     </style>
@@ -90,7 +94,7 @@
           <a class="nav-link" href="#">{% trans "Contact Me" %}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">{% trans "Categories" %}</a>
+          <a class="nav-link" href="{% url 'product:categories' %}">{% trans "Categories" %}</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">{% trans "Account" %}</a>

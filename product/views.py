@@ -11,7 +11,7 @@ class ProductsListView(generic.ListView):
     """
 
     context_object_name = "products"
-    paginate_by = 10
+    paginate_by = 12
 
     def get_queryset(self):
         result = Product.objects.all()
@@ -30,3 +30,15 @@ class ProductDetailView(generic.DetailView):
 
     model = Product
     context_object_name = "product"
+
+
+class CategoryListView(generic.ListView):
+    """
+    Generic Class Based View for Show List of All Categories in Collapsed Cards
+    """
+
+    context_object_name = "parents"
+
+    def get_queryset(self):
+        parents = Category.objects.filter(root=None)
+        return parents
