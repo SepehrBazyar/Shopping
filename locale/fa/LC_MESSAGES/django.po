@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-04 21:42+0430\n"
+"POT-Creation-Date: 2021-08-05 16:41+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -159,9 +159,61 @@ msgstr "ادامه آدرس(خیابان و کوچه)"
 msgid "Please Enter the Rest of Your Address Accurately"
 msgstr "لطفا ادامه آدرس خود را بطور کامل و دقیق وارد فرمایید"
 
-#: .\order\admin.py:17 .\order\models.py:76
+#: .\order\admin.py:17 .\order\models.py:82
 msgid "Order Items"
 msgstr "موارد سفارش"
+
+#: .\order\admin.py:32
+msgid "Beginning Selected Discount Codes"
+msgstr "آغاز اعمال کد تخفیف های انتخاب شده"
+
+#: .\order\admin.py:40
+msgid " Discount Code was Successfully Beginning."
+msgstr " کد تخفیف با موفقیت آغاز شد."
+
+#: .\order\admin.py:42
+#, fuzzy
+#| msgid " Discounts were Successfully Beginning."
+msgid " Discount Codes were Successfully Beginning."
+msgstr " کد تخفیف با موفقیت آغاز شدند."
+
+#: .\order\admin.py:45
+msgid "Finishing Selected Discount Codes"
+msgstr "خاتمه یافتن کد تخفیف ها انتخاب شده"
+
+#: .\order\admin.py:53
+msgid " Discount Code was Successfully Finishing."
+msgstr " کد تخفیف با موفقیت خاتمه یافت."
+
+#: .\order\admin.py:55
+#, fuzzy
+#| msgid " Discounts were Successfully Finishing."
+msgid " Discount Codes were Successfully Finishing."
+msgstr " کد تخفیف با موفقیت خاتمه یافتند."
+
+#: .\order\admin.py:77
+msgid "Paymenting Selected Order"
+msgstr "پرداخت سفارشات انتخاب شده"
+
+#: .\order\admin.py:85
+msgid " Order was Successfully Paiding."
+msgstr " سفارش با موفقیت پرداخت شد."
+
+#: .\order\admin.py:87
+msgid " Orders were Successfully Paiding."
+msgstr " سفارش با موفقیت پرداخت شدند."
+
+#: .\order\admin.py:90
+msgid "Canceling Selected Order"
+msgstr "لغو سفارشات انتخاب شده"
+
+#: .\order\admin.py:98
+msgid " Order was Successfully Canceling."
+msgstr " سفارش با موفقیت لغو شد."
+
+#: .\order\admin.py:100
+msgid " Orders were Successfully Canceling."
+msgstr " سفارش با موفقیت لغو شدند."
 
 #: .\order\apps.py:8 .\order\models.py:34
 msgid "Orders"
@@ -251,37 +303,37 @@ msgstr "مقدار تخفیف"
 msgid "Please Select Discount from Discount Codes to Apply on Price"
 msgstr "لطفا تخفیفی را از میان کدهای تخفیف انتخاب فرمایید"
 
-#: .\order\models.py:64 .\product\models.py:158 .\product\models.py:347
+#: .\order\models.py:70 .\product\models.py:158 .\product\models.py:347
 #: .\templates\product\product_detail.html:27
 #: .\templates\product\product_list.html:42
 msgid "Toman"
 msgstr "تومان"
 
-#: .\order\models.py:76
+#: .\order\models.py:82
 msgid "Order Item"
 msgstr "مورد سفارش"
 
-#: .\order\models.py:79
+#: .\order\models.py:85
 msgid "Recepite Order"
 msgstr "صورتحساب سفارش"
 
-#: .\order\models.py:79
+#: .\order\models.py:85
 msgid "Please Select Your Order"
 msgstr "لطفا سفارش مربوطه خود را انتخاب نمایید"
 
-#: .\order\models.py:81
+#: .\order\models.py:87
 msgid "Product Item"
 msgstr "مورد محصول"
 
-#: .\order\models.py:81
+#: .\order\models.py:87
 msgid "Please Select Product Item to Add"
 msgstr "لطفا مورد محصول را جهت اضافه شدن انتخاب فرمایید"
 
-#: .\order\models.py:82
+#: .\order\models.py:88
 msgid "Count of Order Item"
 msgstr "تعداد مورد سفارش"
 
-#: .\order\models.py:83
+#: .\order\models.py:89
 msgid "Please Selcet the Count of this Order Item(Minimum Value is 1)."
 msgstr ""
 "لطفا تعداد مورد سفارش خود را وارد نمایید(بطور پیش فرض حداقل مقدار 1 درنظر "
@@ -291,11 +343,11 @@ msgstr ""
 msgid "Inventory of Product Item isn't Enough!"
 msgstr "موجودی انبار برای این محصول کافی نمی باشد!"
 
-#: .\order\validators.py:30
+#: .\order\validators.py:28
 msgid "This Discount Code has Expired for You!"
 msgstr "این کد تخفیف برای شما استفاده و منقضی گردیده است!"
 
-#: .\order\validators.py:34
+#: .\order\validators.py:30
 msgid "Not Found Matching Any Discount Code!"
 msgstr "هیچ کد تخفیف منطبقی با این مقدار یافت نشد!"
 
@@ -324,7 +376,7 @@ msgid "Date Information"
 msgstr "اطلاعات تاریخ و زمان"
 
 #: .\product\admin.py:127
-msgid "Beginning Selected Discount"
+msgid "Beginning Selected Discounts"
 msgstr "آغاز اعمال تخفیف های انتخاب شده"
 
 #: .\product\admin.py:135
@@ -336,7 +388,7 @@ msgid " Discounts were Successfully Beginning."
 msgstr " تخفیف با موفقیت آغاز شدند."
 
 #: .\product\admin.py:140
-msgid "Finishing Selected Discount"
+msgid "Finishing Selected Discounts"
 msgstr "خاتمه یافتن تخفیف های انتخاب شده"
 
 #: .\product\admin.py:148

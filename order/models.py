@@ -57,8 +57,14 @@ class Order(BasicModel):
     def clean(self) -> None:
         if self.code is not None:
             discode = DiscountCode.objects.filter(code__exact=self.code)
-            DiscountCodeValidator(discode)(self.customer)
+            if self.discount is None:
+                DiscountCodeValidator(discode)(self.customer)
             self.discount = discode[0]
+
+    def save(self, *args, **kwargs):
+        if self.id is None:
+            self.discount.users.add(self.customer)
+        return super(self.__class__, self).save(*args, **kwargs)
 
     def __str__(self) -> str:
         toman_trans = _("Toman")
@@ -85,5 +91,12 @@ class OrderItem(BasicModel):
     def clean(self) -> None:
         CountValidator(self.product)(self.count)
     
+    def save(self, *args, **kwargs):
+        if self.order.status == 'U':
+            if self.id is None:
+                self.product.inventory -= self.count
+                self.product.save()
+            return super(self.__class__, self).save(*args, **kwargs)
+
     def __str__(self) -> str:
         return f"{self.order.id} - {self.product.title} - {self.count}"

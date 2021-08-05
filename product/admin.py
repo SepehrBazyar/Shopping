@@ -124,10 +124,10 @@ class DiscountAdmin(TranslateAdmin):
     list_filter = ['unit', 'start_date', 'end_date']
     actions = ['beginning', 'finishing']
 
-    @admin.action(description=_("Beginning Selected Discount"))
+    @admin.action(description=_("Beginning Selected Discounts"))
     def beginning(self, request, queryset):
         """
-        Action for Change Start Date of Selected Discount to Now
+        Action for Change Start Date of Selected Discounts to Now
         """
 
         updated = queryset.update(start_date=timezone.now())
@@ -137,10 +137,10 @@ class DiscountAdmin(TranslateAdmin):
             message = _(" Discounts were Successfully Beginning.")
         self.message_user(request, str(updated) + message)
 
-    @admin.action(description=_("Finishing Selected Discount"))
+    @admin.action(description=_("Finishing Selected Discounts"))
     def finishing(self, request, queryset):
         """
-        Action for Change End Date of Selected Discount to Now
+        Action for Change End Date of Selected Discounts to Now
         """
 
         updated = queryset.update(end_date=timezone.now())

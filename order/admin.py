@@ -29,6 +29,32 @@ class DiscountCodeAdmin(DiscountAdmin):
     list_display = DiscountAdmin.list_display + ['code']
     list_filter  = DiscountAdmin.list_filter  + ['code']
 
+    @admin.action(description=_("Beginning Selected Discount Codes"))
+    def beginning(self, request, queryset):
+        """
+        Action for Change Start Date of Selected Discount Codes to Now
+        """
+
+        updated = queryset.update(start_date=timezone.now())
+        if updated == 1:
+            message = _(" Discount Code was Successfully Beginning.")
+        else:
+            message = _(" Discount Codes were Successfully Beginning.")
+        self.message_user(request, str(updated) + message)
+
+    @admin.action(description=_("Finishing Selected Discount Codes"))
+    def finishing(self, request, queryset):
+        """
+        Action for Change End Date of Selected Discount Codes to Now
+        """
+
+        updated = queryset.update(end_date=timezone.now())
+        if updated == 1:
+            message = _(" Discount Code was Successfully Finishing.")
+        else:
+            message = _(" Discount Codes were Successfully Finishing.")
+        self.message_user(request, str(updated) + message)
+
 
 @admin.register(Order)
 class OrderAdmin(BasicAdmin):
@@ -47,6 +73,32 @@ class OrderAdmin(BasicAdmin):
     search_fields = ('customer',)
     ordering = ('-id',)
     inlines = [OrderItemInlineAdmin]
+
+    @admin.action(description=_("Paymenting Selected Order"))
+    def paymenting(self, request, queryset):
+        """
+        Action for Change Status of Selected Orders to Paid
+        """
+
+        updated = queryset.update(status='P')
+        if updated == 1:
+            message = _(" Order was Successfully Paiding.")
+        else:
+            message = _(" Orders were Successfully Paiding.")
+        self.message_user(request, str(updated) + message)
+    
+    @admin.action(description=_("Canceling Selected Order"))
+    def canceling(self, request, queryset):
+        """
+        Action for Change Status of Selected Orders to Canceled
+        """
+
+        updated = queryset.update(status='C')
+        if updated == 1:
+            message = _(" Order was Successfully Canceling.")
+        else:
+            message = _(" Orders were Successfully Canceling.")
+        self.message_user(request, str(updated) + message)
 
 
 @admin.register(OrderItem)
