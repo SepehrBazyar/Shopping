@@ -68,11 +68,13 @@ class OrderAdmin(BasicAdmin):
             'fields': (('customer', 'status'), ('total_price', 'final_price'), ('code',)),
         }),
     )
+    readonly_fields = ['total_price', 'final_price']
     list_display = ('__str__', 'customer', 'total_price', 'final_price', 'status', 'discount')
     list_filter = ('status',)
     search_fields = ('customer',)
     ordering = ('-id',)
     inlines = [OrderItemInlineAdmin]
+    actions = ['paymenting', 'canceling']
 
     @admin.action(description=_("Paymenting Selected Order"))
     def paymenting(self, request, queryset):

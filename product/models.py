@@ -169,6 +169,21 @@ class Discount(DynamicTranslation):
     end_date = models.DateTimeField(default=None, null=True, blank=True,
         verbose_name=_("End Date"), help_text=_("Please Select the End Date of the Discount"))
 
+    def calculate_decrease(self, price: int) -> int:
+        """
+        Calculate the Decreased for Easy Calculate Price
+        """
+
+        decrease = 0
+        if self.unit == 'T':
+            decrease = self.amount
+        else:
+            decrease = price * self.amount // 100
+            if self.roof is not None:
+                decrease = min(decrease, self.roof)
+        
+        return decrease
+
     def calculate_price(self, price: int) -> int:
         """
         Calculate the Price Paid After Applying the Discount
@@ -177,12 +192,7 @@ class Discount(DynamicTranslation):
         decrease, present = 0, timezone.now()
         if self.start_date <= present:
             if self.end_date is None or present <= self.end_date:
-                if self.unit == 'T':
-                    decrease = self.amount
-                else:
-                    decrease = price * self.amount // 100
-                    if self.roof is not None:
-                        decrease = min(decrease, self.roof)
+                decrease = self.calculate_decrease(price)
 
         return max(price - decrease, 0)
 

@@ -54,7 +54,22 @@ class Order(BasicModel):
         related_name='+', default=None, null=True, verbose_name=_("Discount Value"),
         help_text=_("Please Select Discount from Discount Codes to Apply on Price"))
 
-    def clean(self) -> None:
+    def __init__(self, *args, **kwargs):
+        super(self.__class__, self).__init__(*args, **kwargs)
+        self.__pre_discount = self.discount  # for check changed value in save method
+
+    def update_price(self, product_item, count: int):
+        """
+        Update Prices of Order by Change in Items so Get Item Object & Apply Changes
+        """
+
+        self.total_price += count * product_item.price
+        self.final_price += count * product_item.final_price
+        if self.discount is not None:
+            self.final_price = self.discount.calculate_price(self.final_price)
+        self.save()
+
+    def clean(self):
         if self.code is not None:
             discode = DiscountCode.objects.filter(code__exact=self.code)
             if self.discount is None:
@@ -62,14 +77,18 @@ class Order(BasicModel):
             self.discount = discode[0]
 
     def save(self, *args, **kwargs):
-        if self.id is None:
-            self.discount.users.add(self.customer)
+        if self.discount != self.__pre_discount:
+            if self.__pre_discount is not None:
+                self.__pre_discount.users.remove(self.customer)
+            if self.discount is not None:
+                self.discount.users.add(self.customer)
+                # self.final_price = self.discount.calculate_price(self.final_price)
         return super(self.__class__, self).save(*args, **kwargs)
 
     def __str__(self) -> str:
         toman_trans = _("Toman")
         return f"{self.customer.username} - \
-            {self.final_price} {toman_trans} - \
+            {readable(self.final_price)} {toman_trans} - \
             {self.__class__.STATUSES[self.status]}"
 
 
@@ -88,21 +107,24 @@ class OrderItem(BasicModel):
     count = models.PositiveIntegerField(default=1, verbose_name=_("Count of Order Item"),
         help_text=_("Please Selcet the Count of this Order Item(Minimum Value is 1)."))
 
-    def __init__(self, *args, **kwargs) -> None:
+    def __init__(self, *args, **kwargs):
         super(self.__class__, self).__init__(*args, **kwargs)
-        self.__pre_count = self.count
+        self.__pre_count = self.count  # for compare with old value & update inventory
 
-    def clean(self) -> None:
+    def clean(self):
         CountValidator(self.product)(self.count)
     
     def save(self, *args, **kwargs):
         if self.order.status == 'U':
+            temp = self.count
             if self.id is None:
-                self.product.inventory -= self.count
+                self.product.inventory -= temp
                 self.product.save()
             elif self.count != self.__pre_count:
-                self.product.inventory -= (self.count - self.__pre_count)
+                temp -= self.__pre_count
+                self.product.inventory -= (temp)
                 self.product.save()
+            self.order.update_price(self.product, temp)
             return super(self.__class__, self).save(*args, **kwargs)
 
     def __str__(self) -> str:
