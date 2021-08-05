@@ -88,6 +88,10 @@ class OrderItem(BasicModel):
     count = models.PositiveIntegerField(default=1, verbose_name=_("Count of Order Item"),
         help_text=_("Please Selcet the Count of this Order Item(Minimum Value is 1)."))
 
+    def __init__(self, *args, **kwargs) -> None:
+        super(self.__class__, self).__init__(*args, **kwargs)
+        self.__pre_count = self.count
+
     def clean(self) -> None:
         CountValidator(self.product)(self.count)
     
@@ -95,6 +99,9 @@ class OrderItem(BasicModel):
         if self.order.status == 'U':
             if self.id is None:
                 self.product.inventory -= self.count
+                self.product.save()
+            elif self.count != self.__pre_count:
+                self.product.inventory -= (self.count - self.__pre_count)
                 self.product.save()
             return super(self.__class__, self).save(*args, **kwargs)
 
