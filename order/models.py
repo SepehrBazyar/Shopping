@@ -58,13 +58,15 @@ class Order(BasicModel):
         super(self.__class__, self).__init__(*args, **kwargs)
         self.__pre_discount = self.discount  # for check changed value in save method
 
-    def update_price(self, product_item, count: int):
+    def update_price(self):
         """
-        Update Prices of Order by Change in Items so Get Item Object & Apply Changes
+        Update Prices of Order by Change in Items so Calculate Sum Price Again
         """
 
-        self.total_price += count * product_item.price
-        self.final_price += count * product_item.final_price
+        self.total_price, self.final_price = 0, 0
+        for item in self.items.all():
+            self.total_price += item.count * item.product.price
+            self.final_price += item.count * item.product.final_price
         if self.discount is not None:
             self.final_price = self.discount.calculate_price(self.final_price)
         self.save()
@@ -75,6 +77,8 @@ class Order(BasicModel):
             if self.discount is None:
                 DiscountCodeValidator(discode)(self.customer)
             self.discount = discode[0]
+        elif self.__pre_discount is not None:
+            self.discount = None
 
     def save(self, *args, **kwargs):
         if self.discount != self.__pre_discount:
@@ -82,7 +86,8 @@ class Order(BasicModel):
                 self.__pre_discount.users.remove(self.customer)
             if self.discount is not None:
                 self.discount.users.add(self.customer)
-                # self.final_price = self.discount.calculate_price(self.final_price)
+            self.__pre_discount = self.discount
+            self.update_price()
         return super(self.__class__, self).save(*args, **kwargs)
 
     def __str__(self) -> str:
@@ -109,23 +114,25 @@ class OrderItem(BasicModel):
 
     def __init__(self, *args, **kwargs):
         super(self.__class__, self).__init__(*args, **kwargs)
-        self.__pre_count = self.count  # for compare with old value & update inventory
+        if self.id is not None:
+            self.__pre_count = self.count  # for compare with old value & update inventory
+        else:
+            self.__pre_count = 0
 
     def clean(self):
-        CountValidator(self.product)(self.count)
+        CountValidator(self.product)(self.count - self.__pre_count)
     
     def save(self, *args, **kwargs):
         if self.order.status == 'U':
-            temp = self.count
             if self.id is None:
-                self.product.inventory -= temp
+                self.product.inventory -= self.count
                 self.product.save()
             elif self.count != self.__pre_count:
-                temp -= self.__pre_count
-                self.product.inventory -= (temp)
+                self.product.inventory -= (self.count - self.__pre_count)
                 self.product.save()
-            self.order.update_price(self.product, temp)
-            return super(self.__class__, self).save(*args, **kwargs)
+            result = super(self.__class__, self).save(*args, **kwargs)
+            self.order.update_price()
+            return result
 
     def __str__(self) -> str:
         return f"{self.order.id} - {self.product.title} - {self.count}"
