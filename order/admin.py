@@ -82,11 +82,13 @@ class OrderAdmin(BasicAdmin):
         Action for Change Status of Selected Orders to Paid
         """
 
-        updated = queryset.update(status='P')
+        updated = queryset.count()
         if updated == 1:
             message = _(" Order was Successfully Paiding.")
         else:
             message = _(" Orders were Successfully Paiding.")
+        for order in queryset:
+            order.payment()
         self.message_user(request, str(updated) + message)
     
     @admin.action(description=_("Canceling Selected Order"))
@@ -95,11 +97,13 @@ class OrderAdmin(BasicAdmin):
         Action for Change Status of Selected Orders to Canceled
         """
 
-        updated = queryset.update(status='C')
+        updated = queryset.count()
         if updated == 1:
             message = _(" Order was Successfully Canceling.")
         else:
             message = _(" Orders were Successfully Canceling.")
+        for order in queryset:
+            order.cancel()
         self.message_user(request, str(updated) + message)
 
 

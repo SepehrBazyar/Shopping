@@ -1,8 +1,10 @@
 from django.db import models
+from django.utils.timezone import now
 from django.utils.translation import gettext_lazy as _
 
 from core.models import BasicModel, User
 from core.validators import Validators
+from .validators import birthday_validator
 
 # Create your models here.
 class Customer(User):
@@ -25,8 +27,17 @@ class Customer(User):
     gender = models.CharField(max_length=1, default=None, null=True, blank=True,
         choices=[(key, value) for key, value in GENDERS.items()],
         verbose_name=_("Gender"), help_text=_("Please Select Your Gender if You Wish."))
-    birth_day = models.DateField(default=None, null=True, blank=True,
-        verbose_name=_("Birth Day"), help_text=_("Please Enter Your Birth Day if You Wish."))
+    birth_day = models.DateField(default=None, null=True, blank=True, verbose_name=_("Birth Day"),
+        validators=[birthday_validator], help_text=_("Please Enter Your Birth Day if You Wish."))
+
+    @property
+    def age(self) -> int:
+        """
+        Property Method to Calculate & Save the Age of Customer from Birth Day's
+        """
+
+        if self.birth_day is not None:
+            return (now() - self.birth_day).days // 365
 
     def delete(self):
         self.is_active = False

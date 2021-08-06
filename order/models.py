@@ -56,7 +56,33 @@ class Order(BasicModel):
 
     def __init__(self, *args, **kwargs):
         super(self.__class__, self).__init__(*args, **kwargs)
+        try: self.clean()
+        except: pass
         self.__pre_discount = self.discount  # for check changed value in save method
+
+    def payment(self):
+        """
+        Method to Payment Order & Change Status & Update Inventory Number
+        """
+
+        for item in self.items.all():
+            item.product.inventory -= item.count
+            item.product.save()
+        self.status = 'P'
+        self.save()
+    
+    def cancel(self):
+        """
+        Method to Cancel Order & Change Status & Update Inventory Number
+        """
+
+        for item in self.items.all():
+            item.product.inventory += item.count
+            item.product.save()
+        self.status = 'C'
+        if self.discount is not None:
+            self.discount.users.remove(self.customer)
+        self.save()
 
     def update_price(self):
         """
@@ -81,13 +107,14 @@ class Order(BasicModel):
             self.discount = None
 
     def save(self, *args, **kwargs):
-        if self.discount != self.__pre_discount:
-            if self.__pre_discount is not None:
-                self.__pre_discount.users.remove(self.customer)
-            if self.discount is not None:
-                self.discount.users.add(self.customer)
-            self.__pre_discount = self.discount
-            self.update_price()
+        if self.status == 'U':
+            if self.discount != self.__pre_discount:
+                if self.__pre_discount is not None:
+                    self.__pre_discount.users.remove(self.customer)
+                if self.discount is not None:
+                    self.discount.users.add(self.customer)
+                self.__pre_discount = self.discount
+                self.update_price()
         return super(self.__class__, self).save(*args, **kwargs)
 
     def __str__(self) -> str:
@@ -114,22 +141,12 @@ class OrderItem(BasicModel):
 
     def __init__(self, *args, **kwargs):
         super(self.__class__, self).__init__(*args, **kwargs)
-        if self.id is not None:
-            self.__pre_count = self.count  # for compare with old value & update inventory
-        else:
-            self.__pre_count = 0
 
     def clean(self):
-        CountValidator(self.product)(self.count - self.__pre_count)
+        CountValidator(self.product)(self.count)
     
     def save(self, *args, **kwargs):
         if self.order.status == 'U':
-            if self.id is None:
-                self.product.inventory -= self.count
-                self.product.save()
-            elif self.count != self.__pre_count:
-                self.product.inventory -= (self.count - self.__pre_count)
-                self.product.save()
             result = super(self.__class__, self).save(*args, **kwargs)
             self.order.update_price()
             return result
