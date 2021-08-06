@@ -40,11 +40,14 @@ class Address(BasicModel):
 
     class Meta:
         verbose_name, verbose_name_plural = _("Address"), _("Addresses")
+        unique_together = ('lat', 'lng')
 
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name="addresses",
         verbose_name=_("Customer"), help_text=_("Please Select Customer Owner this Address"))
-    postal_code = models.CharField(max_length=10, unique=True, verbose_name=_("Postal Code"),
-        validators=[Validators.check_postal_code], help_text=_("Please Enter Your Postal Code"))
+    name = models.CharField(max_length=50, verbose_name=_("Address' Name"),
+                            help_text=_("Please Enter Your Address' Name"))
+    zip_code = models.CharField(max_length=10, unique=True, verbose_name=_("Zip Code"),
+        validators=[Validators.check_postal_code], help_text=_("Please Enter Your Zip Code"))
     country = models.CharField(max_length=10, default="ایران", verbose_name=_("Country"),
         help_text=_("Please Enter Your Country(By Default Iran is Considered)."))
     province = models.CharField(max_length=10,  verbose_name=_("Province"),
@@ -53,6 +56,10 @@ class Address(BasicModel):
         help_text=_("Please Enter Your City For Example Tehran or Karaj or ..."))
     rest = models.TextField(verbose_name=_("Continue Address(Street and Alley)"),
                             help_text=_("Please Enter the Rest of Your Address Accurately"))
+    lat = models.FloatField(verbose_name=_("Latitude"),
+                            help_text=_("Please Enter Your Address Latitude"))
+    lng = models.FloatField(verbose_name=_("Longitude"),
+                            help_text=_("Please Enter Your Address Longitude"))
 
     def __str__(self) -> str:
-        return f"{self.city}({self.province}) - {self.postal_code}"
+        return f"{self.name} - {self.zip_code}"

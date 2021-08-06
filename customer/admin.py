@@ -13,7 +13,7 @@ class AddressInline(admin.StackedInline):
     model = Address
     exclude = ['deleted', 'delete_timestamp']
     verbose_name_plural = _("Addresses")
-    fields = (('postal_code', 'country'), ('province', 'city'), 'rest')
+    fields = ('name', ('zip_code', 'country'), ('lat', 'lng'), ('province', 'city'), 'rest')
     extra = 1
 
 
@@ -52,10 +52,11 @@ class AddressAdmin(BasicAdmin):
 
     fieldsets = (
         (None, {
-            'fields': ('customer', ('postal_code', 'country'), ('province', 'city'), 'rest')
+            'fields': ('customer', 'name', ('zip_code', 'country'),
+                        ('lat', 'lng'), ('province', 'city'), 'rest')
         }),
     )
-    list_display = ('postal_code', 'province', 'city', 'country')
+    list_display = ('zip_code', 'province', 'city', 'country')
     list_filter = ('country', 'province', 'city')
-    search_fields = ('postal_code', 'country', 'province', 'city')
+    search_fields = ('zip_code', 'country', 'province', 'city')
     ordering = ('-id',)

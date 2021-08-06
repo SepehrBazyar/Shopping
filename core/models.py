@@ -23,7 +23,6 @@ class User(AbstractUser):
 
     class Meta:
         verbose_name, verbose_name_plural = _("User"), _("Users")
-        # unique_together = ('first_name', 'last_name')
 
     objects = MyUserManager()
     USERNAME_FIELD = 'phone_number'
