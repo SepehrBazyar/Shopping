@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from typing import Tuple
+
 from core.models import BasicModel
 from core.utils import readable
 from customer.models import Customer
@@ -56,6 +58,7 @@ class Order(BasicModel):
 
     def __init__(self, *args, **kwargs):
         super(self.__class__, self).__init__(*args, **kwargs)
+        self.total_price, self.final_price = self.update_price()
         self.__pre_discount = self.discount  # for check changed value in save method
         self.__pre_status = self.status  # for check payment or canceling order
 
@@ -65,9 +68,12 @@ class Order(BasicModel):
         """
 
         if self.discount is not None:
-            self.discount.users.add(self.customer)
+            if self.customer in self.discount.users.all():
+                self.discount = None
+                self.total_price, self.final_price = self.update_price()
+            else:
+                self.discount.users.add(self.customer)
         self.status = 'P'
-        self.save()
     
     def cancel(self):
         """
@@ -77,20 +83,19 @@ class Order(BasicModel):
         if self.discount is not None:
             self.discount.users.remove(self.customer)
         self.status = 'C'
-        self.save()
 
-    def update_price(self):
+    def update_price(self) -> Tuple[int, int]:
         """
-        Update Prices of Order by Change in Items so Calculate Sum Price Again
+        Update Prices of Order by Any Change Return Total Price then Final Price
         """
 
-        self.total_price, self.final_price = 0, 0
+        total_price, final_price = 0, 0
         for item in self.items.all():
-            self.total_price += item.count * item.product.price
-            self.final_price += item.count * item.product.final_price
+            total_price += item.count * item.product.price
+            final_price += item.count * item.product.final_price
         if self.discount is not None:
-            self.final_price = self.discount.calculate_price(self.final_price)
-        self.save()
+            final_price = self.discount.calculate_price(final_price)
+        return total_price, final_price
 
     def clean(self):
         if self.code is not None:
@@ -107,6 +112,8 @@ class Order(BasicModel):
             elif self.status == 'P': self.payment()
             elif self.discount != self.__pre_discount:
                 self.final_price = self.discount.calculate_price(self.final_price)
+            else:
+                self.total_price, self.final_price = self.update_price()
             return super(self.__class__, self).save(*args, **kwargs) 
 
     def __str__(self) -> str:
