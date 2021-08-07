@@ -69,6 +69,8 @@ class Order(BasicModel):
             item.product.inventory -= item.count
             item.product.save()
         self.status = 'P'
+        if self.discount is not None:
+            self.discount.users.add(self.customer)
         self.save()
     
     def cancel(self):
@@ -109,10 +111,6 @@ class Order(BasicModel):
     def save(self, *args, **kwargs):
         if self.status == 'U':
             if self.discount != self.__pre_discount:
-                if self.__pre_discount is not None:
-                    self.__pre_discount.users.remove(self.customer)
-                if self.discount is not None:
-                    self.discount.users.add(self.customer)
                 self.__pre_discount = self.discount
                 self.update_price()
         return super(self.__class__, self).save(*args, **kwargs)
@@ -141,6 +139,10 @@ class OrderItem(BasicModel):
 
     def __init__(self, *args, **kwargs):
         super(self.__class__, self).__init__(*args, **kwargs)
+        try: self.clean()
+        except:
+            self.delete()
+            raise ValueError(_("Inventory of Product Item isn't Enough!"))
 
     def clean(self):
         CountValidator(self.product)(self.count)
