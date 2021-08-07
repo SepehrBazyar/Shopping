@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "Login" %}{% endblock %}
+
+{% block extra_style %}
+
+ul > li {
+    list-style-type: none;
+    padding: 1px 0;
+}
+
+li, dt, dd {
+    color: var(--body-quiet-color);
+    font-size: 13px;
+    line-height: 20px;
+}
+
+ul.errorlist li {
+    color: red;
+    background-color: #A9CCE3;
+    font-size: 13px;
+    display: block;
+    margin-bottom: 4px;
+    overflow-wrap: break-word;
+}
+
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="card" style="background-color: #A9CCE3;">
+        <div class="card-header text-center">
+            <h2 style="font-size: 1.5rem;">{% trans "Login" %}</h2>
+        </div>
+        <div class="card-body">
+            <center>
+                {{ form.non_field_errors }}
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="fieldWrapper">
+                        {% for field in form %}
+                            {{ field.errors }}
+                            <h2>{{ field.label_tag }}</h2>{{ field }}
+                        {% endfor %}
+                    </div><br>
+                    <input type="submit" value="{% trans "Login" %}">
+                </form><br>
+                <p>{% trans "Do You Haven't Account Yet?" %}
+                    <a href="#">{% trans "Register" %}</a>
+                </p>
+            </center>
+        </div>
+    </div>
+</div>
+{% endblock %}

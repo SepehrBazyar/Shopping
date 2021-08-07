@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-07 17:46+0430\n"
+"POT-Creation-Date: 2021-08-07 23:14+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,7 +42,7 @@ msgstr "کاربر"
 msgid "Users"
 msgstr "کاربران"
 
-#: .\core\models.py:30 .\customer\forms.py:16
+#: .\core\models.py:30 .\customer\forms.py:16 .\customer\forms.py:32
 msgid "Phone Number"
 msgstr "شماره تلفن همراه"
 
@@ -69,6 +69,10 @@ msgstr "اطلاعات اضافه"
 #: .\customer\apps.py:8 .\customer\models.py:17
 msgid "Customers"
 msgstr "مشتریان"
+
+#: .\customer\forms.py:37
+msgid "Please Enter a Valid Phone Number and Password."
+msgstr "لطفا یک شماره تلفن همراه و گذرواژه معتبر وارد کنید."
 
 #: .\customer\models.py:17 .\customer\models.py:57 .\order\models.py:46
 msgid "Customer"
@@ -465,7 +469,7 @@ msgstr "لطفا آدرس مربوطه را وارد نمایید"
 msgid "Category"
 msgstr "دسته بندی"
 
-#: .\product\models.py:50 .\templates\base.html:97
+#: .\product\models.py:50 .\templates\base.html:94
 #: .\templates\product\category_list.html:4
 msgid "Categories"
 msgstr "دسته بندی ها"
@@ -631,7 +635,7 @@ msgstr "اسناد"
 msgid "Change password"
 msgstr "ویرایش گذرواژه"
 
-#: .\templates\admin\base.html:57 .\templates\base.html:103
+#: .\templates\admin\base.html:57 .\templates\base.html:100
 msgid "Change Language(فا)"
 msgstr "تغییر زبان(En)"
 
@@ -677,26 +681,31 @@ msgstr ""
 msgid "Log in"
 msgstr "خروج"
 
-#: .\templates\base.html:94
+#: .\templates\base.html:97
 msgid "Contact Me"
 msgstr "تماس با من"
 
-#: .\templates\base.html:100
+#: .\templates\base.html:106
 msgid "Account"
 msgstr "حساب کاربری"
 
-#: .\templates\customer\register.html:4 .\templates\customer\register.html:34
-#: .\templates\customer\register.html:49
+#: .\templates\customer\login.html:4 .\templates\customer\login.html:34
+#: .\templates\customer\login.html:47 .\templates\customer\register.html:52
+msgid "Login"
+msgstr "ورود"
+
+#: .\templates\customer\login.html:49
+msgid "Do You Haven't Account Yet?"
+msgstr "هنوز حساب کاربری ندارید؟"
+
+#: .\templates\customer\login.html:50 .\templates\customer\register.html:4
+#: .\templates\customer\register.html:34 .\templates\customer\register.html:49
 msgid "Register"
 msgstr "ثبت نام"
 
 #: .\templates\customer\register.html:51
 msgid "Do You Have Account?"
 msgstr "حساب کاربری دارید؟"
-
-#: .\templates\customer\register.html:52
-msgid "Login"
-msgstr "ورود"
 
 #: .\templates\product\product_list.html:46
 msgid "More Informations"
