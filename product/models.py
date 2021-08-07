@@ -281,6 +281,14 @@ class Product(DynamicTranslation):
 
         return self.read_property(lang=get_language())
 
+    def change_inventory(self, new_value: int):
+        """
+        Method for Apply Change Number of Inventory After Paid or Cancelng Order
+        """
+
+        self.inventory -= new_value
+        self.save()
+
     def read_property(self, property_name: str = None, lang: str = get_language()):
         """
         Read All or One Property of this Product Item by Category List in MongoDB

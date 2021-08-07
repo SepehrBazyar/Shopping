@@ -58,9 +58,16 @@ class Order(BasicModel):
 
     def __init__(self, *args, **kwargs):
         super(self.__class__, self).__init__(*args, **kwargs)
+        if self.code is None: self.discount = None
+        else:  # update discount code in start initialize
+            discode = DiscountCode.objects.filter(code__exact=self.code)
+            if discode.count() == 1: self.discount = DiscountCode.objects.get(code=self.code)
         self.total_price, self.final_price = self.update_price()
         self.__pre_discount = self.discount  # for check changed value in save method
         self.__pre_status = self.status  # for check payment or canceling order
+        if self.status == 'U':
+            for item in self.items.all():
+                if item.count > item.product.inventory: item.delete()
 
     def payment(self):
         """
@@ -73,6 +80,8 @@ class Order(BasicModel):
                 self.total_price, self.final_price = self.update_price()
             else:
                 self.discount.users.add(self.customer)
+        for item in self.items.all():
+            item.product.change_inventory(item.count)
         self.status = 'P'
     
     def cancel(self):
@@ -82,6 +91,9 @@ class Order(BasicModel):
 
         if self.discount is not None:
             self.discount.users.remove(self.customer)
+        if self.__pre_status == 'P':
+            for item in self.items.all():
+                item.product.change_inventory(-item.count)
         self.status = 'C'
 
     def update_price(self) -> Tuple[int, int]:
@@ -100,11 +112,7 @@ class Order(BasicModel):
     def clean(self):
         if self.code is not None:
             discode = DiscountCode.objects.filter(code__exact=self.code)
-            if self.discount is None:
-                DiscountCodeValidator(discode)(self.customer)
-            self.discount = discode[0]
-        elif self.__pre_discount is not None:
-            self.discount = None
+            DiscountCodeValidator(discode)(self.customer)
 
     def save(self, *args, **kwargs):
         if self.__pre_status == 'U' or (self.__pre_status == 'P' and self.status == 'C'):
@@ -140,24 +148,15 @@ class OrderItem(BasicModel):
 
     def __init__(self, *args, **kwargs):
         super(self.__class__, self).__init__(*args, **kwargs)
-        if self.id is not None:
-            self.__pre_count = self.count  # for compare with old value & update inventory
-        else:
-            self.__pre_count = 0
 
     def clean(self):
-        CountValidator(self.product)(self.count - self.__pre_count)
-    
+        if self.order.status == 'U':
+            CountValidator(self.product)(self.count)
+
     def save(self, *args, **kwargs):
         if self.order.status == 'U':
-            if self.id is None:
-                self.product.inventory -= self.count
-                self.product.save()
-            elif self.count != self.__pre_count:
-                self.product.inventory -= (self.count - self.__pre_count)
-                self.product.save()
             result = super(self.__class__, self).save(*args, **kwargs)
-            self.order.update_price()
+            self.order.save()
             return result
 
     def __str__(self) -> str:
