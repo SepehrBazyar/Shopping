@@ -49,7 +49,7 @@ ul.errorlist li {
                     <input type="submit" value="{% trans "Register" %}">
                 </form><br>
                 <p>{% trans "Do You Have Account?" %}
-                    <a href="#">{% trans "Login" %}</a>
+                    <a href="{% url 'customer:login' %}">{% trans "Login" %}</a>
                 </p>
             </center>
         </div>
