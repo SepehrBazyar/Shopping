@@ -56,8 +56,6 @@ class Order(BasicModel):
 
     def __init__(self, *args, **kwargs):
         super(self.__class__, self).__init__(*args, **kwargs)
-        try: self.clean()
-        except: pass
         self.__pre_discount = self.discount  # for check changed value in save method
 
     def payment(self):
@@ -139,10 +137,6 @@ class OrderItem(BasicModel):
 
     def __init__(self, *args, **kwargs):
         super(self.__class__, self).__init__(*args, **kwargs)
-        try: self.clean()
-        except:
-            self.delete()
-            raise ValueError(_("Inventory of Product Item isn't Enough!"))
 
     def clean(self):
         CountValidator(self.product)(self.count)

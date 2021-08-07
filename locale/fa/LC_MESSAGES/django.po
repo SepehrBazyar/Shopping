@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-06 19:52+0430\n"
+"POT-Creation-Date: 2021-08-07 17:46+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,11 +42,11 @@ msgstr "کاربر"
 msgid "Users"
 msgstr "کاربران"
 
-#: .\core\models.py:30
+#: .\core\models.py:30 .\customer\forms.py:16
 msgid "Phone Number"
 msgstr "شماره تلفن همراه"
 
-#: .\core\models.py:31
+#: .\core\models.py:31 .\customer\forms.py:19
 msgid "Please Enter Your Phone Number"
 msgstr "لطفا شماره تلفن همراه خود را وارد نمایید"
 
@@ -58,7 +58,7 @@ msgstr "شماره تلفن همراه می بایست با 09 آغاز شود �
 msgid "Postal Code Must be 10 Digits."
 msgstr "کد پستی می بایست دقیقا حاوی 10 رقم باشد"
 
-#: .\customer\admin.py:15 .\customer\models.py:42
+#: .\customer\admin.py:15 .\customer\models.py:53
 msgid "Addresses"
 msgstr "نشانی ها"
 
@@ -66,124 +66,128 @@ msgstr "نشانی ها"
 msgid "Extra info"
 msgstr "اطلاعات اضافه"
 
-#: .\customer\apps.py:8 .\customer\models.py:15
+#: .\customer\apps.py:8 .\customer\models.py:17
 msgid "Customers"
 msgstr "مشتریان"
 
-#: .\customer\models.py:15 .\customer\models.py:46 .\order\models.py:46
+#: .\customer\models.py:17 .\customer\models.py:57 .\order\models.py:46
 msgid "Customer"
 msgstr "مشتری"
 
-#: .\customer\models.py:18
+#: .\customer\models.py:20
 msgid "Male"
 msgstr "مرد"
 
-#: .\customer\models.py:19
+#: .\customer\models.py:21
 msgid "Female"
 msgstr "زن"
 
-#: .\customer\models.py:20
+#: .\customer\models.py:22
 msgid "Non-Binary"
 msgstr "بدون جنسیت"
 
-#: .\customer\models.py:23
+#: .\customer\models.py:25
 msgid "Profile Picture"
 msgstr "نمایه کاربری"
 
-#: .\customer\models.py:24
+#: .\customer\models.py:26
 msgid "Please Upload Uour Image if You Wish."
 msgstr "در صورت تمایل لطفا عکس خود را بارگذاری فرمایید"
 
-#: .\customer\models.py:27
+#: .\customer\models.py:29
 msgid "Gender"
 msgstr "جنسیت"
 
-#: .\customer\models.py:27
+#: .\customer\models.py:29
 msgid "Please Select Your Gender if You Wish."
 msgstr "در صورت تمایل لطفا جنسیت خود را انتخاب فرمایید"
 
-#: .\customer\models.py:29
+#: .\customer\models.py:30
 msgid "Birth Day"
 msgstr "تاریخ تولد"
 
-#: .\customer\models.py:29
+#: .\customer\models.py:31
 msgid "Please Enter Your Birth Day if You Wish."
 msgstr "در صورت تمایل لطفا تاریخ تولد خود را وارد فرمایید"
 
-#: .\customer\models.py:42
+#: .\customer\models.py:53
 msgid "Address"
 msgstr "نشانی"
 
-#: .\customer\models.py:46
+#: .\customer\models.py:57
 msgid "Please Select Customer Owner this Address"
 msgstr "لطفا مشتری صاحب این آدرس را انتخاب فرمایید"
 
-#: .\customer\models.py:47
+#: .\customer\models.py:58
 msgid "Address' Name"
 msgstr "نام نشانی"
 
-#: .\customer\models.py:48
+#: .\customer\models.py:59
 msgid "Please Enter Your Address' Name"
 msgstr "لطفا برای این آدرس نامی وارد نمایید"
 
-#: .\customer\models.py:49
+#: .\customer\models.py:60
 msgid "Zip Code"
 msgstr "کد پستی"
 
-#: .\customer\models.py:50
+#: .\customer\models.py:61
 msgid "Please Enter Your Zip Code"
 msgstr "لطفا کد پستی خود را وارد نمایید"
 
-#: .\customer\models.py:51
+#: .\customer\models.py:62
 msgid "Country"
 msgstr "کشور"
 
-#: .\customer\models.py:52
+#: .\customer\models.py:63
 msgid "Please Enter Your Country(By Default Iran is Considered)."
 msgstr "لطفا کشور خود را انتخاب نمایید(بطور پیش فرض ایران در نظر گرفته می شود)"
 
-#: .\customer\models.py:53
+#: .\customer\models.py:64
 msgid "Province"
 msgstr "استان"
 
-#: .\customer\models.py:54
+#: .\customer\models.py:65
 msgid "Please Enter Your Province For Example Tehran or Alborz or ..."
 msgstr ""
 "لطفا استان محل سکونت خود را انتخاب نمایید(برای مثال تهران یا البرز یا ...)"
 
-#: .\customer\models.py:55
+#: .\customer\models.py:66
 msgid "City"
 msgstr "شهر"
 
-#: .\customer\models.py:56
+#: .\customer\models.py:67
 msgid "Please Enter Your City For Example Tehran or Karaj or ..."
 msgstr "لطفا شهر محل سکونت خود را انتخاب نمایید(برای مثال تهران یا کرج یا ...)"
 
-#: .\customer\models.py:57
+#: .\customer\models.py:68
 msgid "Continue Address(Street and Alley)"
 msgstr "ادامه آدرس(خیابان و کوچه)"
 
-#: .\customer\models.py:58
+#: .\customer\models.py:69
 msgid "Please Enter the Rest of Your Address Accurately"
 msgstr "لطفا ادامه آدرس خود را بطور کامل و دقیق وارد فرمایید"
 
-#: .\customer\models.py:59
+#: .\customer\models.py:70
 msgid "Latitude"
 msgstr "عرض جغرافیایی"
 
-#: .\customer\models.py:60
+#: .\customer\models.py:71
 msgid "Please Enter Your Address Latitude"
 msgstr "لطفا عرض جغرافیایی مکان خود را وارد فرمایید"
 
-#: .\customer\models.py:61
+#: .\customer\models.py:72
 msgid "Longitude"
 msgstr "طول جغرافیایی"
 
-#: .\customer\models.py:62
+#: .\customer\models.py:73
 msgid "Please Enter Your Address Longitude"
 msgstr "لطفا طول جغرافیایی مکان خود را وارد فرمایید"
 
-#: .\order\admin.py:17 .\order\models.py:106
+#: .\customer\validators.py:11
+msgid "Your Birth Day Can't be After Now Date Time"
+msgstr "تاریخ تولد شما نمی تواند پس از تاریخ امروز باشد"
+
+#: .\order\admin.py:17 .\order\models.py:129
 msgid "Order Items"
 msgstr "موارد سفارش"
 
@@ -227,15 +231,15 @@ msgstr " سفارش با موفقیت پرداخت شد."
 msgid " Orders were Successfully Paiding."
 msgstr " سفارش با موفقیت پرداخت شدند."
 
-#: .\order\admin.py:92
+#: .\order\admin.py:94
 msgid "Canceling Selected Order"
 msgstr "لغو سفارشات انتخاب شده"
 
-#: .\order\admin.py:100
+#: .\order\admin.py:102
 msgid " Order was Successfully Canceling."
 msgstr " سفارش با موفقیت لغو شد."
 
-#: .\order\admin.py:102
+#: .\order\admin.py:104
 msgid " Orders were Successfully Canceling."
 msgstr " سفارش با موفقیت لغو شدند."
 
@@ -327,37 +331,37 @@ msgstr "مقدار تخفیف"
 msgid "Please Select Discount from Discount Codes to Apply on Price"
 msgstr "لطفا تخفیفی را از میان کدهای تخفیف انتخاب فرمایید"
 
-#: .\order\models.py:94 .\product\models.py:158 .\product\models.py:357
+#: .\order\models.py:117 .\product\models.py:158 .\product\models.py:357
 #: .\templates\product\product_detail.html:27
 #: .\templates\product\product_list.html:42
 msgid "Toman"
 msgstr "تومان"
 
-#: .\order\models.py:106
+#: .\order\models.py:129
 msgid "Order Item"
 msgstr "مورد سفارش"
 
-#: .\order\models.py:109
+#: .\order\models.py:132
 msgid "Recepite Order"
 msgstr "صورتحساب سفارش"
 
-#: .\order\models.py:109
+#: .\order\models.py:132
 msgid "Please Select Your Order"
 msgstr "لطفا سفارش مربوطه خود را انتخاب نمایید"
 
-#: .\order\models.py:111
+#: .\order\models.py:134
 msgid "Product Item"
 msgstr "مورد محصول"
 
-#: .\order\models.py:111
+#: .\order\models.py:134
 msgid "Please Select Product Item to Add"
 msgstr "لطفا مورد محصول را جهت اضافه شدن انتخاب فرمایید"
 
-#: .\order\models.py:112
+#: .\order\models.py:135
 msgid "Count of Order Item"
 msgstr "تعداد مورد سفارش"
 
-#: .\order\models.py:113
+#: .\order\models.py:136
 msgid "Please Selcet the Count of this Order Item(Minimum Value is 1)."
 msgstr ""
 "لطفا تعداد مورد سفارش خود را وارد نمایید(بطور پیش فرض حداقل مقدار 1 درنظر "
@@ -680,6 +684,19 @@ msgstr "تماس با من"
 #: .\templates\base.html:100
 msgid "Account"
 msgstr "حساب کاربری"
+
+#: .\templates\customer\register.html:4 .\templates\customer\register.html:34
+#: .\templates\customer\register.html:49
+msgid "Register"
+msgstr "ثبت نام"
+
+#: .\templates\customer\register.html:51
+msgid "Do You Have Account?"
+msgstr "حساب کاربری دارید؟"
+
+#: .\templates\customer\register.html:52
+msgid "Login"
+msgstr "ورود"
 
 #: .\templates\product\product_list.html:46
 msgid "More Informations"
