@@ -285,9 +285,11 @@ class Product(DynamicTranslation):
         """
         Method for Apply Change Number of Inventory After Paid or Cancelng Order
         """
-
-        self.inventory -= new_value
-        self.save()
+        
+        if self.inventory - new_value >= 0:
+            self.inventory -= new_value
+            self.save()
+        else: raise ValueError("Inventory Number Can't be Negative Number!")
 
     def read_property(self, property_name: str = None, lang: str = get_language()):
         """

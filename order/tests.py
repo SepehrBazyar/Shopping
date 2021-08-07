@@ -5,7 +5,7 @@ from product.models import *
 from .models import *
 
 # Create your tests here.
-class TestOrderItemModel(TestCase):
+class TestOrderAppModels(TestCase):
     def setUp(self):
         # created customers
         self.customer = Customer.objects.create(username="09123456789", password="1O1nn1e1e")
@@ -61,7 +61,7 @@ class TestOrderItemModel(TestCase):
         self.assertEqual(o.final_price, 455_000)
         self.assertEqual(o.items.all()[0].product.inventory, 19)
         o.cancel()
-        self.assertEqual(o.items.all()[0].product.inventory, 20)
+        self.assertEqual(Product.objects.get(id=o.items.all()[0].id).inventory, 20)
 
     def test_unpaid_order_1(self):
         o = Order.objects.create(customer=self.customer, code="xyz4")
@@ -88,10 +88,7 @@ class TestOrderItemModel(TestCase):
     
     def test_not_enough_inventory_1(self):
         o = Order.objects.create(customer=self.customer)
-        try:
-            OrderItem.objects.create(order=o, product=self.mobile, count=21)
-        except ValueError:
-            pass
+        OrderItem.objects.create(order=o, product=self.mobile, count=21)
         OrderItem.objects.create(order=o, product=self.lebas, count=20)
         o.payment()
         self.assertEqual(o.items.all().count(), 1)
@@ -100,14 +97,8 @@ class TestOrderItemModel(TestCase):
 
     def test_not_enough_inventory_2(self):
         o = Order.objects.create(customer=self.customer, code="xyz4")
-        try:
-            OrderItem.objects.create(order=o, product=self.medad, count=41)
-        except ValueError:
-            pass
-        try:
-            OrderItem.objects.create(order=o, product=self.daftar, count=42)
-        except ValueError:
-            pass
+        OrderItem.objects.create(order=o, product=self.medad, count=41)
+        OrderItem.objects.create(order=o, product=self.daftar, count=42)
         o.payment()
         self.assertEqual(o.items.all().count(), 0)
         self.assertEqual(o.total_price, 0)
@@ -122,16 +113,13 @@ class TestOrderItemModel(TestCase):
         o.payment()
         self.assertEqual(o.total_price, 565_000)
         self.assertEqual(o.final_price, 515_000)
-        self.assertEqual(o.items.all()[0].product.inventory, 19)
+        self.assertEqual(o.items.all()[0].product.inventory, 18)
         self.assertEqual(o.items.all()[1].product.inventory, 19)
         self.assertEqual(o.items.all()[2].product.inventory, 37)
     
     def test_duplicate_discount_code_2(self):
         self.test_successfully_order_1()
-        try:
-            o = Order.objects.create(customer=self.customer, code="xyz1")
-        except ValueError:
-            o = Order.objects.create(customer=self.customer)
+        o = Order.objects.create(customer=self.customer, code="xyz1")
         OrderItem.objects.create(order=o, product=self.medad, count=4)
         OrderItem.objects.create(order=o, product=self.lebas, count=1)
         o.payment()
@@ -142,10 +130,7 @@ class TestOrderItemModel(TestCase):
     
     def test_other_discount_code_1(self):
         self.test_successfully_order_1()
-        try:
-            o = Order.objects.create(customer=self.customer, code="xyz3")
-        except ValueError:
-            o = Order.objects.create(customer=self.customer)
+        o = Order.objects.create(customer=self.customer, code="xyz3")
         OrderItem.objects.create(order=o, product=self.medad, count=4)
         OrderItem.objects.create(order=o, product=self.lebas, count=1)
         o.payment()
@@ -155,10 +140,7 @@ class TestOrderItemModel(TestCase):
         self.assertEqual(o.items.all()[1].product.inventory, 19)
 
     def test_invalid_discount_code_1(self):
-        try:
-            o = Order.objects.create(customer=self.customer, code="xyz6")
-        except ValueError:
-            o = Order.objects.create(customer=self.customer)
+        o = Order.objects.create(customer=self.customer, code="xyz6")
         OrderItem.objects.create(order=o, product=self.mobile, count=6)
         OrderItem.objects.create(order=o, product=self.medad, count=10)
         o.payment()

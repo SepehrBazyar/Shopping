@@ -58,15 +58,16 @@ class Order(BasicModel):
 
     def __init__(self, *args, **kwargs):
         super(self.__class__, self).__init__(*args, **kwargs)
-        if self.code is None: self.discount = None
+        if self.code is None: self.discount = None  # if customer remove code
         else:  # update discount code in start initialize
             discode = DiscountCode.objects.filter(code__exact=self.code)
             if discode.count() == 1: self.discount = DiscountCode.objects.get(code=self.code)
-        self.total_price, self.final_price = self.update_price()
+            else: self.code = None  # if code is invalid clear code field in database
+        self.total_price, self.final_price = self.update_price()  # check changes
         self.__pre_discount = self.discount  # for check changed value in save method
         self.__pre_status = self.status  # for check payment or canceling order
         if self.status == 'U':
-            for item in self.items.all():
+            for item in self.items.all():  # remove items from order if count not enough
                 if item.count > item.product.inventory: item.delete()
 
     def payment(self):
@@ -74,14 +75,15 @@ class Order(BasicModel):
         Method to Payment Order & Change Status & Update Inventory Number
         """
 
-        if self.discount is not None:
+        if self.discount is not None:  # expired discount code for this customer
             if self.customer in self.discount.users.all():
-                self.discount = None
+                self.discount = None  # discount code used already
                 self.total_price, self.final_price = self.update_price()
             else:
                 self.discount.users.add(self.customer)
-        for item in self.items.all():
-            item.product.change_inventory(item.count)
+        for item in self.items.all():  # decrease from inventory in database
+            try: item.product.change_inventory(item.count)
+            except ValueError: item.delete()
         self.status = 'P'
     
     def cancel(self):
@@ -89,11 +91,11 @@ class Order(BasicModel):
         Method to Cancel Order & Change Status & Update Inventory Number
         """
 
-        if self.discount is not None:
+        if self.discount is not None:  # unexpire discount because not paid
             self.discount.users.remove(self.customer)
-        if self.__pre_status == 'P':
+        if self.__pre_status == 'P':  # if before paid and decrease from inventory back change
             for item in self.items.all():
-                item.product.change_inventory(-item.count)
+                item.product.change_inventory(-item.count)  # negative number add to inventory
         self.status = 'C'
 
     def update_price(self) -> Tuple[int, int]:
@@ -101,6 +103,7 @@ class Order(BasicModel):
         Update Prices of Order by Any Change Return Total Price then Final Price
         """
 
+        # total price is sum of pure price and final price after apply both discounts
         total_price, final_price = 0, 0
         for item in self.items.all():
             total_price += item.count * item.product.price
@@ -109,18 +112,19 @@ class Order(BasicModel):
             final_price = self.discount.calculate_price(final_price)
         return total_price, final_price
 
-    def clean(self):
+    def clean(self):  # clean data from get any form and check discount code value
         if self.code is not None:
             discode = DiscountCode.objects.filter(code__exact=self.code)
             DiscountCodeValidator(discode)(self.customer)
 
     def save(self, *args, **kwargs):
+        # just save changes in this states: not paid yet or canceling paid orders
         if self.__pre_status == 'U' or (self.__pre_status == 'P' and self.status == 'C'):
             if self.status == 'C': self.cancel()
             elif self.status == 'P': self.payment()
-            elif self.discount != self.__pre_discount:
+            elif self.discount != self.__pre_discount:  # enter new discount code
                 self.final_price = self.discount.calculate_price(self.final_price)
-            else:
+            else:  # in this state change is adding new item in other model
                 self.total_price, self.final_price = self.update_price()
             return super(self.__class__, self).save(*args, **kwargs) 
 
@@ -146,17 +150,14 @@ class OrderItem(BasicModel):
     count = models.PositiveIntegerField(default=1, verbose_name=_("Count of Order Item"),
         help_text=_("Please Selcet the Count of this Order Item(Minimum Value is 1)."))
 
-    def __init__(self, *args, **kwargs):
-        super(self.__class__, self).__init__(*args, **kwargs)
-
-    def clean(self):
+    def clean(self):  # clean data from get any form and check inventory value
         if self.order.status == 'U':
             CountValidator(self.product)(self.count)
 
     def save(self, *args, **kwargs):
-        if self.order.status == 'U':
+        if self.order.status == 'U':  # just parent order not paid save changes
             result = super(self.__class__, self).save(*args, **kwargs)
-            self.order.save()
+            self.order.save()  # update the parent order by change in this item
             return result
 
     def __str__(self) -> str:
