@@ -57,18 +57,16 @@ class Order(BasicModel):
     def __init__(self, *args, **kwargs):
         super(self.__class__, self).__init__(*args, **kwargs)
         self.__pre_discount = self.discount  # for check changed value in save method
+        self.__pre_status = self.status  # for check payment or canceling order
 
     def payment(self):
         """
         Method to Payment Order & Change Status & Update Inventory Number
         """
 
-        for item in self.items.all():
-            item.product.inventory -= item.count
-            item.product.save()
-        self.status = 'P'
         if self.discount is not None:
             self.discount.users.add(self.customer)
+        self.status = 'P'
         self.save()
     
     def cancel(self):
@@ -76,12 +74,9 @@ class Order(BasicModel):
         Method to Cancel Order & Change Status & Update Inventory Number
         """
 
-        for item in self.items.all():
-            item.product.inventory += item.count
-            item.product.save()
-        self.status = 'C'
         if self.discount is not None:
             self.discount.users.remove(self.customer)
+        self.status = 'C'
         self.save()
 
     def update_price(self):
@@ -107,14 +102,12 @@ class Order(BasicModel):
             self.discount = None
 
     def save(self, *args, **kwargs):
-        if self.discount != self.__pre_discount:
-            if self.__pre_discount is not None:
-                self.__pre_discount.users.remove(self.customer)
-            if self.discount is not None:
-                self.discount.users.add(self.customer)
-            self.__pre_discount = self.discount
-            self.update_price()
-        return super(self.__class__, self).save(*args, **kwargs)
+        if self.__pre_status == 'U' or (self.__pre_status == 'P' and self.status == 'C'):
+            if self.status == 'C': self.cancel()
+            elif self.status == 'P': self.payment()
+            elif self.discount != self.__pre_discount:
+                self.final_price = self.discount.calculate_price(self.final_price)
+            return super(self.__class__, self).save(*args, **kwargs) 
 
     def __str__(self) -> str:
         toman_trans = _("Toman")
