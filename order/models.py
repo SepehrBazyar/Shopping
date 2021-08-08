@@ -70,6 +70,30 @@ class Order(BasicModel):
             for item in self.items.all():  # remove items from order if count not enough
                 if item.count > item.product.inventory: item.delete()
 
+    @property
+    def readable_total_price(self):
+        """
+        Make Readable Form of Total Price for Show in Template Pages
+        """
+
+        return readable(self.total_price)
+    
+    @property
+    def readable_final_price(self):
+        """
+        Make Readable Form of Final Price for Show in Template Pages
+        """
+
+        return readable(self.final_price)
+    
+    @property
+    def status_name(self):
+        """
+        Make Readable Form of Final Price for Show in Template Pages
+        """
+
+        return self.__class__.STATUSES[self.status]
+
     def payment(self):
         """
         Method to Payment Order & Change Status & Update Inventory Number

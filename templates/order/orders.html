@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "Orders" %}{% endblock %}
+
+{% block extra_style %}
+
+ul > li {
+    list-style-type: none;
+    padding: 1px 0;
+}
+
+li, dt, dd {
+    color: var(--body-quiet-color);
+    font-size: 13px;
+    line-height: 20px;
+}
+
+ul.errorlist li {
+    color: red;
+    font-size: 13px;
+    display: block;
+    margin-bottom: 4px;
+    overflow-wrap: break-word;
+}
+
+{% endblock %}
+
+{% block body %}
+<div class="container" style="text-align: center;">
+    <p>
+        <a href="{% url 'order:orders' %}?status=P" class="btn" style="background-color: #A9CCE3;">
+            <i class="gb gb_cancel"></i>
+            {% trans "Paid Orders List" %}
+        </a>
+        <a href="{% url 'order:orders' %}?status=C" class="btn" style="background-color: #A9CCE3;">
+            <i class="gb gb_payment"></i>
+            {% trans "Canceled Orders List" %}
+        </a>
+    </p>
+
+    <br>
+
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th style="text-align: center; font-size: 1rem;">#</th>
+            <th style="text-align: center; font-size: 1rem;">{% trans "Total Price" %}({% trans "Toman" %})</th>
+            <th style="text-align: center; font-size: 1rem;">{% trans "Final Price" %}({% trans "Toman" %})</th>
+            <th style="text-align: center; font-size: 1rem;">{% trans "Discount Code" %}</th>
+            <th style="text-align: center; font-size: 1rem;">{% trans "Status" %}</th>
+            <th style="text-align: center; font-size: 1rem;">{% trans "Details" %}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ order.total_price }}</td>
+                <td>{{ order.final_price }}</td>
+                <td>{% if order.code %}{{ order.code }}{% else %}-{% endif %}</td>
+                <td>{{ order.status_name }}</td>
+                <td>
+                    <button type="button" class="btn" data-toggle="modal" data-target="#order{{ order.id }}" style="background-color: #A9CCE3;">
+                        {% trans "Click Me" %}
+                    </button>
+
+                    <!-- The Modal -->
+                    <div class="modal fade" id="order{{ order.id }}">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title" style="font-size: 1rem;">
+                                    {% trans "Recepite Detail" %}
+                                </h4>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                {% for item in order.items.all %}
+                                    <p>
+                                        {{ item.product.title }} &times;
+                                        {{ item.count }} {% trans "Number" %}
+                                    </p>
+                                {% endfor %}
+                            </div>
+
+                        </div>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock %}
