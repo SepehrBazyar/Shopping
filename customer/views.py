@@ -1,10 +1,10 @@
 from django.contrib import auth
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
-from django.views import generic
+from django.views import generic, View
 
 from .models import Customer
 from .forms import *
@@ -51,3 +51,39 @@ class CustomerRegisterView(generic.FormView):
                                             password=form.data["password1"])
         login(self.request, user)
         return redirect(reverse("product:categories"))
+
+
+class CustomerProfileView(LoginRequiredMixin, View):
+    """
+    View for Customer See Profile Detials and Edit it
+    """
+
+    def get(self, request, *args, **kwargs):
+        customer = Customer.objects.get(id=request.user.id)
+        return render(request, "customer/profile.html", {
+            'customer': customer,
+        })
+
+
+class CreateNewAddressView(LoginRequiredMixin, View):
+    """
+    Authenticated Customer Can Add New Address for Orders in this View
+    """
+
+    def get(self, request, *args, **kwargs):
+        form = AdderssForm()
+        return render(request, "customer/address.html", {
+            'form': form
+        })
+
+    def post(self, request, *args, **kwargs):
+        form = AdderssForm(request.POST)
+        if form.is_valid():
+            new_address = form.save(commit=False)
+            new_address.customer = Customer.objects.get(id=request.user.id)
+            new_address.save()
+            return redirect(reverse("product:categories"))
+        else:
+            return render(request, "customer/address.html", {
+            'form': form
+        })

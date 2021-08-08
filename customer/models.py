@@ -39,6 +39,14 @@ class Customer(User):
         if self.birth_day is not None:
             return (now() - self.birth_day).days // 365
 
+    @property
+    def gender_type(self):
+        """
+        Get Readable Gender Name for Show in Profile Page View so Property Method
+        """
+
+        return self.__class__.GENDERS[self.gender] if self.gender is not None else '-'
+
     def delete(self):
         self.is_active = False
         self.save()

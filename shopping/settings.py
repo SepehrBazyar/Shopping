@@ -158,5 +158,5 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 AUTH_USER_MODEL = 'core.User'
 LOGIN_URL = "customer:login"
-LOGIN_REDIRECT_URL = "product:categories"
+LOGIN_REDIRECT_URL = "customer:profile"
 LOGOUT_REDIRECT_URL = "customer:login"

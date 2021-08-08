@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "Profile" %}{% endblock %}
+
+{% block extra_style %}
+
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="card" style="background-color: #A9CCE3;">
+        <div class="card-header text-center">
+            <img src="/media/{{ customer.photo }}" alt="{{ customer.username }}" 
+                style="border-radius: 50%; width: 25rem; height: 25rem;">
+            <h2>
+                <i class="gb gb_face"></i>
+                {% trans "Name" %}: {{ customer.first_name }} {{ customer.last_name }}
+            </h2>
+            <p>
+                {% trans "Gender" %}: {{ customer.gender_type }}<br>
+                {% trans "Age" %}:
+                    {% if customer.age %}
+                        {{ customer.age }}
+                    {% else %}
+                        -
+                    {% endif %} 
+                {% trans "Year" %}
+            </p>
+
+            <br><hr style="background-color: #1B2631;"><br>
+            
+            <h3><i class="gb gb_location_on"></i>{% trans "Addresses" %}:</h3>
+            {% for address in customer.addresses.all %}
+                <p>
+                    {{ forloop.counter }}. {{ address.name }}:
+                    {{ address.province }} - {{ address.city }}
+                    ({% trans "Zip Code" %}: {{ address.zip_code }})
+                </p>
+            {% endfor %}
+
+            <br>
+
+            <a href="{% url 'customer:address' %}">{% trans "Add New Address" %}</a>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

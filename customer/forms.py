@@ -37,3 +37,13 @@ class CustomerLoginForm(AuthenticationForm):
             "Please Enter a Valid Phone Number and Password."
         ),
     }
+
+
+class AdderssForm(forms.ModelForm):
+    """
+    Model Form for Create New Address for Customers
+    """
+
+    class Meta:
+        model = Address
+        exclude = ['deleted', 'delete_timestamp', 'customer']

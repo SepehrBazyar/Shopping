@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-08 16:10+0430\n"
+"POT-Creation-Date: 2021-08-08 19:15+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,7 +58,8 @@ msgstr "شماره تلفن همراه می بایست با 09 آغاز شود �
 msgid "Postal Code Must be 10 Digits."
 msgstr "کد پستی می بایست دقیقا حاوی 10 رقم باشد"
 
-#: .\customer\admin.py:15 .\customer\models.py:53
+#: .\customer\admin.py:15 .\customer\models.py:61
+#: .\templates\customer\profile.html:24
 msgid "Addresses"
 msgstr "نشانی ها"
 
@@ -74,7 +75,7 @@ msgstr "مشتریان"
 msgid "Please Enter a Valid Phone Number and Password."
 msgstr "لطفا یک شماره تلفن همراه و گذرواژه معتبر وارد کنید."
 
-#: .\customer\models.py:17 .\customer\models.py:57 .\order\models.py:48
+#: .\customer\models.py:17 .\customer\models.py:65 .\order\models.py:48
 msgid "Customer"
 msgstr "مشتری"
 
@@ -98,7 +99,7 @@ msgstr "نمایه کاربری"
 msgid "Please Upload Uour Image if You Wish."
 msgstr "در صورت تمایل لطفا عکس خود را بارگذاری فرمایید"
 
-#: .\customer\models.py:29
+#: .\customer\models.py:29 .\templates\customer\profile.html:18
 msgid "Gender"
 msgstr "جنسیت"
 
@@ -114,76 +115,76 @@ msgstr "تاریخ تولد"
 msgid "Please Enter Your Birth Day if You Wish."
 msgstr "در صورت تمایل لطفا تاریخ تولد خود را وارد فرمایید"
 
-#: .\customer\models.py:53
+#: .\customer\models.py:61 .\templates\customer\address.html:4
 msgid "Address"
 msgstr "نشانی"
 
-#: .\customer\models.py:57
+#: .\customer\models.py:65
 msgid "Please Select Customer Owner this Address"
 msgstr "لطفا مشتری صاحب این آدرس را انتخاب فرمایید"
 
-#: .\customer\models.py:58
+#: .\customer\models.py:66
 msgid "Address' Name"
 msgstr "نام نشانی"
 
-#: .\customer\models.py:59
+#: .\customer\models.py:67
 msgid "Please Enter Your Address' Name"
 msgstr "لطفا برای این آدرس نامی وارد نمایید"
 
-#: .\customer\models.py:60
+#: .\customer\models.py:68 .\templates\customer\profile.html:29
 msgid "Zip Code"
 msgstr "کد پستی"
 
-#: .\customer\models.py:61
+#: .\customer\models.py:69
 msgid "Please Enter Your Zip Code"
 msgstr "لطفا کد پستی خود را وارد نمایید"
 
-#: .\customer\models.py:62
+#: .\customer\models.py:70
 msgid "Country"
 msgstr "کشور"
 
-#: .\customer\models.py:63
+#: .\customer\models.py:71
 msgid "Please Enter Your Country(By Default Iran is Considered)."
 msgstr "لطفا کشور خود را انتخاب نمایید(بطور پیش فرض ایران در نظر گرفته می شود)"
 
-#: .\customer\models.py:64
+#: .\customer\models.py:72
 msgid "Province"
 msgstr "استان"
 
-#: .\customer\models.py:65
+#: .\customer\models.py:73
 msgid "Please Enter Your Province For Example Tehran or Alborz or ..."
 msgstr ""
 "لطفا استان محل سکونت خود را انتخاب نمایید(برای مثال تهران یا البرز یا ...)"
 
-#: .\customer\models.py:66
+#: .\customer\models.py:74
 msgid "City"
 msgstr "شهر"
 
-#: .\customer\models.py:67
+#: .\customer\models.py:75
 msgid "Please Enter Your City For Example Tehran or Karaj or ..."
 msgstr "لطفا شهر محل سکونت خود را انتخاب نمایید(برای مثال تهران یا کرج یا ...)"
 
-#: .\customer\models.py:68
+#: .\customer\models.py:76
 msgid "Continue Address(Street and Alley)"
 msgstr "ادامه آدرس(خیابان و کوچه)"
 
-#: .\customer\models.py:69
+#: .\customer\models.py:77
 msgid "Please Enter the Rest of Your Address Accurately"
 msgstr "لطفا ادامه آدرس خود را بطور کامل و دقیق وارد فرمایید"
 
-#: .\customer\models.py:70
+#: .\customer\models.py:78
 msgid "Latitude"
 msgstr "عرض جغرافیایی"
 
-#: .\customer\models.py:71
+#: .\customer\models.py:79
 msgid "Please Enter Your Address Latitude"
 msgstr "لطفا عرض جغرافیایی مکان خود را وارد فرمایید"
 
-#: .\customer\models.py:72
+#: .\customer\models.py:80
 msgid "Longitude"
 msgstr "طول جغرافیایی"
 
-#: .\customer\models.py:73
+#: .\customer\models.py:81
 msgid "Please Enter Your Address Longitude"
 msgstr "لطفا طول جغرافیایی مکان خود را وارد فرمایید"
 
@@ -685,7 +686,7 @@ msgstr "خروج"
 msgid "Contact Me"
 msgstr "تماس با من"
 
-#: .\templates\base.html:109
+#: .\templates\base.html:109 .\templates\customer\profile.html:4
 msgid "Profile"
 msgstr "نمایه"
 
@@ -696,6 +697,10 @@ msgstr "خروج"
 #: .\templates\base.html:115
 msgid "Account"
 msgstr "حساب کاربری"
+
+#: .\templates\customer\address.html:46
+msgid "Add"
+msgstr "افزودن"
 
 #: .\templates\customer\login.html:4 .\templates\customer\login.html:34
 #: .\templates\customer\login.html:47 .\templates\customer\register.html:52
@@ -710,6 +715,22 @@ msgstr "هنوز حساب کاربری ندارید؟"
 #: .\templates\customer\register.html:34 .\templates\customer\register.html:49
 msgid "Register"
 msgstr "ثبت نام"
+
+#: .\templates\customer\profile.html:16
+msgid "Name"
+msgstr "نام"
+
+#: .\templates\customer\profile.html:19
+msgid "Age"
+msgstr "سن"
+
+#: .\templates\customer\profile.html:19
+msgid "Year"
+msgstr "سال"
+
+#: .\templates\customer\profile.html:35
+msgid "Add New Address"
+msgstr "ثبت نشانی جدید"
 
 #: .\templates\customer\register.html:51
 msgid "Do You Have Account?"
@@ -927,7 +948,7 @@ msgstr ""
 #: .\venv\Lib\site-packages\django\db\models\base.py:1199
 #, python-format
 msgid "%(model_name)s with this %(field_labels)s already exists."
-msgstr ""
+msgstr "%(model_name)s با این %(field_labels)s وجود دارد."
 
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:100
 #, python-format
@@ -945,7 +966,7 @@ msgstr ""
 #: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:103
 #, python-format
 msgid "%(model_name)s with this %(field_label)s already exists."
-msgstr ""
+msgstr "%(model_name)s با این %(field_label)s وجود دارد."
 
 #. Translators: The 'lookup_type' is one of 'date', 'year' or 'month'.
 #. Eg: "Title must be unique for pub_date year"
