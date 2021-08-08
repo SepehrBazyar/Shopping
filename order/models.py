@@ -91,9 +91,9 @@ class Order(BasicModel):
         Method to Cancel Order & Change Status & Update Inventory Number
         """
 
-        if self.discount is not None:  # unexpire discount because not paid
-            self.discount.users.remove(self.customer)
         if self.__pre_status == 'P':  # if before paid and decrease from inventory back change
+            if self.discount is not None:  # unexpire discount because not paid
+                self.discount.users.remove(self.customer)
             for item in self.items.all():
                 item.product.change_inventory(-item.count)  # negative number add to inventory
         self.status = 'C'
@@ -113,7 +113,7 @@ class Order(BasicModel):
         return total_price, final_price
 
     def clean(self):  # clean data from get any form and check discount code value
-        if self.code is not None:
+        if self.code is not None and self.status != 'C':
             discode = DiscountCode.objects.filter(code__exact=self.code)
             DiscountCodeValidator(discode)(self.customer)
 
