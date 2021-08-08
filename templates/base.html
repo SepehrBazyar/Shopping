@@ -101,7 +101,16 @@
         </li>
         <li class="nav-item">
           {% if user.is_authenticated %}
-            <a class="nav-link" href="{% url 'customer:logout' %}">{{ user.username }}</a>
+          <div class="dropdown">
+            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" style="background-color: #A9CCE3;">
+              {{ user.username }}
+            </button>
+            <div class="dropdown-menu" style="text-align: center;">
+              <a class="dropdown-item" href="#">{% trans "Profile" %}</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url 'customer:logout' %}">{% trans "Logout" %}</a>
+            </div>
+          </div>
           {% else %}
             <a class="nav-link" href="{% url 'customer:login' %}">{% trans "Account" %}</a>
           {% endif %}

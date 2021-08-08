@@ -41,14 +41,88 @@
                             {% endif %}
                             <strong>{{ product.readable_final_price }}</strong> {% trans "Toman" %}
                         </p>
-                        <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+                        {% comment %} <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
                         <a href="{% url 'product:details' product.slug %}" class="btn" style="background-color: #A9CCE3;">
                             {% trans "More Informations" %}
-                        </a>
+                        </a> {% endcomment %}
+                        <button type="button" class="btn" data-toggle="modal" data-target="#{{ product.slug }}" style="background-color: #A9CCE3;">
+                            {% trans "More Informations" %}
+                        </button>
+
+                        <!-- The Modal -->
+                        <div class="modal fade" id="{{ product.slug }}">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                            
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                <h4 class="modal-title">{{ product.title }}</h4>
+                                    {% comment %} <button type="button" class="close" data-dismiss="modal">&times;</button> {% endcomment %}
+                                </div>
+                                
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                {% for key, value in product.property_list.items %}
+                                    <span><b>{{ key }}: </b> {% if value %}{{ value }}{% else %}-{% endif %}</span><br>
+                                {% endfor %}
+                                </div>
+                                
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                <a href="#" class="btn" style="background-color: #A9CCE3;">
+                                {% trans "Add to Cart" %}
+                                </a>
+                                </div>
+                            
+                            </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         {% endfor %}
     </div>
+
+    <br>
+
+    <!-- Pagination -->
+    <div style="text-align: center;">
+        {% if page_obj.has_previous %}
+            <a href="?page=1" class="btn" style="background-color: #A9CCE3;">
+                &laquo; {% trans "First" %}
+            </a>
+            <a href="?page={{ page_obj.previous_page_number }}" class="btn" style="background-color: #A9CCE3;">
+                &lsaquo; {% trans "Previous" %}
+            </a>
+        {% else %}
+            <a class="btn disabled" style="background-color: #A9CCE3;">
+                &laquo; {% trans "First" %}
+            </a>
+            <a class="btn disabled" style="background-color: #A9CCE3;">
+                &lsaquo; {% trans "Previous" %}
+            </a>
+        {% endif %}
+
+        <a class="btn disabled" style="background-color: #A9CCE3;">
+            {% trans "Page" %} {{ page_obj.number }} {% trans "of" %} {{ page_obj.paginator.num_pages }}
+        </a>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="btn" style="background-color: #A9CCE3;">
+                {% trans "Next" %} &rsaquo;
+            </a>
+            <a href="?page={{ page_obj.paginator.num_pages }}" class="btn" style="background-color: #A9CCE3;">
+                {% trans "Last" %} &raquo;
+            </a>
+        {% else %}
+            <a class="btn disabled" style="background-color: #A9CCE3;">
+                {% trans "Next" %} &rsaquo;
+            </a>
+            <a class="btn disabled" style="background-color: #A9CCE3;">
+                {% trans "Last" %} &raquo;
+            </a>
+        {% endif %}
+    </div>
+
 </div>
 {% endblock %}
