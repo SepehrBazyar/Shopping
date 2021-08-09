@@ -956,7 +956,7 @@ msgstr ""
 #: .\venv\Lib\site-packages\django\core\validators.py:388
 #, python-format
 msgid "Ensure this value is greater than or equal to %(limit_value)s."
-msgstr ""
+msgstr "اطمینان حاصل کنید که این مقدار بزرگتر یا مساوی %(limit_value)s باشد."
 
 #: .\venv\Lib\site-packages\django\core\validators.py:398
 #, python-format

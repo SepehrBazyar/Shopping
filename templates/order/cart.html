@@ -37,7 +37,7 @@ ul.errorlist li {
             <th style="text-align: center; font-size: 1rem;">#</th>
             <th style="text-align: center; font-size: 1rem;">{% trans "Product" %}</th>
             <th style="text-align: center; font-size: 1rem;">{% trans "Count of Order Item" %}</th>
-            <th style="text-align: center; font-size: 1rem;">{% trans "Change Count Item" %}</th>
+            <th style="text-align: center; font-size: 1rem;">{% trans "Change Item" %}</th>
         </tr>
         </thead>
         <tbody>
@@ -69,7 +69,7 @@ ul.errorlist li {
             {% endfor %}
 
             <h2><label for="id_address">{% trans "Address" %}:</label></h2>
-            <select name="address" id="id_address">
+            <select class="form-control" name="address" id="id_address">
                 {% for address in addresses %}
                     {% if address.id == order.address.id %}
                         <option value="{{ address.id }}" selected>{{ address }}</option>

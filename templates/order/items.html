@@ -50,7 +50,14 @@ ul.errorlist li {
             {% endfor %}
         </div><br>
         <input type="submit" value="{% trans "Change Count" %}">
-    </form><br>
+    </form>
+    
+    <br>
+
+    <a href="{% url 'order:remove' %}?item={{ item }}"
+    class="btn" style="background-color: tomato;">
+        {% trans "Remove" %}
+    </a>
 
 </div>
 

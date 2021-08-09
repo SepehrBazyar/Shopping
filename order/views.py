@@ -60,7 +60,7 @@ class BasketCartView(LoginRequiredMixin, View):
         })
 
 
-class ChangeCountItemView(LoginRequiredMixin, View):
+class ChangeItemView(LoginRequiredMixin, View):
     """
     View for Return Form Order Item Check Validated Change Count
     """
@@ -68,16 +68,17 @@ class ChangeCountItemView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         try: customer = Customer.objects.get(id=request.user.id)
         except Customer.DoesNotExist: return redirect(reverse("customer:logout"))
-        item = OrderItem.objects.get(id=self.request.GET['item'])
+        item = OrderItem.objects.get(id=request.GET['item'])
         if item.order.status == 'U' and item.order.customer == customer:
             form = OrderItemForm(instance=item)
             return render(request, "order/items.html", {
                 'product': item.product, 'form': form,
+                'item': request.GET["item"],
             })
         return redirect(reverse("order:cart"))
     
     def post(self, request, *args, **kwargs):
-        item = OrderItem.objects.get(id=self.request.GET['item'])
+        item = OrderItem.objects.get(id=request.GET['item'])
         form = OrderItemForm(request.POST)
         if form.is_valid():
             item.count = request.POST["count"]
@@ -85,7 +86,21 @@ class ChangeCountItemView(LoginRequiredMixin, View):
             return redirect(reverse("order:cart"))
         return render(request, "order/items.html", {
             'product': item.product, 'form': form,
+            'item': request.GET["item"],
         })
+
+
+class RemoveItemView(LoginRequiredMixin, View):
+    """
+    View for Remove an Item from Basket Cart by Logical Delete
+    """
+
+    def get(self, request, *args, **kwargs):
+        try: customer = Customer.objects.get(id=request.user.id)
+        except Customer.DoesNotExist: return redirect(reverse("customer:logout"))
+        item = OrderItem.objects.get(id=request.GET['item'])
+        if item.order.customer == customer: item.delete()
+        return redirect(reverse("order:cart"))
 
 
 class OrdersCustomerView(LoginRequiredMixin, generic.ListView):
@@ -114,12 +129,12 @@ class ChangeCartStatusView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         try: customer = Customer.objects.get(id=request.user.id)
         except Customer.DoesNotExist: return redirect(reverse("customer:logout"))
-        order = customer.orders.get(id=self.request.GET['order'])
+        order = customer.orders.get(id=request.GET['order'])
         if order.customer == customer:
-            if self.request.GET['status'] == 'P':
+            if request.GET['status'] == 'P':
                 order.payment()
                 order.save()
-            if self.request.GET['status'] == 'C':
+            if request.GET['status'] == 'C':
                 order.cancel()
                 order.save()
         return redirect(reverse("order:orders"))
