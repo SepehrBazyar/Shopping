@@ -18,6 +18,7 @@ li, dt, dd {
 
 ul.errorlist li {
     color: red;
+    background-color: #B3B6B7;
     font-size: 13px;
     display: block;
     margin-bottom: 4px;
@@ -28,6 +29,8 @@ ul.errorlist li {
 
 {% block body %}
 <div class="container" style="text-align: center;">
+{% if order %}
+<div>
     <table class="table table-bordered table-hover">
         <thead class="thead-dark">
         <tr>
@@ -57,7 +60,10 @@ ul.errorlist li {
     <form method="post">
         {% csrf_token %}
         <div class="fieldWrapper">
-            {% for field in form %}
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+            {% for field in form.visible_fields %}
                 {{ field.errors }}
                 <h2>{{ field.label_tag }}</h2>{{ field }}
                 {% if field.help_text %}
@@ -65,8 +71,22 @@ ul.errorlist li {
                 {% endif %}
             {% endfor %}
         </div><br>
-        <input type="submit" value="{% trans "Payment" %}">
+        <input type="submit" value="{% trans "Apply Discount Code" %}">
     </form><br>
 
+    <a href="{% url 'order:change' %}?order={{ order.id }}&status=P"
+    class="btn" style="background-color: #A9CCE3;">
+        {% trans "Payment" %}
+    </a>
+    <a href="{% url 'order:change' %}?order={{ order.id }}&status=C"
+    class="btn" style="background-color: tomato;">
+        {% trans "Cancel" %}
+    </a>
+</div>
+{% else %}
+<h2 style="font-size: 2rem;">{% trans "Empty Basket" %}!</h2>
+<i class="gb gb_sentiment_very_satisfied mt-2" style="font-size: 15rem;"></i>
+<h2 style="font-size: 2rem;">{% trans "Hope to Buy Again" %}...</h2>
+{% endif %}
 </div>
 {% endblock %}

@@ -29,12 +29,15 @@ ul.errorlist li {
 {% block body %}
 <div class="container" style="text-align: center;">
     <p>
+        <a href="{% url 'order:orders' %}" class="btn" style="background-color: #A9CCE3;">
+            {% trans "All Orders List" %}
+        </a>
         <a href="{% url 'order:orders' %}?status=P" class="btn" style="background-color: #A9CCE3;">
-            <i class="gb gb_cancel"></i>
+            <i class="gb gb_payment"></i>
             {% trans "Paid Orders List" %}
         </a>
         <a href="{% url 'order:orders' %}?status=C" class="btn" style="background-color: #A9CCE3;">
-            <i class="gb gb_payment"></i>
+            <i class="gb gb_cancel"></i>
             {% trans "Canceled Orders List" %}
         </a>
     </p>
@@ -87,6 +90,16 @@ ul.errorlist li {
                                 {% endfor %}
                             </div>
 
+                            <!-- Modal footer -->
+                            {% if order.paid %}
+                            <div class="modal-footer">
+                                <a href="{% url 'order:change' %}?order={{ order.id }}&status=C"
+                                class="btn" style="background-color: tomato;">
+                                    {% trans "Cancel" %}
+                                </a>
+                            </div>
+                            {% endif %}
+                        
                         </div>
                         </div>
                     </div>

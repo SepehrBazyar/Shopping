@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
@@ -9,27 +10,36 @@ from .forms import *
 # Create your views here.
 class BasketCartView(LoginRequiredMixin, View):
     """
-    
+    View for Show Detail of Basket Cart for Customer
     """
 
     def get(self, request, *args, **kwargs):
         customer = Customer.objects.get(id=request.user.id)
-        order = customer.orders.filter(status__exact='U')[0]
+        order = customer.orders.filter(status__exact='U')
+        order = order[0] if order.count() == 1 else None
         form = OrderForm(instance=order)
         return render(request, "order/cart.html", {
-            'order': order, 'form': form
+            'order': order, 'form': form,
         })
 
     def post(self, request, *args, **kwargs):
+        customer = Customer.objects.get(id=request.user.id)
+        order = customer.orders.filter(status='U')[0]
         form = OrderForm(request.POST)
         if form.is_valid():
-            print("YESSS")
-        return HttpResponse("OK!")
+            order.code = request.POST["code"] or None
+            order.save()
+            return redirect(reverse("order:cart"))
+        order.code = None
+        order.save()
+        return render(request, "order/cart.html", {
+            'order': order, 'form': form,
+        })
 
 
 class OrdersCustomerView(LoginRequiredMixin, generic.ListView):
     """
-    
+    Show History of Orders List for Customer Can Filter by Status
     """
 
     context_object_name = "orders"
@@ -42,3 +52,21 @@ class OrdersCustomerView(LoginRequiredMixin, generic.ListView):
         if "status" in kwargs:
             result = result.filter(status__exact=kwargs["status"])
         return result
+
+
+class ChangeCartStatusView(LoginRequiredMixin, View):
+    """
+    View for Change Status of Order to Paid or Canceling
+    """
+
+    def get(self, request, *args, **kwargs):
+        customer = Customer.objects.get(id=request.user.id)
+        order = customer.orders.get(id=self.request.GET['order'])
+        if order.customer == customer:
+            if self.request.GET['status'] == 'P':
+                order.payment()
+                order.save()
+            if self.request.GET['status'] == 'C':
+                order.cancel()
+                order.save()
+        return redirect(reverse("order:orders"))
