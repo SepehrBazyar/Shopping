@@ -37,6 +37,7 @@ ul.errorlist li {
             <th style="text-align: center; font-size: 1rem;">#</th>
             <th style="text-align: center; font-size: 1rem;">{% trans "Product" %}</th>
             <th style="text-align: center; font-size: 1rem;">{% trans "Count of Order Item" %}</th>
+            <th style="text-align: center; font-size: 1rem;">{% trans "Change Count Item" %}</th>
         </tr>
         </thead>
         <tbody>
@@ -45,6 +46,9 @@ ul.errorlist li {
                 <td>{{ forloop.counter }}</td>
                 <td>{{ item.product.title }}</td>
                 <td>{{ item.count }}</td>
+                <td><a href="{% url 'order:count' %}?item={{ item.id }}">
+                    {% trans "Click Me" %}
+                </a></td>
             </tr>
         {% endfor %}
         </tbody>

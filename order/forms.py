@@ -6,12 +6,16 @@ from .validators import *
 
 class OrderItemForm(forms.ModelForm):
     """
-    
+    Form by Order Item Model to Change Count and Check Available Inventory
     """
 
     class Meta:
         model = OrderItem
-        fields = ('product', 'count')
+        exclude = ['deleted', 'delete_timestamp']
+        widgets = {
+            'order': forms.HiddenInput(),
+            'product': forms.HiddenInput(),
+        }
 
 
 class OrderForm(forms.ModelForm):

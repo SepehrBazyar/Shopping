@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator
 from django.utils.translation import gettext_lazy as _
 
 from typing import Tuple
@@ -179,7 +180,8 @@ class OrderItem(BasicModel):
         verbose_name=_("Recepite Order"), help_text=_("Please Select Your Order"))
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='+',
         verbose_name=_("Product Item"), help_text=_("Please Select Product Item to Add"))
-    count = models.PositiveIntegerField(default=1, verbose_name=_("Count of Order Item"),
+    count = models.PositiveIntegerField(default=1,
+        verbose_name=_("Count of Order Item"), validators=[MinValueValidator(1)],
         help_text=_("Please Selcet the Count of this Order Item(Minimum Value is 1)."))
 
     def clean(self):  # clean data from get any form and check inventory value

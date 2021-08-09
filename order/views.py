@@ -1,3 +1,4 @@
+import re
 from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -34,6 +35,34 @@ class BasketCartView(LoginRequiredMixin, View):
         order.save()
         return render(request, "order/cart.html", {
             'order': order, 'form': form,
+        })
+
+
+class ChangeCountItemView(LoginRequiredMixin, View):
+    """
+    View for Return Form Order Item Check Validated Change Count
+    """
+
+    def get(self, request, *args, **kwargs):
+        customer = Customer.objects.get(id=request.user.id)
+        item = OrderItem.objects.get(id=self.request.GET['item'])
+        if item.order.status == 'U' and item.order.customer == customer:
+            form = OrderItemForm(instance=item)
+            return render(request, "order/items.html", {
+                'product': item.product, 'form': form,
+            })
+        return redirect(reverse("order:cart"))
+    
+    def post(self, request, *args, **kwargs):
+        customer = Customer.objects.get(id=request.user.id)
+        item = OrderItem.objects.get(id=self.request.GET['item'])
+        form = OrderItemForm(request.POST)
+        if form.is_valid():
+            item.count = request.POST["count"]
+            item.save()
+            return redirect(reverse("order:cart"))
+        return render(request, "order/items.html", {
+            'product': item.product, 'form': form,
         })
 
 

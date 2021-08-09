@@ -67,12 +67,14 @@
                                 {% endfor %}
                                 </div>
                                 
-                                <!-- Modal footer -->
-                                <div class="modal-footer">
-                                <button type="button" class="btn" style="background-color: #A9CCE3;">
-                                    {% trans "Add to Cart" %}
-                                </button>
-                                </div>
+                                {% if product.inventory %}
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn" style="background-color: #A9CCE3;">
+                                        {% trans "Add to Cart" %}
+                                    </button>
+                                    </div>
+                                {% endif %}
                             
                             </div>
                             </div>
