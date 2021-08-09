@@ -15,8 +15,10 @@ class BasketCartView(LoginRequiredMixin, View):
     """
 
     def get(self, request, *args, **kwargs):
-        new_items = set(request.COOKIES.get("cart", "").split(',')[:-1])
         customer = Customer.objects.get(id=request.user.id)
+        if customer.addresses.count() == 0:
+            return redirect(reverse("customer:address"))
+        new_items = set(request.COOKIES.get("cart", "").split(',')[:-1])
         order = customer.orders.filter(status__exact='U')
         if order.count() == 1:
             order = order[0]
@@ -26,7 +28,8 @@ class BasketCartView(LoginRequiredMixin, View):
                     OrderItem.objects.create(order=order, product=product, count=1)
         else:
             if new_items:
-                order = Order.objects.create(customer=customer)
+                order = Order.objects.create(
+                    customer=customer, address=customer.adderesses.first())
                 for item in new_items:
                     product = Product.objects.get(id=int(item))
                     OrderItem.objects.create(order=order, product=product, count=1)
@@ -91,7 +94,7 @@ class OrdersCustomerView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         customer = Customer.objects.get(id=self.request.user.id)
-        result = customer.orders.exclude(status__exact='U')
+        result = customer.orders.exclude(status__exact='U').order_by("-id")
         kwargs = self.request.GET
         if "status" in kwargs:
             result = result.filter(status__exact=kwargs["status"])

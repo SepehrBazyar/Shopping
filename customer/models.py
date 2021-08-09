@@ -81,4 +81,5 @@ class Address(BasicModel):
                             help_text=_("Please Enter Your Address Longitude"))
 
     def __str__(self) -> str:
-        return f"{self.name} - {self.zip_code}"
+        zipcode_trans = _("Zip Code")
+        return f"{self.name}: {self.province} - {self.city}({zipcode_trans}: {self.zip_code})"

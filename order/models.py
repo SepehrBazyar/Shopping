@@ -6,7 +6,7 @@ from typing import Tuple
 
 from core.models import BasicModel
 from core.utils import readable
-from customer.models import Customer
+from customer.models import Address, Customer
 from product.models import Discount, Product
 from .validators import CountValidator, DiscountCodeValidator
 
@@ -47,6 +47,8 @@ class Order(BasicModel):
         help_text=_("Please Select the Status of Order(By Default Unpaid is Considered)"))
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name="orders",
         verbose_name=_("Customer"), help_text=_("Please Select Customer Owner this Order"))
+    address = models.ForeignKey(Address, on_delete=models.CASCADE, related_name='+',
+        verbose_name=_("Address"), help_text=_("Please Select Address to Send Order There"))
     total_price = models.PositiveBigIntegerField(default=0, verbose_name=_("Total Price"),
         help_text=_("Total Price is Sum of Pure Price of Product Items for this Order"))
     final_price = models.PositiveBigIntegerField(default=0, verbose_name=_("Final Price"),
