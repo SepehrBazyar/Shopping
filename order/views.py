@@ -15,7 +15,8 @@ class BasketCartView(LoginRequiredMixin, View):
     """
 
     def get(self, request, *args, **kwargs):
-        customer = Customer.objects.get(id=request.user.id)
+        try: customer = Customer.objects.get(id=request.user.id)
+        except Customer.DoesNotExist: return redirect(reverse("customer:logout"))
         if customer.addresses.count() == 0:
             return redirect(reverse("customer:address"))
         new_items = set(request.COOKIES.get("cart", "").split(',')[:-1])
@@ -29,24 +30,27 @@ class BasketCartView(LoginRequiredMixin, View):
         else:
             if new_items:
                 order = Order.objects.create(
-                    customer=customer, address=customer.adderesses.first())
+                    customer=customer, address=customer.addresses.first())
                 for item in new_items:
                     product = Product.objects.get(id=int(item))
                     OrderItem.objects.create(order=order, product=product, count=1)
             else: order = None
         form = OrderForm(instance=order)
+        addresses = customer.addresses.all()
         resp = render(request, "order/cart.html", {
-            'order': order, 'form': form,
+            'order': order, 'form': form, 'addresses': addresses,
         })
         resp.set_cookie("cart", '')
         return resp
 
     def post(self, request, *args, **kwargs):
-        customer = Customer.objects.get(id=request.user.id)
+        try: customer = Customer.objects.get(id=request.user.id)
+        except Customer.DoesNotExist: return redirect(reverse("customer:logout"))
         order = customer.orders.filter(status='U')[0]
         form = OrderForm(request.POST)
         if form.is_valid():
             order.code = request.POST["code"] or None
+            order.address = Address.objects.get(id=int(request.POST["address"]))
             order.save()
             return redirect(reverse("order:cart"))
         order.code = None
@@ -62,7 +66,8 @@ class ChangeCountItemView(LoginRequiredMixin, View):
     """
 
     def get(self, request, *args, **kwargs):
-        customer = Customer.objects.get(id=request.user.id)
+        try: customer = Customer.objects.get(id=request.user.id)
+        except Customer.DoesNotExist: return redirect(reverse("customer:logout"))
         item = OrderItem.objects.get(id=self.request.GET['item'])
         if item.order.status == 'U' and item.order.customer == customer:
             form = OrderItemForm(instance=item)
@@ -72,7 +77,6 @@ class ChangeCountItemView(LoginRequiredMixin, View):
         return redirect(reverse("order:cart"))
     
     def post(self, request, *args, **kwargs):
-        customer = Customer.objects.get(id=request.user.id)
         item = OrderItem.objects.get(id=self.request.GET['item'])
         form = OrderItemForm(request.POST)
         if form.is_valid():
@@ -93,7 +97,8 @@ class OrdersCustomerView(LoginRequiredMixin, generic.ListView):
     template_name = "order/orders.html"
 
     def get_queryset(self):
-        customer = Customer.objects.get(id=self.request.user.id)
+        try: customer = Customer.objects.get(id=self.request.user.id)
+        except Customer.DoesNotExist: return redirect(reverse("customer:logout"))
         result = customer.orders.exclude(status__exact='U').order_by("-id")
         kwargs = self.request.GET
         if "status" in kwargs:
@@ -107,7 +112,8 @@ class ChangeCartStatusView(LoginRequiredMixin, View):
     """
 
     def get(self, request, *args, **kwargs):
-        customer = Customer.objects.get(id=request.user.id)
+        try: customer = Customer.objects.get(id=request.user.id)
+        except Customer.DoesNotExist: return redirect(reverse("customer:logout"))
         order = customer.orders.get(id=self.request.GET['order'])
         if order.customer == customer:
             if self.request.GET['status'] == 'P':

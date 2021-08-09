@@ -20,7 +20,7 @@ class CustomerLoginView(LoginView):
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return redirect(reverse("product:categories"))
+            return redirect(reverse("product:lists"))
         return super().get(request, *args, **kwargs)
 
 
@@ -39,18 +39,18 @@ class CustomerRegisterView(generic.FormView):
 
     form_class = CustomerRegisterForm
     template_name = "customer/register.html"
-    success_url = reverse_lazy("product:categories")
+    success_url = reverse_lazy("product:lists")
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return redirect(reverse("product:categories"))
+            return redirect(reverse("product:lists"))
         return super().get(request, *args, **kwargs)
 
     def form_valid(self, form):
         user = Customer.objects.create_user(username=form.data["username"],
                                             password=form.data["password1"])
         login(self.request, user)
-        return redirect(reverse("product:categories"))
+        return redirect(reverse("product:lists"))
 
 
 class CustomerProfileView(LoginRequiredMixin, View):
@@ -59,7 +59,8 @@ class CustomerProfileView(LoginRequiredMixin, View):
     """
 
     def get(self, request, *args, **kwargs):
-        customer = Customer.objects.get(id=request.user.id)
+        try: customer = Customer.objects.get(id=request.user.id)
+        except Customer.DoesNotExist: return redirect(reverse("customer:logout"))
         return render(request, "customer/profile.html", {
             'customer': customer,
         })
@@ -80,9 +81,11 @@ class CreateNewAddressView(LoginRequiredMixin, View):
         form = AdderssForm(request.POST)
         if form.is_valid():
             new_address = form.save(commit=False)
-            new_address.customer = Customer.objects.get(id=request.user.id)
+            try: customer = Customer.objects.get(id=request.user.id)
+            except Customer.DoesNotExist: return redirect(reverse("customer:logout"))
+            new_address.customer = customer
             new_address.save()
-            return redirect(reverse("product:categories"))
+            return redirect(reverse("product:lists"))
         else:
             return render(request, "customer/address.html", {
             'form': form

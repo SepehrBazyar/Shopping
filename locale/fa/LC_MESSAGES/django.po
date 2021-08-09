@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-09 13:41+0430\n"
+"POT-Creation-Date: 2021-08-09 21:53+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -115,7 +115,8 @@ msgstr "تاریخ تولد"
 msgid "Please Enter Your Birth Day if You Wish."
 msgstr "در صورت تمایل لطفا تاریخ تولد خود را وارد فرمایید"
 
-#: .\customer\models.py:61 .\templates\customer\address.html:4
+#: .\customer\models.py:61 .\order\models.py:51
+#: .\templates\customer\address.html:4 .\templates\order\cart.html:71
 msgid "Address"
 msgstr "نشانی"
 
@@ -131,7 +132,8 @@ msgstr "نام نشانی"
 msgid "Please Enter Your Address' Name"
 msgstr "لطفا برای این آدرس نامی وارد نمایید"
 
-#: .\customer\models.py:68 .\templates\customer\profile.html:47
+#: .\customer\models.py:68 .\customer\models.py:84
+#: .\templates\customer\profile.html:47
 msgid "Zip Code"
 msgstr "کد پستی"
 
@@ -192,7 +194,7 @@ msgstr "لطفا طول جغرافیایی مکان خود را وارد فرم�
 msgid "Your Birth Day Can't be After Now Date Time"
 msgstr "تاریخ تولد شما نمی تواند پس از تاریخ امروز باشد"
 
-#: .\order\admin.py:17 .\order\models.py:177
+#: .\order\admin.py:17 .\order\models.py:179
 msgid "Order Items"
 msgstr "موارد سفارش"
 
@@ -248,7 +250,7 @@ msgstr " سفارش با موفقیت لغو شدند."
 msgid "Orders"
 msgstr "سفارشات"
 
-#: .\order\models.py:20 .\order\models.py:55 .\templates\order\orders.html:53
+#: .\order\models.py:20 .\order\models.py:57 .\templates\order\orders.html:53
 msgid "Discount Code"
 msgstr "کد تخفیف"
 
@@ -303,70 +305,74 @@ msgstr ""
 msgid "Please Select Customer Owner this Order"
 msgstr "لطفا مشتری صاحب این سفارش را انتخاب نمایید"
 
-#: .\order\models.py:50 .\templates\order\cart.html:59
+#: .\order\models.py:51 .\templates\order\cart.html:77
+msgid "Please Select Address to Send Order There"
+msgstr "لطفا نشانی را برای ارسال سفارش به آنجا انتخاب نمایید"
+
+#: .\order\models.py:52 .\templates\order\cart.html:59
 #: .\templates\order\orders.html:51
 msgid "Total Price"
 msgstr "مجموع قیمت"
 
-#: .\order\models.py:51
+#: .\order\models.py:53
 msgid "Total Price is Sum of Pure Price of Product Items for this Order"
 msgstr "مجموع قیمت حاصل جمع قیمت خالص موارد سفارش می باشد"
 
-#: .\order\models.py:52 .\product\models.py:250 .\templates\order\cart.html:60
+#: .\order\models.py:54 .\product\models.py:250 .\templates\order\cart.html:60
 #: .\templates\order\orders.html:52
 msgid "Final Price"
 msgstr "قیمت نهایی"
 
-#: .\order\models.py:53
+#: .\order\models.py:55
 msgid ""
 "Final Price is Sum of Price of Product Items for this Order After Dicount"
 msgstr "قیمت نهایی حاصل جمع قیمت موارد سفارش پس از اعمال تخفیف می باشد"
 
-#: .\order\models.py:55
+#: .\order\models.py:57
 msgid "If You have a Discount Code Please Enter it"
 msgstr "اگر کد تخفیفی دارید لطفا آن را وارد نمایید"
 
-#: .\order\models.py:57
+#: .\order\models.py:59
 msgid "Discount Value"
 msgstr "مقدار تخفیف"
 
-#: .\order\models.py:58
+#: .\order\models.py:60
 msgid "Please Select Discount from Discount Codes to Apply on Price"
 msgstr "لطفا تخفیفی را از میان کدهای تخفیف انتخاب فرمایید"
 
-#: .\order\models.py:165 .\product\models.py:158 .\product\models.py:367
+#: .\order\models.py:167 .\product\models.py:158 .\product\models.py:367
 #: .\templates\order\cart.html:59 .\templates\order\cart.html:60
 #: .\templates\order\orders.html:51 .\templates\order\orders.html:52
-#: .\templates\product\product_detail.html:27
+#: .\templates\product\product_detail.html:18
 #: .\templates\product\product_list.html:42
 msgid "Toman"
 msgstr "تومان"
 
-#: .\order\models.py:177
+#: .\order\models.py:179
 msgid "Order Item"
 msgstr "مورد سفارش"
 
-#: .\order\models.py:180
+#: .\order\models.py:182
 msgid "Recepite Order"
 msgstr "صورتحساب سفارش"
 
-#: .\order\models.py:180
+#: .\order\models.py:182
 msgid "Please Select Your Order"
 msgstr "لطفا سفارش مربوطه خود را انتخاب نمایید"
 
-#: .\order\models.py:182
+#: .\order\models.py:184
 msgid "Product Item"
 msgstr "مورد محصول"
 
-#: .\order\models.py:182
+#: .\order\models.py:184
 msgid "Please Select Product Item to Add"
 msgstr "لطفا مورد محصول را جهت اضافه شدن انتخاب فرمایید"
 
-#: .\order\models.py:184 .\templates\order\cart.html:39
+#: .\order\models.py:186 .\templates\order\cart.html:39
 msgid "Count of Order Item"
 msgstr "تعداد مورد سفارش"
 
-#: .\order\models.py:185
+#: .\order\models.py:187
 msgid "Please Selcet the Count of this Order Item(Minimum Value is 1)."
 msgstr ""
 "لطفا تعداد مورد سفارش خود را وارد نمایید(بطور پیش فرض حداقل مقدار 1 درنظر "
@@ -437,7 +443,6 @@ msgid "Further information"
 msgstr "اطلاعات تکمیلی"
 
 #: .\product\apps.py:8 .\product\models.py:219
-#: .\templates\product\product_detail.html:4
 #: .\templates\product\product_list.html:4
 msgid "Products"
 msgstr "محصولات"
@@ -730,7 +735,7 @@ msgstr "سال"
 msgid "Orders List"
 msgstr "لیست سفارشات"
 
-#: .\templates\customer\profile.html:53
+#: .\templates\customer\profile.html:53 .\templates\order\cart.html:81
 msgid "Add New Address"
 msgstr "ثبت نشانی جدید"
 
@@ -750,23 +755,23 @@ msgstr "تغییر تعداد مورد"
 msgid "Click Me"
 msgstr "کلیک کنید"
 
-#: .\templates\order\cart.html:78
-msgid "Apply Discount Code"
-msgstr "اعمال کد تخفیف"
+#: .\templates\order\cart.html:91
+msgid "Apply Changes"
+msgstr "ثبت تغییرات"
 
-#: .\templates\order\cart.html:83
+#: .\templates\order\cart.html:96
 msgid "Payment"
 msgstr "پرداخت"
 
-#: .\templates\order\cart.html:87 .\templates\order\orders.html:98
+#: .\templates\order\cart.html:100 .\templates\order\orders.html:98
 msgid "Cancel"
 msgstr "لغو کردن"
 
-#: .\templates\order\cart.html:91
+#: .\templates\order\cart.html:104
 msgid "Empty Basket"
 msgstr "سبد خرید خالی"
 
-#: .\templates\order\cart.html:93
+#: .\templates\order\cart.html:106
 msgid "Hope to Buy Again"
 msgstr "به امید خرید مجدد"
 
@@ -798,7 +803,8 @@ msgstr "لیست سفارشات لغو شده"
 msgid "Status"
 msgstr "وضعیت"
 
-#: .\templates\order\orders.html:55
+#: .\templates\order\orders.html:55 .\templates\product\product_detail.html:4
+#: .\templates\product\product_detail.html:22
 msgid "Details"
 msgstr "جزئیات"
 
@@ -810,39 +816,39 @@ msgstr "جزئیات صورتحساب"
 msgid "Number"
 msgstr "عدد"
 
-#: .\templates\product\product_list.html:50
-msgid "More Informations"
-msgstr "اطلاعات بیشتر"
-
-#: .\templates\product\product_list.html:76
+#: .\templates\product\product_detail.html:32
 msgid "Add to Cart"
 msgstr "افزودن به سبد خرید"
 
-#: .\templates\product\product_list.html:96
-#: .\templates\product\product_list.html:103
+#: .\templates\product\product_list.html:46
+msgid "More Informations"
+msgstr "اطلاعات بیشتر"
+
+#: .\templates\product\product_list.html:61
+#: .\templates\product\product_list.html:68
 msgid "First"
 msgstr "نخستین"
 
-#: .\templates\product\product_list.html:99
-#: .\templates\product\product_list.html:106
+#: .\templates\product\product_list.html:64
+#: .\templates\product\product_list.html:71
 msgid "Previous"
 msgstr "قبلی"
 
-#: .\templates\product\product_list.html:111
+#: .\templates\product\product_list.html:76
 msgid "Page"
 msgstr "صفحه"
 
-#: .\templates\product\product_list.html:111
+#: .\templates\product\product_list.html:76
 msgid "of"
 msgstr "از"
 
-#: .\templates\product\product_list.html:116
-#: .\templates\product\product_list.html:123
+#: .\templates\product\product_list.html:81
+#: .\templates\product\product_list.html:88
 msgid "Next"
 msgstr "بعدی"
 
-#: .\templates\product\product_list.html:119
-#: .\templates\product\product_list.html:126
+#: .\templates\product\product_list.html:84
+#: .\templates\product\product_list.html:91
 msgid "Last"
 msgstr "آخرین"
 
@@ -2040,6 +2046,9 @@ msgstr ""
 #: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:249
 msgid "Connect, get help, or contribute"
 msgstr ""
+
+#~ msgid "Apply Discount Code"
+#~ msgstr "اعمال کد تخفیف"
 
 #~ msgid "Postal Code"
 #~ msgstr "کد پستی"

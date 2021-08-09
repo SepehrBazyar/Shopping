@@ -25,7 +25,7 @@ class OrderForm(forms.ModelForm):
 
     class Meta:
         model = Order
-        exclude = ['deleted', 'delete_timestamp']
+        exclude = ['deleted', 'delete_timestamp', 'address']
         widgets = {
             'status': forms.HiddenInput(),
             'customer': forms.HiddenInput(),

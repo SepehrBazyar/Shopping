@@ -67,6 +67,23 @@ ul.errorlist li {
             {% for hidden in form.hidden_fields %}
                 {{ hidden }}
             {% endfor %}
+
+            <h2><label for="id_address">{% trans "Address" %}:</label></h2>
+            <select name="address" id="id_address">
+                {% for address in addresses %}
+                    {% if address.id == order.address.id %}
+                        <option value="{{ address.id }}" selected>{{ address }}</option>
+                    {% else %}
+                        <option value="{{ address.id }}">{{ address }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <p class="help">{% trans "Please Select Address to Send Order There" %}</p>
+
+            <a href="{% url 'customer:address' %}">
+                <i class="gb gb_add_location"></i> {% trans "Add New Address" %}
+            </a>
+
             {% for field in form.visible_fields %}
                 {{ field.errors }}
                 <h2>{{ field.label_tag }}</h2>{{ field }}
@@ -75,7 +92,7 @@ ul.errorlist li {
                 {% endif %}
             {% endfor %}
         </div><br>
-        <input type="submit" value="{% trans "Apply Discount Code" %}">
+        <input type="submit" value="{% trans "Apply Changes" %}">
     </form><br>
 
     <a href="{% url 'order:change' %}?order={{ order.id }}&status=P"
