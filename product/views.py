@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from django.views import View, generic
 from django.urls import reverse, reverse_lazy
 
@@ -30,6 +30,12 @@ class ProductDetailView(generic.DetailView):
 
     model = Product
     context_object_name = "product"
+
+    def post(self, request, *args, **kwargs):
+        resp = redirect(reverse("product:lists"))
+        cart = request.COOKIES.get("cart", "")
+        resp.set_cookie("cart", cart + request.POST["product"] + ',')
+        return resp
 
 
 class CategoryListView(generic.ListView):

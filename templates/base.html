@@ -77,7 +77,7 @@
     <h1 style="color: #1E8449; font-size: 2rem; padding-top: 0.5rem;">
       <a href="{% url 'order:cart' %}" class="sabz"><i class="gb gb_shopping_cart"></i></a>
       <a class="navbar-brand" href="#">
-        <a href="#" class="sabz">{% trans "Sepehr Shopping" %}</a>
+        <a href="{% url 'product:lists' %}" class="sabz">{% trans "Sepehr Shopping" %}</a>
       </a>
     </h1>
 
@@ -88,7 +88,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto w-100 justify-content-end">
         <li class="nav-item">
-          <a class="nav-link" href="#">{% trans "Home" %}</a>
+          <a class="nav-link" href="{% url 'product:lists' %}">{% trans "Home" %}</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'product:categories' %}">{% trans "Categories" %}</a>

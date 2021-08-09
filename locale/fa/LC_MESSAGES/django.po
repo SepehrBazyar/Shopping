@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-09 13:21+0430\n"
+"POT-Creation-Date: 2021-08-09 13:41+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -738,7 +738,7 @@ msgstr "ثبت نشانی جدید"
 msgid "Do You Have Account?"
 msgstr "حساب کاربری دارید؟"
 
-#: .\templates\order\cart.html:4 .\templates\order\items.html:4
+#: .\templates\order\cart.html:4
 msgid "Cart"
 msgstr "سبد خرید"
 
@@ -769,6 +769,10 @@ msgstr "سبد خرید خالی"
 #: .\templates\order\cart.html:93
 msgid "Hope to Buy Again"
 msgstr "به امید خرید مجدد"
+
+#: .\templates\order\items.html:4
+msgid "Change Item"
+msgstr "تغییر موارد"
 
 #: .\templates\order\items.html:33
 msgid "Product Title"

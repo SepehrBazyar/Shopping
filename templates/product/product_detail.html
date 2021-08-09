@@ -1,36 +1,38 @@
 {% extends "base.html" %}
 {% load i18n static %}
 
-{% block title %}{% trans "Products" %}{% endblock %}
+{% block title %}{% trans "Details" %}{% endblock %}
 
 {% block body %}
-    <div class="col-12 col-md-6 col-lg-3">
-        <!-- Card -->
-        <div class="card" style="bottom: 1.5rem;">
-            <!--Card image-->
-            <div class="view overlay">
-                <img class="card-img-top" src="/media/{{ product.image }}" alt="{{ product.title_en}}" style="height: 12rem">
-                <a href="#!">
-                    <div class="mask rgba-white-slight"></div>
-                </a>
-            </div>
+<div class="container">
+    <div class="card" style="background-color: #A9CCE3;">
+        <div class="card-header text-center">
+            <img src="/media/{{ product.image }}" alt="{{ product.title_en }}" 
+                style="border-radius: 50%; width: 25rem; height: 25rem;">
+            <h2 style="font-size: 1.5rem;">{{ product.title }}</h2>
+            {% if product.check_discount %}
+                <del style="color: tomato;">({{ product.readable_price }})</del>
+            {% endif %}
+            <strong style="font-size: 1.25rem;">
+                {{ product.readable_final_price }}
+            </strong> {% trans "Toman" %}<br>
 
-            <!--Card content-->
-            <div class="card-body" style="text-align: center;">
-                <!--Title-->
-                <h2 class="card-title">{{ product.title }}</h2>
-                <!--Text-->
-                <p class="card-text">
-                    {% if product.check_discount %}
-                        <del style="color: tomato;">({{ product.readable_price }})</del>
-                    {% endif %}
-                    <strong>{{ product.readable_final_price }}</strong> {% trans "Toman" %}
-                    <br>
-                </p>
-                {% for key, value in product.property_list.items %}
-                    <span><b>{{ key }}: </b> {% if value %}{{ value }}{% else %}-{% endif %}</span><br>
-                {% endfor %}
-            </div>
+            <br><hr style="background-color: #1B2631;">
+            
+            <h3><i class="gb gb_info"></i> {% trans "Details" %}:</h3>
+            {% for key, value in product.property_list.items %}
+                <span><b>{{ key }}: </b> {% if value %}{{ value }}{% else %}-{% endif %}</span><br>
+            {% endfor %}
+
+            <br>
+
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="product" value="{{ product.id }}">
+                <input type="submit" value="{% trans "Add to Cart" %}">
+            </form><br>
+
         </div>
     </div>
+</div>
 {% endblock %}

@@ -41,44 +41,11 @@
                             {% endif %}
                             <strong>{{ product.readable_final_price }}</strong> {% trans "Toman" %}
                         </p>
-                        {% comment %} <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+                        
                         <a href="{% url 'product:details' product.slug %}" class="btn" style="background-color: #A9CCE3;">
                             {% trans "More Informations" %}
-                        </a> {% endcomment %}
-                        <button type="button" class="btn" data-toggle="modal" data-target="#{{ product.slug }}" style="background-color: #A9CCE3;">
-                            {% trans "More Informations" %}
-                        </button>
+                        </a>
 
-                        <!-- The Modal -->
-                        <div class="modal fade" id="{{ product.slug }}">
-                            <div class="modal-dialog">
-                            <div class="modal-content">
-                            
-                                <!-- Modal Header -->
-                                <div class="modal-header">
-                                <h4 class="modal-title">{{ product.title }}</h4>
-                                    {% comment %} <button type="button" class="close" data-dismiss="modal">&times;</button> {% endcomment %}
-                                </div>
-                                
-                                <!-- Modal body -->
-                                <div class="modal-body">
-                                {% for key, value in product.property_list.items %}
-                                    <span><b>{{ key }}: </b> {% if value %}{{ value }}{% else %}-{% endif %}</span><br>
-                                {% endfor %}
-                                </div>
-                                
-                                {% if product.inventory %}
-                                    <!-- Modal footer -->
-                                    <div class="modal-footer">
-                                    <button type="button" class="btn" style="background-color: #A9CCE3;">
-                                        {% trans "Add to Cart" %}
-                                    </button>
-                                    </div>
-                                {% endif %}
-                            
-                            </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
