@@ -28,3 +28,16 @@ class DiscountCodeValidator:
                 raise ValidationError(_("This Discount Code has Expired for You!"))
         else:
             raise ValidationError(_("Not Found Matching Any Discount Code!"))
+
+
+class CustomerAddressValidator:
+    """
+    Validator Callable Class for Check Owner of Address is Customer of Order
+    """
+
+    def __init__(self, customer):
+        self.customer = customer
+    
+    def __call__(self, address):
+        if address.customer != self.customer:
+            raise ValidationError(_("Owner of Address & Order Must be One Person"))

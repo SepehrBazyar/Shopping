@@ -8,7 +8,7 @@ from core.models import BasicModel
 from core.utils import readable
 from customer.models import Address, Customer
 from product.models import Discount, Product
-from .validators import CountValidator, DiscountCodeValidator
+from .validators import CountValidator, CustomerAddressValidator, DiscountCodeValidator
 
 # Create your models here.
 class DiscountCode(Discount):
@@ -151,6 +151,7 @@ class Order(BasicModel):
         if self.code is not None and self.status != 'C':
             discode = DiscountCode.objects.filter(code__exact=self.code)
             DiscountCodeValidator(discode)(self.customer)
+        CustomerAddressValidator(self.customer)(self.address)
 
     def save(self, *args, **kwargs):
         # just save changes in this states: not paid yet or canceling paid orders

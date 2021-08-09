@@ -65,7 +65,11 @@ class OrderAdmin(BasicAdmin):
     exclude = BasicAdmin.exclude + ['discount']
     fieldsets = (
         (None, {
-            'fields': (('customer', 'status'), ('total_price', 'final_price'), ('code',)),
+            'fields': (
+                ('customer', 'address'),
+                ('total_price', 'final_price'),
+                ('code', 'status')
+            ),
         }),
     )
     readonly_fields = ['total_price', 'final_price']
