@@ -1,6 +1,7 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, \
+                        PasswordChangeForm, PasswordResetForm, UserChangeForm
 
 from .models import *
 
@@ -37,6 +38,14 @@ class CustomerLoginForm(AuthenticationForm):
             "Please Enter a Valid Phone Number and Password."
         ),
     }
+
+
+class CustomerChangePassword(PasswordChangeForm):
+    """
+    Inheritanced from Built-in Change Password Form
+    """
+
+    pass
 
 
 class AdderssForm(forms.ModelForm):

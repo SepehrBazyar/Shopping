@@ -1,7 +1,7 @@
 from django.contrib import auth
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
 from django.views import generic, View
@@ -52,6 +52,15 @@ class CustomerRegisterView(generic.FormView):
         login(self.request, user)
         return redirect(reverse("product:lists"))
 
+
+class ChangePasswordView(LoginRequiredMixin, PasswordChangeView):
+    """
+    Inheritanced from Built-in View for Change Customer Password in New Template
+    """
+
+    form_class = CustomerChangePassword
+    success_url = reverse_lazy("customer:profile")
+    template_name = "customer/password.html"
 
 class CustomerProfileView(LoginRequiredMixin, View):
     """
