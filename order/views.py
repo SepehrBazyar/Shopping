@@ -15,13 +15,28 @@ class BasketCartView(LoginRequiredMixin, View):
     """
 
     def get(self, request, *args, **kwargs):
+        new_items = set(request.COOKIES.get("cart", "").split(',')[:-1])
         customer = Customer.objects.get(id=request.user.id)
         order = customer.orders.filter(status__exact='U')
-        order = order[0] if order.count() == 1 else None
+        if order.count() == 1:
+            order = order[0]
+            for item in new_items:
+                product = Product.objects.get(id=int(item))
+                if order.items.filter(product=product).count() == 0:
+                    OrderItem.objects.create(order=order, product=product, count=1)
+        else:
+            if new_items:
+                order = Order.objects.create(customer=customer)
+                for item in new_items:
+                    product = Product.objects.get(id=int(item))
+                    OrderItem.objects.create(order=order, product=product, count=1)
+            else: order = None
         form = OrderForm(instance=order)
-        return render(request, "order/cart.html", {
+        resp = render(request, "order/cart.html", {
             'order': order, 'form': form,
         })
+        resp.set_cookie("cart", '')
+        return resp
 
     def post(self, request, *args, **kwargs):
         customer = Customer.objects.get(id=request.user.id)
