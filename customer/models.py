@@ -37,7 +37,7 @@ class Customer(User):
         """
 
         if self.birth_day is not None:
-            return (now() - self.birth_day).days // 365
+            return (now().date() - self.birth_day).days // 365
 
     @property
     def gender_type(self):

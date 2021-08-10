@@ -37,9 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    # django rest framework api
     'rest_framework',
-
+    # my project apps
+    'api',
     'core',
     'customer',
     'landing',
@@ -160,3 +161,5 @@ AUTH_USER_MODEL = 'core.User'
 LOGIN_URL = "customer:login"
 LOGIN_REDIRECT_URL = "customer:profile"
 LOGOUT_REDIRECT_URL = "customer:login"
+
+# REST_FRAMEWORK =  {}

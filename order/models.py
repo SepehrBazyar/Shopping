@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator
+from django.core.exceptions import ObjectDoesNotExist
 from django.utils.translation import gettext_lazy as _
 
 from typing import Tuple
@@ -151,7 +152,8 @@ class Order(BasicModel):
         if self.code is not None and self.status != 'C':
             discode = DiscountCode.objects.filter(code__exact=self.code)
             DiscountCodeValidator(discode)(self.customer)
-        CustomerAddressValidator(self.customer)(self.address)
+        try:CustomerAddressValidator(self.customer)(self.address)
+        except ObjectDoesNotExist: pass
 
     def save(self, *args, **kwargs):
         # just save changes in this states: not paid yet or canceling paid orders

@@ -7,5 +7,5 @@ def birthday_validator(birth_day):
     Validator Function for Check Validated Birth Day Time Before Now
     """
 
-    if not birth_day < now():
+    if not birth_day < now().date():
         raise ValidationError(_("Your Birth Day Can't be After Now Date Time"))
