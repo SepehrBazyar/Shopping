@@ -120,8 +120,40 @@ class CreateNewAddressView(LoginRequiredMixin, View):
             except Customer.DoesNotExist: return redirect(reverse("customer:logout"))
             new_address.customer = customer
             new_address.save()
-            return redirect(reverse("product:lists"))
+            return redirect(reverse("product:profile"))
         else:
             return render(request, "customer/address.html", {
             'form': form
         })
+
+
+class EditAddressView(LoginRequiredMixin, View):
+    """
+    View for Change Written Addresses of a Customer
+    """
+
+    def get(self, request, *args, **kwargs):
+        try: customer = Customer.objects.get(id=request.user.id)
+        except Customer.DoesNotExist: return redirect(reverse("customer:logout"))
+        address = Address.objects.get(zip_code__exact=kwargs["zip_code"])
+        if address.customer == customer:
+            form = AdderssForm(instance=address)
+            return render(request, "customer/address.html", {
+                'form': form
+            })
+        return redirect(reverse("customer:profile"))
+
+    def post(self, request, *args, **kwargs):
+        try: customer = Customer.objects.get(id=request.user.id)
+        except Customer.DoesNotExist: return redirect(reverse("customer:logout"))
+        address = Address.objects.get(zip_code__exact=kwargs["zip_code"])
+        if address.customer == customer:
+            form = AdderssForm(data=request.POST, instance=address)
+            if form.is_valid():
+                form.save()
+                return redirect(reverse("customer:profile"))
+            else:
+                return render(request, "customer/address.html", {
+                    'form': form
+                })
+        return redirect(reverse("customer:profile"))

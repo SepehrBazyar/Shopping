@@ -12,4 +12,5 @@ urlpatterns = [
     path('password/', ChangePasswordView.as_view(), name="password"),
     path('change/', CustomerEditProfileView.as_view(), name="edit"),
     path('address/', CreateNewAddressView.as_view(), name="address"),
+    path('address/<str:zip_code>/', EditAddressView.as_view(), name="change"),
 ]

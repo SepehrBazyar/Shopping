@@ -46,6 +46,9 @@
                     {{ forloop.counter }}. {{ address.name }}:
                     {{ address.province }} - {{ address.city }}
                     ({% trans "Zip Code" %}: {{ address.zip_code }})
+                    <a href="{% url 'customer:change' address.zip_code %}">
+                        <i class="gb gb_edit"></i>
+                    </a>
                 </p>
             {% endfor %}
 
