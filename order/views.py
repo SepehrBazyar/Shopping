@@ -1,5 +1,3 @@
-import re
-from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy

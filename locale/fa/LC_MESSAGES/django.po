@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-10 20:26+0430\n"
+"POT-Creation-Date: 2021-08-11 01:36+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -689,7 +689,7 @@ msgstr ""
 msgid "Log in"
 msgstr "ورود"
 
-#: .\templates\base.html:97
+#: .\templates\base.html:97 .\templates\landing\contact.html:4
 msgid "Contact Me"
 msgstr "تماس با من"
 
@@ -748,7 +748,7 @@ msgstr "سال"
 msgid "Orders List"
 msgstr "لیست سفارشات"
 
-#: .\templates\customer\profile.html:55 .\templates\order\cart.html:84
+#: .\templates\customer\profile.html:58 .\templates\order\cart.html:84
 msgid "Add New Address"
 msgstr "ثبت نشانی جدید"
 
@@ -776,7 +776,7 @@ msgstr "ثبت تغییرات"
 msgid "Payment"
 msgstr "پرداخت"
 
-#: .\templates\order\cart.html:104 .\templates\order\orders.html:98
+#: .\templates\order\cart.html:104 .\templates\order\orders.html:104
 msgid "Cancel"
 msgstr "لغو کردن"
 
@@ -825,7 +825,11 @@ msgstr "جزئیات"
 msgid "Recepite Detail"
 msgstr "جزئیات صورتحساب"
 
-#: .\templates\order\orders.html:88
+#: .\templates\order\orders.html:86
+msgid "Date"
+msgstr "تاریخ"
+
+#: .\templates\order\orders.html:94
 msgid "Number"
 msgstr "عدد"
 
