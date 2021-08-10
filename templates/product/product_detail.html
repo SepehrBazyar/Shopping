@@ -26,11 +26,15 @@
 
             <br>
 
-            <form method="post">
-                {% csrf_token %}
-                <input type="hidden" name="product" value="{{ product.id }}">
-                <input type="submit" value="{% trans "Add to Cart" %}">
-            </form><br>
+            {% if product.inventory > 0 %}
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="product" value="{{ product.id }}">
+                    <input type="submit" value="{% trans "Add to Cart" %}">
+                </form><br>
+            {% else %}
+                <h2>{% trans "Unavailable" %}! ):</h2>
+            {% endif %}
 
         </div>
     </div>

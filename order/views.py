@@ -35,8 +35,11 @@ class BasketCartView(LoginRequiredMixin, View):
             else: order = None
         form = OrderForm(instance=order)
         addresses = customer.addresses.all()
+        items = []
+        for item in order.items.all():
+            items.append((OrderItemForm(instance=item), item))
         resp = render(request, "order/cart.html", {
-            'order': order, 'form': form, 'addresses': addresses,
+            'order': order, 'form': form, 'addresses': addresses, 'items': items,
         })
         resp.set_cookie("cart", '')
         return resp
@@ -81,11 +84,11 @@ class ChangeItemView(LoginRequiredMixin, View):
         if form.is_valid():
             item.count = request.POST["count"]
             item.save()
-            return redirect(reverse("order:cart"))
-        return render(request, "order/items.html", {
-            'product': item.product, 'form': form,
-            'item': request.GET["item"],
-        })
+        return redirect(reverse("order:cart"))
+        # return render(request, "order/items.html", {
+        #     'product': item.product, 'form': form,
+        #     'item': request.GET["item"],
+        # })
 
 
 class RemoveItemView(LoginRequiredMixin, View):

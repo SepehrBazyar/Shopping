@@ -41,7 +41,7 @@ ul.errorlist li {
         </tr>
         </thead>
         <tbody>
-        {% for item in order.items.all %}
+        {% comment %} {% for item in order.items.all %}
             <tr>
                 <td>{{ forloop.counter }}</td>
                 <td>{{ item.product.title }}</td>
@@ -49,6 +49,31 @@ ul.errorlist li {
                 <td><a href="{% url 'order:count' %}?item={{ item.id }}">
                     {% trans "Click Me" %}
                 </a></td>
+            </tr>
+        {% endfor %} {% endcomment %}
+        {% for item in items %}
+            <tr>
+                {{ item.0.non_field_errors }}
+                <form method="post" action="{% url 'order:count' %}?item={{ item.1.id }}">
+                    {% csrf_token %}
+                    <div class="fieldWrapper">
+                        {% for hidden in item.0.hidden_fields %}
+                            {{ hidden }}
+                        {% endfor %}
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ item.1.product.title }}</td>
+                        {% for field in item.0.visible_fields %}
+                            <td>{{ field }} {{ field.errors }}</td>
+                        {% endfor %}
+                        <td>
+                            <input type="submit" value="{% trans "Change Count" %}">
+                            <a href="{% url 'order:remove' %}?item={{ item.1.id }}"
+                            class="btn" style="background-color: tomato;">
+                                {% trans "Remove" %} <i class="gb gb_delete"></i>
+                            </a>
+                        </td>
+                    </div>
+                </form>
             </tr>
         {% endfor %}
         </tbody>
@@ -97,11 +122,11 @@ ul.errorlist li {
 
     <a href="{% url 'order:change' %}?order={{ order.id }}&status=P"
     class="btn" style="background-color: #A9CCE3;">
-        {% trans "Payment" %}
+        {% trans "Payment" %} <i class="gb gb_payment"></i>
     </a>
     <a href="{% url 'order:change' %}?order={{ order.id }}&status=C"
     class="btn" style="background-color: tomato;">
-        {% trans "Cancel" %}
+        {% trans "Cancel" %} <i class="gb gb_cancel"></i>
     </a>
 </div>
 {% else %}
