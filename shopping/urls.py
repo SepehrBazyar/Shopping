@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 from django.conf.urls.i18n import i18n_patterns
 
 from core.views import *
+from landing.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,4 +28,6 @@ urlpatterns = [
     path('product/', include('product.urls')),
     path('customer/', include('customer.urls')),
     path('order/', include('order.urls')),
+    path('api/', include('api.urls')),
+    path('contact/', send_message, name="contact"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
