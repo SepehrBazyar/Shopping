@@ -62,6 +62,7 @@ class ChangePasswordView(LoginRequiredMixin, PasswordChangeView):
     success_url = reverse_lazy("customer:profile")
     template_name = "customer/password.html"
 
+
 class CustomerProfileView(LoginRequiredMixin, View):
     """
     View for Customer See Profile Detials and Edit it
@@ -72,6 +73,31 @@ class CustomerProfileView(LoginRequiredMixin, View):
         except Customer.DoesNotExist: return redirect(reverse("customer:logout"))
         return render(request, "customer/profile.html", {
             'customer': customer,
+        })
+
+
+class CustomerEditProfileView(LoginRequiredMixin, View):
+    """
+    View for Change Customer Information Edit Name & Photo
+    """
+
+    def get(self, request, *args, **kwargs):
+        try: customer = Customer.objects.get(id=request.user.id)
+        except Customer.DoesNotExist: return redirect(reverse("customer:logout"))
+        form = CustomerEditProfileForm(instance=customer)
+        return render(request, "customer/edit.html", {
+            'form': form,
+        })
+    
+    def post(self, request, *args, **kwargs):
+        try: customer = Customer.objects.get(id=request.user.id)
+        except Customer.DoesNotExist: return redirect(reverse("customer:logout"))
+        form = CustomerEditProfileForm(instance=customer, data=request.POST, files=request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse("customer:profile"))
+        return render(request, "customer/edit.html", {
+            'form': form,
         })
 
 

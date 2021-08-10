@@ -16,6 +16,7 @@
             <h2>
                 <i class="gb gb_face"></i>
                 {% trans "Name" %}: {{ customer.first_name }} {{ customer.last_name }}
+                <a href="{% url 'customer:edit' %}"><i class="gb gb_edit"></i></a>
             </h2>
             <p>
                 {% trans "Gender" %}: {{ customer.gender_type }}<br>

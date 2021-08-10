@@ -1,7 +1,7 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, \
-                        PasswordChangeForm, PasswordResetForm, UserChangeForm
+from django.contrib.auth.forms import UserCreationForm, \
+                AuthenticationForm, PasswordChangeForm
 
 from .models import *
 
@@ -46,6 +46,19 @@ class CustomerChangePassword(PasswordChangeForm):
     """
 
     pass
+
+
+class CustomerEditProfileForm(forms.ModelForm):
+    """
+    Model Form for Change Customer Information Optionals
+    """
+
+    class Meta:
+        model = Customer
+        fields = ('first_name', 'last_name', 'email', 'photo', 'gender', 'birth_day')
+        widgets = {
+            'birth_day': forms.DateInput(attrs={'type':'date'}),
+        }
 
 
 class AdderssForm(forms.ModelForm):
