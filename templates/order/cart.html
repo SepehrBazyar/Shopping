@@ -80,7 +80,7 @@ ul.errorlist li {
             </select>
             <p class="help">{% trans "Please Select Address to Send Order There" %}</p>
 
-            <a href="{% url 'customer:address' %}">
+            <a href="{% url 'customer:address' %}?cart=True">
                 <i class="gb gb_add_location"></i> {% trans "Add New Address" %}
             </a>
 
