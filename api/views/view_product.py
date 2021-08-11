@@ -9,12 +9,38 @@ from core.permissions import *
 from product.serializers import *
 
 # Create your views here.
+class BrandListAPIView(generics.ListCreateAPIView):
+    """
+    View for See List of Brands & Create New if User is Staff
+    """
+
+    serializer_class = BrandBriefSerializer
+    queryset = Brand.objects.all()
+    permission_classes = [
+        IsStaffUser
+    ]
+
+
+class BrandDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    View for See Details of a Brand by Slug Field for Staff Users
+    """
+
+    serializer_class = BrandSerializer
+    queryset = Brand.objects.all()
+    lookup_field = 'slug'
+    lookup_url_kwarg = 'name'
+    permission_classes = [
+        IsStaffUser
+    ]
+
+
 class DiscountListAPIView(generics.ListCreateAPIView):
     """
     View for See List of Discount & Create New if User is Staff
     """
 
-    serializer_class = DiscountSerializer
+    serializer_class = DiscountBriefSerializer
     queryset = Discount.objects.all()
     permission_classes = [
         IsStaffUser
