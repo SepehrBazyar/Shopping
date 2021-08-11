@@ -8,4 +8,5 @@ urlpatterns = [
     path('discount/<str:name>/', DiscountDetailAPIView.as_view(), name="discount_detail"),
     path('category/', CategoryListAPIView.as_view(), name="category_list"),
     path('category/<str:name>/', CategoryDetailAPIView.as_view(), name="category_detail"),
+    path('product/', ProductListAPIView.as_view(), name="product_list"),
 ]

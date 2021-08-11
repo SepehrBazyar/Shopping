@@ -59,3 +59,15 @@ class CategoryDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [
         IsStaffUser
     ]
+
+
+class ProductListAPIView(generics.ListCreateAPIView):
+    """
+    
+    """
+
+    serializer_class = ProductSerializer
+    queryset = Product.objects.all()
+    permission_classes = [
+        IsStaffUser
+    ]

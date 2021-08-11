@@ -38,3 +38,13 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = (
             "id", "title_en", "title_fa", "slug", "root", "properties", "subcategories"
         )
+
+
+class ProductSerializer(serializers.ModelSerializer):
+    """
+    
+    """
+
+    class Meta:
+        model = Product
+        fields = '__all__'
