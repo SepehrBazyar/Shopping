@@ -63,11 +63,25 @@ class CategoryDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 
 class ProductListAPIView(generics.ListCreateAPIView):
     """
-    
+    Show Breif List Information of All Product Items
+    """
+
+    serializer_class = ProductBriefSerializer
+    queryset = Product.objects.all()
+    permission_classes = [
+        IsStaffUser
+    ]
+
+
+class ProductDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    View for Show Completely of Informations of a Product Item
     """
 
     serializer_class = ProductSerializer
     queryset = Product.objects.all()
+    lookup_field = 'slug'
+    lookup_url_kwarg = 'name'
     permission_classes = [
         IsStaffUser
     ]

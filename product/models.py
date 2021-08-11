@@ -292,6 +292,17 @@ class Product(DynamicTranslation):
 
         return self.read_property(lang=get_language())
 
+    @property
+    def property_dict(self):
+        """
+        Property Method to Get All of Properties in Two Lang for API View 
+        """
+
+        return {
+            "en": self.read_property(lang='en'),
+            "fa": self.read_property(lang='fa'),
+        }
+
     def change_inventory(self, new_value: int):
         """
         Method for Apply Change Number of Inventory After Paid or Cancelng Order
