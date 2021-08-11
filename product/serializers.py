@@ -3,6 +3,10 @@ from rest_framework import serializers
 from .models import *
 
 class DiscountSerializer(serializers.ModelSerializer):
+    """
+    Serializer for Discount Model Show Important Fields
+    """
+
     class Meta:
         model = Discount
         fields = (
@@ -26,10 +30,11 @@ class CategorySerializer(serializers.ModelSerializer):
     """
 
     properties = serializers.ReadOnlyField(source='property_dict')
+    root = CategoryBriefSerializer(read_only=True)
+    subcategories = CategoryBriefSerializer(read_only=True, many=True)
 
     class Meta:
         model = Category
         fields = (
-            "id", "title_en", "title_fa", "slug", "properties"
+            "id", "title_en", "title_fa", "slug", "root", "properties", "subcategories"
         )
-        # depth = 2
