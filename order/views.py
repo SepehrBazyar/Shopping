@@ -55,8 +55,9 @@ class BasketCartView(LoginRequiredMixin, View):
             return redirect(reverse("order:cart"))
         order.code = None
         order.save()
+        addresses = customer.addresses.all()
         return render(request, "order/cart.html", {
-            'order': order, 'form': form,
+            'order': order, 'form': form, 'addresses': addresses,
         })
 
 
