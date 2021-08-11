@@ -1,17 +1,25 @@
 from django.shortcuts import render, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.utils.translation import gettext_lazy as _
 
 from .forms import MessageForm
 
 # Create your views here.
-@csrf_exempt
 def send_message(request):
+    """
+    Function View for Show Form Model by Message & Get Text with AJAX Single Page
+    """
+
     if request.method == 'GET':
         form = MessageForm()
         return render(request, "landing/contact.html", {
             'form': form
         })
 
-    if request.method == 'POST':
-        print(request.POST)
-        return HttpResponse("OK!")
+    elif request.method == 'POST':
+        status = 400
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            status = 200
+            print(form.cleaned_data)
+        return HttpResponse(_("Your Message was Successfully Received"), status=200)

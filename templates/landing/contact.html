@@ -4,33 +4,63 @@
 {% block title %}{% trans "Contact Me" %}{% endblock %}
 
 {% block extra_style %}
+ul > li {
+    list-style-type: none;
+    padding: 1px 0;
+}
 
-{% endblock %}
+li, dt, dd {
+    color: var(--body-quiet-color);
+    font-size: 13px;
+    line-height: 20px;
+}
 
-{% block extra_head %}
-<script>
-$(document).ready(function(){
-  $("button").click(function(){
-    $.post("http://127.0.0.1:8000/contact/",
-    {
-      name: "Donald Duck",
-      city: "Duckburg"
-    },
-    function(data,status){
-      alert("Data: " + data + "\nStatus: " + status);
-    });
-  });
-});
-</script>
+ul.errorlist li {
+    color: red;
+    background-color: #A9CCE3;
+    font-size: 13px;
+    display: block;
+    margin-bottom: 4px;
+    overflow-wrap: break-word;
+}
 {% endblock %}
 
 {% block body %}
-
 <div class="container">
-<div class="card" style="background-color: #A9CCE3;">
-    {{ form.as_p }}
-    <button>Send an HTTP POST request to a page and get the result back</button>
+  <div class="card" style="background-color: #A9CCE3;">
+    <div class="card-header text-center">
+      {{ form.non_field_errors }}
+      <form>
+        {% csrf_token %}
+        <div class="fieldWrapper">
+          {% for field in form %}
+            {{ field.errors }}
+            <h2>{{ field.label_tag }}</h2>{{ field }}
+            {% if field.help_text %}
+              <p class="help">{{ field.help_text|safe }}</p>
+            {% endif %}
+          {% endfor %}
+        </div><br>
+        <button class="btn btn-info">
+          {% trans "Send Message" %}
+        </button>
+      </form><br>
+    </div>
+  </div>
 </div>
-</div>
-
 {% endblock %}
+
+{% block extra_js %}
+<script>
+  $(document).ready(function() {
+    $('button').click(function() {
+      $.post('{% url "contact" %}', $('form').serialize(), function(data, status) {
+        alert("Data: " + data + "\nStatus: " + status);
+        $('form').each(function() {
+          this.reset();
+        });
+      });
+    });
+  });
+</script>
+{% endblock  %}
