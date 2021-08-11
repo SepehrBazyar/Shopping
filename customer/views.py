@@ -120,7 +120,7 @@ class CreateNewAddressView(LoginRequiredMixin, View):
             except Customer.DoesNotExist: return redirect(reverse("customer:logout"))
             new_address.customer = customer
             new_address.save()
-            return redirect(reverse("product:profile"))
+            return redirect(reverse("customer:profile"))
         else:
             return render(request, "customer/address.html", {
             'form': form

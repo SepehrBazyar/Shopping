@@ -7,8 +7,11 @@ from .models import *
 # Create your tests here.
 class TestOrderAppModels(TestCase):
     def setUp(self):
-        # created customers
+        # created customers and address
         self.customer = Customer.objects.create(username="09123456789", password="1O1nn1e1e")
+        self.home = Address.objects.create(customer=self.customer, name="Home",
+            zip_code="1234567890", province="Tehran", city="Tehran",
+            rest="...", lat=35.56, lng=54.35)
 
         # created discounts
         self.d1 = Discount.objects.create(title_en="Mobile", title_fa="موبایل",
@@ -44,7 +47,7 @@ class TestOrderAppModels(TestCase):
             slug="daftar", brand=self.brand, category=self.category, price=5_000, inventory=40)
 
     def test_successfully_order_1(self):
-        o = Order.objects.create(customer=self.customer, code="xyz1")
+        o = Order.objects.create(customer=self.customer, address=self.home, code="xyz1")
         OrderItem.objects.create(order=o, product=self.mobile, count=2)
         OrderItem.objects.create(order=o, product=self.medad, count=4)
         o.payment()
@@ -54,7 +57,7 @@ class TestOrderAppModels(TestCase):
         self.assertEqual(o.items.all()[1].product.inventory, 36)
 
     def test_canceling_order_1(self):
-        o = Order.objects.create(customer=self.customer, code="xyz2")
+        o = Order.objects.create(customer=self.customer, address=self.home, code="xyz2")
         OrderItem.objects.create(order=o, product=self.lebas, count=1)
         o.payment()
         self.assertEqual(o.total_price, 500_000)
@@ -64,7 +67,7 @@ class TestOrderAppModels(TestCase):
         self.assertEqual(Product.objects.get(id=o.items.all()[0].id).inventory, 20)
 
     def test_unpaid_order_1(self):
-        o = Order.objects.create(customer=self.customer, code="xyz4")
+        o = Order.objects.create(customer=self.customer, address=self.home, code="xyz4")
         OrderItem.objects.create(order=o, product=self.mobile, count=3)
         OrderItem.objects.create(order=o, product=self.lebas, count=2)
         OrderItem.objects.create(order=o, product=self.medad, count=8)
@@ -77,7 +80,7 @@ class TestOrderAppModels(TestCase):
         self.assertEqual(o.items.all()[3].product.inventory, 40)
 
     def test_without_discount_code_1(self):
-        o = Order.objects.create(customer=self.customer)
+        o = Order.objects.create(customer=self.customer, address=self.home)
         OrderItem.objects.create(order=o, product=self.mobile, count=1)
         OrderItem.objects.create(order=o, product=self.daftar, count=10)
         o.payment()
@@ -87,7 +90,7 @@ class TestOrderAppModels(TestCase):
         self.assertEqual(o.items.all()[1].product.inventory, 30)
     
     def test_not_enough_inventory_1(self):
-        o = Order.objects.create(customer=self.customer)
+        o = Order.objects.create(customer=self.customer, address=self.home)
         OrderItem.objects.create(order=o, product=self.mobile, count=21)
         OrderItem.objects.create(order=o, product=self.lebas, count=20)
         o.payment()
@@ -96,7 +99,7 @@ class TestOrderAppModels(TestCase):
         self.assertEqual(o.final_price, 9_500_000)
 
     def test_not_enough_inventory_2(self):
-        o = Order.objects.create(customer=self.customer, code="xyz4")
+        o = Order.objects.create(customer=self.customer, address=self.home, code="xyz4")
         OrderItem.objects.create(order=o, product=self.medad, count=41)
         OrderItem.objects.create(order=o, product=self.daftar, count=42)
         o.payment()
@@ -106,20 +109,20 @@ class TestOrderAppModels(TestCase):
 
     def test_duplicate_discount_code_1(self):
         self.test_canceling_order_1()
-        o = Order.objects.create(customer=self.customer, code="xyz2")
+        o = Order.objects.create(customer=self.customer, address=self.home, code="xyz2")
         OrderItem.objects.create(order=o, product=self.lebas, count=1)
         OrderItem.objects.create(order=o, product=self.mobile, count=1)
         OrderItem.objects.create(order=o, product=self.daftar, count=3)
         o.payment()
         self.assertEqual(o.total_price, 565_000)
-        self.assertEqual(o.final_price, 515_000)
+        self.assertEqual(o.final_price, 535_000)
         self.assertEqual(o.items.all()[0].product.inventory, 18)
         self.assertEqual(o.items.all()[1].product.inventory, 19)
         self.assertEqual(o.items.all()[2].product.inventory, 37)
     
     def test_duplicate_discount_code_2(self):
         self.test_successfully_order_1()
-        o = Order.objects.create(customer=self.customer, code="xyz1")
+        o = Order.objects.create(customer=self.customer, address=self.home, code="xyz1")
         OrderItem.objects.create(order=o, product=self.medad, count=4)
         OrderItem.objects.create(order=o, product=self.lebas, count=1)
         o.payment()
@@ -130,7 +133,7 @@ class TestOrderAppModels(TestCase):
     
     def test_other_discount_code_1(self):
         self.test_successfully_order_1()
-        o = Order.objects.create(customer=self.customer, code="xyz3")
+        o = Order.objects.create(customer=self.customer, address=self.home, code="xyz3")
         OrderItem.objects.create(order=o, product=self.medad, count=4)
         OrderItem.objects.create(order=o, product=self.lebas, count=1)
         o.payment()
@@ -140,7 +143,7 @@ class TestOrderAppModels(TestCase):
         self.assertEqual(o.items.all()[1].product.inventory, 19)
 
     def test_invalid_discount_code_1(self):
-        o = Order.objects.create(customer=self.customer, code="xyz6")
+        o = Order.objects.create(customer=self.customer, address=self.home, code="xyz6")
         OrderItem.objects.create(order=o, product=self.mobile, count=6)
         OrderItem.objects.create(order=o, product=self.medad, count=10)
         o.payment()
