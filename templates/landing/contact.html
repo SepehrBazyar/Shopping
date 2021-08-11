@@ -7,13 +7,29 @@
 
 {% endblock %}
 
+{% block extra_head %}
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+    $.post("http://127.0.0.1:8000/contact/",
+    {
+      name: "Donald Duck",
+      city: "Duckburg"
+    },
+    function(data,status){
+      alert("Data: " + data + "\nStatus: " + status);
+    });
+  });
+});
+</script>
+{% endblock %}
+
 {% block body %}
 
 <div class="container">
 <div class="card" style="background-color: #A9CCE3;">
-    <form>
-
-    </form>
+    {{ form.as_p }}
+    <button>Send an HTTP POST request to a page and get the result back</button>
 </div>
 </div>
 
