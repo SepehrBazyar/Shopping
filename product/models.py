@@ -120,6 +120,17 @@ class Category(DynamicTranslation):
 
         return props
 
+    @property
+    def property_dict(self):
+        """
+        Property Method to Get All of Properties in Two Lang for API View 
+        """
+
+        return {
+            "en": self.property_list(lang='en'),
+            "fa": self.property_list(lang='fa'),
+        }
+
     def save(self, *args, **kwargs):
         if self.properties is None:
             with MongoClient('mongodb://localhost:27017/') as client:

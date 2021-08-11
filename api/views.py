@@ -33,3 +33,29 @@ class DiscountDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [
         IsStaffUser
     ]
+
+
+class CategoryListAPIView(generics.ListCreateAPIView):
+    """
+    Show Breif List Information of All Categories
+    """
+
+    serializer_class = CategoryBriefSerializer
+    queryset = Category.objects.all()
+    permission_classes = [
+        IsStaffUser
+    ]
+
+
+class CategoryDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    View for Show Completely of Informations of a Category
+    """
+
+    serializer_class = CategorySerializer
+    queryset = Category.objects.all()
+    lookup_field = 'slug'
+    lookup_url_kwarg = 'name'
+    permission_classes = [
+        IsStaffUser
+    ]
