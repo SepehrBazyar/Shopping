@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
 from django.views import generic, View
+from django.utils.translation import gettext_lazy as _
+from django.contrib import messages
 
 from .models import *
 from .forms import *
@@ -13,6 +15,7 @@ class BasketCartView(LoginRequiredMixin, View):
     """
 
     def get(self, request, *args, **kwargs):
+        msgs = messages.get_messages(request)
         try: customer = Customer.objects.get(id=request.user.id)
         except Customer.DoesNotExist: return redirect(reverse("customer:logout"))
         if customer.addresses.count() == 0:
@@ -39,7 +42,7 @@ class BasketCartView(LoginRequiredMixin, View):
         for item in order.items.all():
             items.append((OrderItemForm(instance=item), item))
         resp = render(request, "order/cart.html", {
-            'order': order, 'form': form, 'addresses': addresses, 'items': items,
+            'order': order, 'form': form, 'addresses': addresses, 'items': items, 'msgs': msgs,
         })
         resp.set_cookie("cart", '')
         return resp
@@ -66,29 +69,16 @@ class ChangeItemView(LoginRequiredMixin, View):
     View for Return Form Order Item Check Validated Change Count
     """
 
-    def get(self, request, *args, **kwargs):
-        try: customer = Customer.objects.get(id=request.user.id)
-        except Customer.DoesNotExist: return redirect(reverse("customer:logout"))
-        item = OrderItem.objects.get(id=request.GET['item'])
-        if item.order.status == 'U' and item.order.customer == customer:
-            form = OrderItemForm(instance=item)
-            return render(request, "order/items.html", {
-                'product': item.product, 'form': form,
-                'item': request.GET["item"],
-            })
-        return redirect(reverse("order:cart"))
-    
     def post(self, request, *args, **kwargs):
         item = OrderItem.objects.get(id=request.GET['item'])
         form = OrderItemForm(request.POST)
         if form.is_valid():
             item.count = request.POST["count"]
             item.save()
+        else:
+            messages.add_message(request, messages.ERROR,
+            _("Inventory of Product Item isn't Enough!"))
         return redirect(reverse("order:cart"))
-        # return render(request, "order/items.html", {
-        #     'product': item.product, 'form': form,
-        #     'item': request.GET["item"],
-        # })
 
 
 class RemoveItemView(LoginRequiredMixin, View):
