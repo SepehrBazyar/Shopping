@@ -19,3 +19,17 @@ class DiscountListAPIView(generics.ListCreateAPIView):
     permission_classes = [
         IsStaffUser
     ]
+
+
+class DiscountDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    View for See Details of a Discount by Slug Field for Staff Users
+    """
+
+    serializer_class = DiscountSerializer
+    queryset = Discount.objects.all()
+    lookup_field = 'slug'
+    lookup_url_kwarg = 'name'
+    permission_classes = [
+        IsStaffUser
+    ]

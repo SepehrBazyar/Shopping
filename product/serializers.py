@@ -5,4 +5,7 @@ from .models import *
 class DiscountSerializer(serializers.ModelSerializer):
     class Meta:
         model = Discount
-        fields = '__all__'
+        fields = (
+            "id", "title_en", "title_fa", "slug",
+            "unit", "amount", "roof", "start_date", "end_date"
+        )
