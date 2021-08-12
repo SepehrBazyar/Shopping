@@ -1,4 +1,4 @@
-from api.views.view_customer import CustomerDetailAPIView, CustomerListAPIView
+from api.views.view_customer import AddressDetailAPIView, AddressListAPIView, CustomerDetailAPIView, CustomerListAPIView
 from django.urls import path
 
 from .views.view_product import *
@@ -18,6 +18,8 @@ urlpatterns = [
     # customer app
     path('customer/customer/', CustomerListAPIView.as_view(), name="customer_list"),
     path('customer/customer/<str:phone>/', CustomerDetailAPIView.as_view(), name="customer_detail"),
+    path('customer/address/', AddressListAPIView.as_view(), name="address_list"),
+    path('customer/address/<str:code>/', AddressDetailAPIView.as_view(), name="address_detail"),
 
     # order app
 

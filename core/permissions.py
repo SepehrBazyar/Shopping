@@ -27,8 +27,17 @@ class IsOwnerSite(permissions.BasePermission):
 
 class IsCustomerUser(permissions.BasePermission):
     """
-    Permission for Check User Send Request is Owner of Object if not Forbidden
+    Permission for Check User Send Request is Self if not Forbidden
     """
 
     def has_object_permission(self, request, view, obj):
         return request.user.username == obj.username or request.user.is_staff
+
+
+class IsOwnerUser(permissions.BasePermission):
+    """
+    Permission for Check User Send Request is Owner of Object if not Forbidden
+    """
+
+    def has_object_permission(self, request, view, obj):
+        return request.user.username == obj.customer.username or request.user.is_staff

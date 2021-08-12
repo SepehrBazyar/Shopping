@@ -11,7 +11,7 @@ from customer.serializers import *
 # Create your views here.
 class CustomerListAPIView(generics.ListAPIView):
     """
-    View for See List of Customers Just is Staff User
+    View for Just See List of Customers Just is Staff User
     """
 
     serializer_class = CustomerBriefSerializer
@@ -23,7 +23,7 @@ class CustomerListAPIView(generics.ListAPIView):
 
 class CustomerDetailAPIView(generics.RetrieveUpdateAPIView):
     """
-    View for See Details of a Customer Just is Owner or Staff User
+    View for See and Edit(not Delete) Details of a Customer Just is Owner or Staff User
     """
 
     serializer_class = CustomerSerializer
@@ -32,4 +32,30 @@ class CustomerDetailAPIView(generics.RetrieveUpdateAPIView):
     lookup_url_kwarg = 'phone'
     permission_classes = [
         IsCustomerUser
+    ]
+
+
+class AddressListAPIView(generics.ListAPIView):
+    """
+    View for Just See List of Addresses Just is Staff User
+    """
+
+    serializer_class = AddressBriefSerializer
+    queryset = Address.objects.all()
+    permission_classes = [
+        IsOwnerSite
+    ]
+
+
+class AddressDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    View for See and Edit Details of a Address Just is Owner or Staff User
+    """
+
+    serializer_class = AddressSerializer
+    queryset = Address.objects.all()
+    lookup_field = 'zip_code'
+    lookup_url_kwarg = 'code'
+    permission_classes = [
+        IsOwnerUser
     ]
