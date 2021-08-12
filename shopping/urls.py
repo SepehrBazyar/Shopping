@@ -22,6 +22,8 @@ from django.conf.urls.i18n import i18n_patterns
 from core.views import *
 from landing.views import *
 
+handler404 = "landing.views.page_not_found"
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('language/', change_language, name="change_language"),

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-12 04:03+0430\n"
+"POT-Creation-Date: 2021-08-12 20:19+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -805,6 +805,14 @@ msgstr "ثبت نشانی جدید"
 #: .\templates\customer\register.html:51
 msgid "Do You Have Account?"
 msgstr "حساب کاربری دارید؟"
+
+#: .\templates\landing\404.html:4 .\templates\landing\404.html:56
+msgid "Page Not Found"
+msgstr "عدم وجود صفحه"
+
+#: .\templates\landing\404.html:59
+msgid "Sorry, but the page you were trying to view does not exist."
+msgstr "با عرض پوزش؛ صفحه ای که خواستار مشاهده آن بودید وجود ندارد."
 
 #: .\templates\landing\contact.html:45
 msgid "Send Message"

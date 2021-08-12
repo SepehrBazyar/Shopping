@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "Page Not Found" %}{% endblock %}
+
+{% block extra_style %}
+{% comment %} * {
+    line-height: 1.2;
+    margin: 0;
+}
+
+html {
+    color: #888;
+    display: table;
+    font-family: sans-serif;
+    height: 100%;
+    text-align: center;
+    width: 100%;
+}
+
+body {
+    display: table-cell;
+    vertical-align: middle;
+    margin: 2em auto;
+} {% endcomment %}
+
+#subject {
+    color: #555;
+    font-size: 2em;
+    font-weight: 400;
+}
+
+#context {
+    margin: 0 auto;
+    width: 280px;
+}
+
+@media only screen and (max-width: 280px) {
+
+    body,
+    #context {
+    width: 95%;
+    }
+
+    #subject {
+    font-size: 1.5em;
+    margin: 0 0 0.3em;
+    }
+
+}
+{% endblock  %}
+
+{% block body %}
+<div class="container pt-2" style="text-align: center;">
+    <h2 style="font-size: 2rem;">{% trans "Page Not Found" %}!</h1>
+    <i class="gb gb_sentiment_dissatisfied" style="font-size: 15rem;"></i>
+    <p style="font-size: 2rem;">
+        {% trans "Sorry, but the page you were trying to view does not exist." %}
+    </p>
+</div>
+{% endblock %}
