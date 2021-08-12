@@ -41,7 +41,7 @@ class DiscountListAPIView(generics.ListCreateAPIView):
     """
 
     serializer_class = DiscountBriefSerializer
-    queryset = Discount.objects.all()
+    queryset = Discount.objects.exclude(has_code=True)
     permission_classes = [
         IsStaffUser
     ]
@@ -53,7 +53,7 @@ class DiscountDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     """
 
     serializer_class = DiscountSerializer
-    queryset = Discount.objects.all()
+    queryset = Discount.objects.exclude(has_code=True)
     lookup_field = 'slug'
     lookup_url_kwarg = 'name'
     permission_classes = [

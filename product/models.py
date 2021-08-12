@@ -179,6 +179,8 @@ class Discount(DynamicTranslation):
         verbose_name=_("Start Date"), help_text=_("Please Select the Start Date of the Discount"))
     end_date = models.DateTimeField(default=None, null=True, blank=True,
         verbose_name=_("End Date"), help_text=_("Please Select the End Date of the Discount"))
+    has_code = models.BooleanField(verbose_name=_("Has Code"), default=False, db_index=True,
+        help_text=_("Please Select Check Box if is the Discount Code else Do Nothing."))
 
     def calculate_decrease(self, price: int) -> int:
         """

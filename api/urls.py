@@ -1,8 +1,8 @@
-from api.views.view_order import DiscountCodeDetailAPIView, DiscountCodeListAPIView
-from api.views.view_customer import AddressDetailAPIView, AddressListAPIView, CustomerDetailAPIView, CustomerListAPIView
 from django.urls import path
 
 from .views.view_product import *
+from .views.view_customer import *
+from .views.view_order import *
 
 app_name = "api"
 urlpatterns = [
