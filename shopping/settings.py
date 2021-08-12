@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 
+import os
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -117,6 +119,52 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# Logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        "my-style": {
+            'format': "%(asctime)s - %(levelname)-10s - %(message)s",
+            'style': '%',
+        },
+    },
+    'filters': {
+        "my-cb-length": {
+            '()': 'django.utils.log.CallbackFilter',
+            'callback': lambda record: len(record.getMessage()) <= 100,
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': "my-style",
+        },
+        'file': {
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / "logs.log",
+            'formatter': "my-style",
+            'filters': ["my-cb-length"],
+        },
+    },
+    'root': {
+        'handlers': ["console"],
+        'level': 'DEBUG',
+    },
+    'loggers': {
+        'clogger': {
+            'handlers': ["console"],
+            'level': "WARNING",
+            'propagate': False,
+        },
+        'flogger': {
+            'handlers': ["file"],
+            'level': "INFO",
+            'propagate': False,
+        },
+    },
+}
 
 
 # Internationalization
