@@ -16,10 +16,19 @@ class IsStaffUser(permissions.BasePermission):
         return request.user.is_staff
 
 
-class IsOwnerUser(permissions.BasePermission):
+class IsOwnerSite(permissions.BasePermission):
     """
-    Permission for Check User Send Request is Owner of Object or No
+    Permission for Check User is Owner Admin for Show List of Private Data
+    """
+
+    def has_permission(self, request, view):
+        return request.user.is_staff
+
+
+class IsCustomerUser(permissions.BasePermission):
+    """
+    Permission for Check User Send Request is Owner of Object if not Forbidden
     """
 
     def has_object_permission(self, request, view, obj):
-        return request.user == obj.customer or request.user.is_staff
+        return request.user.username == obj.username or request.user.is_staff
