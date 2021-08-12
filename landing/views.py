@@ -11,7 +11,7 @@ def page_not_found(request, exception):
     """
     
     data = {}
-    return render(request, "landing/404.html", data)
+    return render(request, "landing/404.html", data, status=404)
 
 def send_message(request):
     """

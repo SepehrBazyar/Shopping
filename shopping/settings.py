@@ -160,6 +160,7 @@ LOCALE_PATHS = [
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = BASE_DIR / 'media'
+# MEDIA_ROOT = "/home/admin/Shopping/media/"
 
 AUTH_USER_MODEL = 'core.User'
 LOGIN_URL = "customer:login"
