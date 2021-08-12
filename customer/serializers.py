@@ -49,11 +49,12 @@ class CustomerSerializer(serializers.ModelSerializer):
 
     staff = serializers.ReadOnlyField(source='is_staff')
     addresses = AddressBriefSerializer(read_only=True, many=True)
-    # TODO: orders and discount codes
+    codes = serializers.PrimaryKeyRelatedField(read_only=True, many=True)
+    # TODO: orders
 
     class Meta:
         model = Customer
         fields = (
             "id", "username", "first_name", "last_name", "phone_number", "email",
-            "staff", "gender", "birth_day", "photo", "addresses"
+            "staff", "gender", "birth_day", "photo", "addresses", "codes"
         )

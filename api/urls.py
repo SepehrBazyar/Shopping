@@ -1,3 +1,4 @@
+from api.views.view_order import DiscountCodeDetailAPIView, DiscountCodeListAPIView
 from api.views.view_customer import AddressDetailAPIView, AddressListAPIView, CustomerDetailAPIView, CustomerListAPIView
 from django.urls import path
 
@@ -22,6 +23,7 @@ urlpatterns = [
     path('customer/address/<str:code>/', AddressDetailAPIView.as_view(), name="address_detail"),
 
     # order app
-
+    path('order/discountcode/', DiscountCodeListAPIView.as_view(), name="discountcode_list"),
+    path('order/discountcode/<str:code>/', DiscountCodeDetailAPIView.as_view(), name="discountcode_detail")
 
 ]
