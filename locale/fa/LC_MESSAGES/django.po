@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-13 20:32+0430\n"
+"POT-Creation-Date: 2021-08-13 22:36+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -245,11 +245,11 @@ msgstr "متن پیام"
 msgid "Please Write Your Message Text..."
 msgstr "لطفا متن پیام خود را بنویسید..."
 
-#: .\landing\views.py:28
+#: .\landing\views.py:31 .\templates\landing\contact.html:70
 msgid "Your Message was Successfully Received"
 msgstr "پیغام شما با موفقیت دریافت گردید"
 
-#: .\landing\views.py:31
+#: .\landing\views.py:34 .\templates\landing\contact.html:77
 msgid "Please be Careful & Try Again..."
 msgstr "لطفا دقت فرموده و مجددا تلاش نمایید..."
 
@@ -818,7 +818,15 @@ msgstr "عدم وجود صفحه"
 msgid "Sorry, but the page you were trying to view does not exist."
 msgstr "با عرض پوزش؛ صفحه ای که خواستار مشاهده آن بودید وجود ندارد."
 
-#: .\templates\landing\contact.html:46
+#: .\templates\landing\contact.html:37
+msgid "Hi, My Name is Sepehr Bazyar."
+msgstr "سلام؛ اسم من سپهر بازیار است."
+
+#: .\templates\landing\contact.html:38
+msgid "I'm a Python Back-End Developer."
+msgstr "من یک توسعه دهنده سمت سرور به زبان پایتون هستم."
+
+#: .\templates\landing\contact.html:57
 msgid "Send Message"
 msgstr "ارسال پیام"
 

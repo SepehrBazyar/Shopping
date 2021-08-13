@@ -29,8 +29,19 @@ ul.errorlist li {
 <div class="container">
   <div class="card" style="background-color: #A9CCE3;">
     <div class="card-header text-center">
+
+      <img src="{% static 'shared/img/sepehr.jpg' %}" alt="Sepehr Bazyar"
+          style="border-radius: 50%; width: 15rem; height: 15rem;">
+        
+      <div class="mt-3">
+        <h2>{% trans "Hi, My Name is Sepehr Bazyar." %}</h2>
+        <p>{% trans "I'm a Python Back-End Developer." %}</p>
+      </div>
+
+      <hr style="background-color: #1B2631;">
+
       {{ form.non_field_errors }}
-      <form id="contact" method="post">
+      <form id="contact">
         {% csrf_token %}
         <div class="fieldWrapper">
           {% for field in form %}

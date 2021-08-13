@@ -2,6 +2,9 @@ from django.shortcuts import render, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.translation import gettext_lazy as _
 
+from product.views import ProductsListView, CategoryListView
+from customer.views import CustomerLoginView, CustomerProfileView, CustomerRegisterView
+from order.views import BasketCartView
 from .forms import MessageForm
 
 # Create your views here.
@@ -30,3 +33,11 @@ def send_message(request):
         if form.is_valid(): form.save()
         else: msg, status = _("Please be Careful & Try Again..."), 400
         return HttpResponse(msg, status=status)
+
+# Duplicate Page Views Import in Landing App for Easy URL Routing out of Apps
+home = ProductsListView.as_view()
+category = CategoryListView.as_view()
+login = CustomerLoginView.as_view()
+register = CustomerRegisterView.as_view()
+profile = CustomerProfileView.as_view()
+cart = BasketCartView.as_view()

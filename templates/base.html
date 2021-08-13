@@ -75,9 +75,9 @@
 <nav class="navbar sticky-top navbar-expand-lg bg-dark mb-4" id="navmenubar">
   <div class="container-fluid">
     <h1 style="color: #1E8449; font-size: 2rem; padding-top: 0.5rem;">
-      <a href="{% url 'order:cart' %}" class="sabz"><i class="gb gb_shopping_cart"></i></a>
+      <a href="{% url 'cart' %}" class="sabz"><i class="gb gb_shopping_cart"></i></a>
       <a class="navbar-brand" href="#">
-        <a href="{% url 'product:lists' %}" class="sabz">{% trans "Sepehr Shopping" %}</a>
+        <a href="{% url 'index' %}" class="sabz">{% trans "Sepehr Shopping" %}</a>
       </a>
     </h1>
 
@@ -88,10 +88,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto w-100 justify-content-end">
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'product:lists' %}">{% trans "Home" %}</a>
+          <a class="nav-link" href="{% url 'index' %}">{% trans "Home" %}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'product:categories' %}">{% trans "Categories" %}</a>
+          <a class="nav-link" href="{% url 'category' %}">{% trans "Categories" %}</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'contact' %}">{% trans "Contact Me" %}</a>
@@ -106,7 +106,7 @@
               {{ user.username }}
             </button>
             <div class="dropdown-menu" style="text-align: center;">
-              <a class="dropdown-item" href="{% url 'customer:profile' %}">{% trans "Profile" %}</a>
+              <a class="dropdown-item" href="{% url 'profile' %}">{% trans "Profile" %}</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{% url 'customer:password' %}">{% trans "Change Password" %}</a>
               <div class="dropdown-divider"></div>
@@ -114,7 +114,7 @@
             </div>
           </div>
           {% else %}
-            <a class="nav-link" href="{% url 'customer:login' %}">{% trans "Account" %}</a>
+            <a class="nav-link" href="{% url 'login' %}">{% trans "Account" %}</a>
           {% endif %}
         </li>
       </ul>
