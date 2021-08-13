@@ -25,9 +25,8 @@ def send_message(request):
         })
 
     elif request.method == 'POST':
-        status = 400
+        msg, status = _("Your Message was Successfully Received"), 200
         form = MessageForm(request.POST)
-        if form.is_valid():
-            status = 200
-            print(form.cleaned_data)
-        return HttpResponse(_("Your Message was Successfully Received"), status=200)
+        if form.is_valid(): print(form.cleaned_data)
+        else: msg, status = _("Please be Careful & Try Again..."), 400
+        return HttpResponse(msg, status=status)

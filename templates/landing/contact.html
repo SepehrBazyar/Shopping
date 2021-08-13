@@ -30,7 +30,7 @@ ul.errorlist li {
   <div class="card" style="background-color: #A9CCE3;">
     <div class="card-header text-center">
       {{ form.non_field_errors }}
-      <form>
+      <form id="contact" method="post">
         {% csrf_token %}
         <div class="fieldWrapper">
           {% for field in form %}
@@ -41,10 +41,10 @@ ul.errorlist li {
             {% endif %}
           {% endfor %}
         </div><br>
-        <button class="btn btn-info">
-          {% trans "Send Message" %}
-        </button>
       </form><br>
+      <button class="btn btn-info" id="send">
+        {% trans "Send Message" %}
+      </button>
     </div>
   </div>
 </div>
@@ -53,10 +53,10 @@ ul.errorlist li {
 {% block extra_js %}
 <script>
   $(document).ready(function() {
-    $('button').click(function() {
-      $.post('{% url "contact" %}', $('form').serialize(), function(data, status) {
-        alert("Data: " + data + "\nStatus: " + status);
-        $('form').each(function() {
+    $('#send').click(function() {
+      $.post('{% url "contact" %}', $('#contact').serialize(), function(data, status) {
+        alert(data);
+        $('#contact').each(function() {
           this.reset();
         });
       });
