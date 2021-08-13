@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-12 20:19+0430\n"
+"POT-Creation-Date: 2021-08-13 20:32+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -245,9 +245,13 @@ msgstr "متن پیام"
 msgid "Please Write Your Message Text..."
 msgstr "لطفا متن پیام خود را بنویسید..."
 
-#: .\landing\views.py:25
+#: .\landing\views.py:28
 msgid "Your Message was Successfully Received"
 msgstr "پیغام شما با موفقیت دریافت گردید"
+
+#: .\landing\views.py:31
+msgid "Please be Careful & Try Again..."
+msgstr "لطفا دقت فرموده و مجددا تلاش نمایید..."
 
 #: .\order\admin.py:17 .\order\models.py:182
 msgid "Order Items"
@@ -814,7 +818,7 @@ msgstr "عدم وجود صفحه"
 msgid "Sorry, but the page you were trying to view does not exist."
 msgstr "با عرض پوزش؛ صفحه ای که خواستار مشاهده آن بودید وجود ندارد."
 
-#: .\templates\landing\contact.html:45
+#: .\templates\landing\contact.html:46
 msgid "Send Message"
 msgstr "ارسال پیام"
 

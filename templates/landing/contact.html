@@ -54,12 +54,17 @@ ul.errorlist li {
 <script>
   $(document).ready(function() {
     $('#send').click(function() {
-      $.post('{% url "contact" %}', $('#contact').serialize(), function(data, status) {
-        alert(data);
-        $('#contact').each(function() {
-          this.reset();
+      $.post('{% url "contact" %}', $('#contact').serialize())
+        .done(function(data, status, xhr) {
+          alert("{% trans 'Your Message was Successfully Received' %}");
+          $('#contact').each(function() {
+            this.reset();
+          });
+        })
+        .fail(function(data, status, xhr) {
+          console.log(data, status, xhr)
+          alert("{% trans 'Please be Careful & Try Again...' %}");
         });
-      });
     });
   });
 </script>

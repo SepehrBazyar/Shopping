@@ -27,4 +27,4 @@ class Message(BasicModel):
         help_text=_("Please Write Your Message Text..."))
 
     def __str__(self) -> str:
-        return self.text
+        return f"{self.first_name} {self.last_name}"

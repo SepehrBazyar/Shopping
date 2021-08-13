@@ -10,7 +10,17 @@ class MessageAdmin(admin.ModelAdmin):
     """
 
     fields = (('first_name', 'last_name'), ('phone_number', 'email'), 'text')
-    list_display = ('text', 'first_name', 'last_name', 'phone_number', 'email')
+    list_display = ('phone_number', 'first_name', 'last_name', 'email')
     list_filter = ('create_timestamp',)
     search_fields = ('text', 'first_name', 'last_name', 'phone_number', 'email')
     ordering = ('-create_timestamp',)
+
+    # staff admin can't anything edit on messages add change or delete just see
+    def has_add_permission(self, request) -> bool:
+        return False
+    
+    def has_change_permission(self, request, obj=None) -> bool:
+        return False
+    
+    def has_delete_permission(self, request, obj=None) -> bool:
+        return False
