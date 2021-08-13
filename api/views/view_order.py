@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from rest_framework import generics
+from rest_framework import generics, viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -30,6 +30,18 @@ class DiscountCodeDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = DiscountCode.objects.all()
     lookup_field = 'code'
     lookup_url_kwarg = 'code'
+    permission_classes = [
+        IsOwnerSite
+    ]
+
+
+class OrderListAPIView(viewsets.ModelViewSet):
+    """
+    View for See List of Orders Just if User is Staff
+    """
+
+    serializer_class = OrderBriefSerializer
+    queryset = Order.objects.all()
     permission_classes = [
         IsOwnerSite
     ]

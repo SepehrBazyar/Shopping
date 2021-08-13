@@ -5,6 +5,12 @@ from .views.view_customer import *
 from .views.view_order import *
 
 app_name = "api"
+
+# viewsets
+order_list = OrderListAPIView.as_view({
+    'get': 'list',
+})
+
 urlpatterns = [
     # product app
     path('product/brand/', BrandListAPIView.as_view(), name="brand_list"),
@@ -24,6 +30,7 @@ urlpatterns = [
 
     # order app
     path('order/discountcode/', DiscountCodeListAPIView.as_view(), name="discountcode_list"),
-    path('order/discountcode/<str:code>/', DiscountCodeDetailAPIView.as_view(), name="discountcode_detail")
+    path('order/discountcode/<str:code>/', DiscountCodeDetailAPIView.as_view(), name="discountcode_detail"),
+    path('order/order/', order_list, name="order_list"),
 
 ]
