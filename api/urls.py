@@ -1,4 +1,6 @@
-from django.urls import path
+from django.urls import path, include
+
+from rest_framework.routers import DefaultRouter
 
 from .views.view_product import *
 from .views.view_customer import *
@@ -9,6 +11,12 @@ app_name = "api"
 # viewsets
 order_list = OrderListAPIView.as_view({
     'get': 'list',
+})
+order_detail = OrderDetailAPIView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy',
 })
 
 urlpatterns = [
@@ -31,6 +39,8 @@ urlpatterns = [
     # order app
     path('order/discountcode/', DiscountCodeListAPIView.as_view(), name="discountcode_list"),
     path('order/discountcode/<str:code>/', DiscountCodeDetailAPIView.as_view(), name="discountcode_detail"),
+
     path('order/order/', order_list, name="order_list"),
+    path('order/order/<int:number>/', order_detail, name="order_detail"),
 
 ]

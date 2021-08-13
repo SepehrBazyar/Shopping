@@ -32,6 +32,31 @@ class DiscountCodeSerializer(serializers.ModelSerializer):
         )
 
 
+class OrderItemBriefSerializer(serializers.ModelSerializer):
+    """
+    Brief Serializer for Order Item Model Show Important Fields
+    """
+
+    class Meta:
+        model = OrderItem
+        fields = (
+            "id", "product", "count"
+        )
+
+
+# class OrderItemSerializer(serializers.ModelSerializer):
+#     """
+#     Serializer for Order Item Model Show All of the Fields
+#     """
+
+#     class Meta:
+#         model = OrderItem
+#         fields = (
+#             "id", "status", "customer", "address",
+#             "total_price", "final_price", "discount", "items"
+#         )
+
+
 class OrderBriefSerializer(serializers.ModelSerializer):
     """
     Brief Serializer for Order Model Show Important Fields
@@ -52,8 +77,10 @@ class OrderSerializer(serializers.ModelSerializer):
     Serializer for Order Model Show All of the Fields
     """
 
+    items = OrderItemBriefSerializer(read_only=True, many=True)
+
     class Meta:
-        model = OrderItem
+        model = Order
         fields = (
             "id", "status", "customer", "address",
             "total_price", "final_price", "discount", "items"

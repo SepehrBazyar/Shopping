@@ -45,3 +45,17 @@ class OrderListAPIView(viewsets.ModelViewSet):
     permission_classes = [
         IsOwnerSite
     ]
+
+
+class OrderDetailAPIView(viewsets.ModelViewSet):
+    """
+    View for See Details of a Order by Recepite Number Just is Onwer or Staff
+    """
+
+    serializer_class = OrderSerializer
+    queryset = Order.objects.all()
+    lookup_field = 'id'
+    lookup_url_kwarg = 'number'
+    permission_classes = [
+        IsOwnerUser
+    ]
