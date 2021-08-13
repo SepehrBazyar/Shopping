@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-13 02:14+0430\n"
+"POT-Creation-Date: 2021-08-13 22:55+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,12 +43,17 @@ msgid "Users"
 msgstr "کاربران"
 
 #: .\core\models.py:30 .\customer\forms.py:17 .\customer\forms.py:33
+#: .\landing\models.py:22
 msgid "Phone Number"
 msgstr "شماره تلفن همراه"
 
-#: .\core\models.py:31 .\customer\forms.py:20
+#: .\core\models.py:31 .\customer\forms.py:20 .\landing\models.py:23
 msgid "Please Enter Your Phone Number"
 msgstr "لطفا شماره تلفن همراه خود را وارد نمایید"
+
+#: .\core\models.py:68
+msgid "Create TimeStamp"
+msgstr "تاریخ ایجاد"
 
 #: .\core\validators.py:22
 msgid "Phone Number Must be Start with 09 & Length is 11 Char."
@@ -116,7 +121,7 @@ msgid "Please Enter Your Birth Day if You Wish."
 msgstr "در صورت تمایل لطفا تاریخ تولد خود را وارد فرمایید"
 
 #: .\customer\models.py:61 .\order\models.py:52
-#: .\templates\customer\address.html:4 .\templates\order\cart.html:71
+#: .\templates\customer\address.html:4 .\templates\order\cart.html:98
 msgid "Address"
 msgstr "نشانی"
 
@@ -193,6 +198,60 @@ msgstr "لطفا طول جغرافیایی مکان خود را وارد فرم�
 #: .\customer\validators.py:11
 msgid "Your Birth Day Can't be After Now Date Time"
 msgstr "تاریخ تولد شما نمی تواند پس از تاریخ امروز باشد"
+
+#: .\landing\apps.py:8 .\templates\admin\base.html:68 .\templates\base.html:91
+#: .\templates\registration\logged_out.html:4
+msgid "Home"
+msgstr "خانه"
+
+#: .\landing\models.py:16
+msgid "Message"
+msgstr "پیام"
+
+#: .\landing\models.py:16
+#: .\venv\Lib\site-packages\django\contrib\messages\apps.py:7
+msgid "Messages"
+msgstr "پیام ها"
+
+#: .\landing\models.py:18
+msgid "First Name"
+msgstr "نام"
+
+#: .\landing\models.py:19
+msgid "Please Enter Your First Name."
+msgstr "لطفا نام خود را وارد فرمایید"
+
+#: .\landing\models.py:20
+msgid "Last Name"
+msgstr "نام خانوادگی"
+
+#: .\landing\models.py:21
+msgid "Please Enter Your Last Name."
+msgstr "لطفا نام خانوادگی خود را وارد فرمایید"
+
+#: .\landing\models.py:24
+msgid "Email Address"
+msgstr "پست الکترونیکی"
+
+#: .\landing\models.py:25
+msgid "Please Enter Your Email Address(Optional)."
+msgstr "لطفا پست الکترونیکی خود را وارد فرمایید(اختیاری)"
+
+#: .\landing\models.py:26
+msgid "Message Text"
+msgstr "متن پیام"
+
+#: .\landing\models.py:27
+msgid "Please Write Your Message Text..."
+msgstr "لطفا متن پیام خود را بنویسید..."
+
+#: .\landing\views.py:31 .\templates\landing\contact.html:70
+msgid "Your Message was Successfully Received"
+msgstr "پیغام شما با موفقیت دریافت گردید"
+
+#: .\landing\views.py:34 .\templates\landing\contact.html:77
+msgid "Please be Careful & Try Again..."
+msgstr "لطفا دقت فرموده و مجددا تلاش نمایید..."
 
 #: .\order\admin.py:17 .\order\models.py:182
 msgid "Order Items"
@@ -305,11 +364,11 @@ msgstr ""
 msgid "Please Select Customer Owner this Order"
 msgstr "لطفا مشتری صاحب این سفارش را انتخاب نمایید"
 
-#: .\order\models.py:52 .\templates\order\cart.html:81
+#: .\order\models.py:52 .\templates\order\cart.html:108
 msgid "Please Select Address to Send Order There"
 msgstr "لطفا نشانی را برای ارسال سفارش به آنجا انتخاب نمایید"
 
-#: .\order\models.py:53 .\templates\order\cart.html:59
+#: .\order\models.py:53 .\templates\order\cart.html:86
 #: .\templates\order\orders.html:51
 msgid "Total Price"
 msgstr "مجموع قیمت"
@@ -318,7 +377,7 @@ msgstr "مجموع قیمت"
 msgid "Total Price is Sum of Pure Price of Product Items for this Order"
 msgstr "مجموع قیمت حاصل جمع قیمت خالص موارد سفارش می باشد"
 
-#: .\order\models.py:55 .\product\models.py:263 .\templates\order\cart.html:60
+#: .\order\models.py:55 .\product\models.py:263 .\templates\order\cart.html:87
 #: .\templates\order\orders.html:52
 msgid "Final Price"
 msgstr "قیمت نهایی"
@@ -341,7 +400,7 @@ msgid "Please Select Discount from Discount Codes to Apply on Price"
 msgstr "لطفا تخفیفی را از میان کدهای تخفیف انتخاب فرمایید"
 
 #: .\order\models.py:170 .\product\models.py:169 .\product\models.py:391
-#: .\templates\order\cart.html:59 .\templates\order\cart.html:60
+#: .\templates\order\cart.html:86 .\templates\order\cart.html:87
 #: .\templates\order\orders.html:51 .\templates\order\orders.html:52
 #: .\templates\product\product_detail.html:18
 #: .\templates\product\product_list.html:42
@@ -368,7 +427,7 @@ msgstr "مورد محصول"
 msgid "Please Select Product Item to Add"
 msgstr "لطفا مورد محصول را جهت اضافه شدن انتخاب فرمایید"
 
-#: .\order\models.py:189 .\templates\order\cart.html:39
+#: .\order\models.py:189 .\templates\order\cart.html:53
 msgid "Count of Order Item"
 msgstr "تعداد مورد سفارش"
 
@@ -378,7 +437,7 @@ msgstr ""
 "لطفا تعداد مورد سفارش خود را وارد نمایید(بطور پیش فرض حداقل مقدار 1 درنظر "
 "گرفته می شود)"
 
-#: .\order\validators.py:14
+#: .\order\validators.py:14 .\order\views.py:81
 msgid "Inventory of Product Item isn't Enough!"
 msgstr "موجودی انبار برای این محصول کافی نمی باشد!"
 
@@ -574,13 +633,15 @@ msgstr "دارای کد"
 
 #: .\product\models.py:183
 msgid "Please Select Check Box if is the Discount Code else Do Nothing."
-msgstr "لطفا اگر در حال ثبت کد تخفیف هستید این تیک را بزنید در غیر این صورت نیاز به انجام کاری نیست."
+msgstr ""
+"لطفا اگر در حال ثبت کد تخفیف هستید این تیک را بزنید در غیر این صورت نیاز به "
+"انجام کاری نیست."
 
 #: .\product\models.py:221
 msgid "Maximum"
 msgstr "بیشینه"
 
-#: .\product\models.py:232 .\templates\order\cart.html:38
+#: .\product\models.py:232 .\templates\order\cart.html:52
 msgid "Product"
 msgstr "محصول"
 
@@ -660,11 +721,6 @@ msgstr "تغییر زبان(En)"
 #: .\templates\admin\base.html:58
 msgid "Log out"
 msgstr "خروج"
-
-#: .\templates\admin\base.html:68 .\templates\base.html:91
-#: .\templates\registration\logged_out.html:4
-msgid "Home"
-msgstr "خانه"
 
 #: .\templates\admin\base_site.html:9
 msgid "Admin Panel"
@@ -756,7 +812,7 @@ msgstr "سال"
 msgid "Orders List"
 msgstr "لیست سفارشات"
 
-#: .\templates\customer\profile.html:58 .\templates\order\cart.html:84
+#: .\templates\customer\profile.html:58 .\templates\order\cart.html:111
 msgid "Add New Address"
 msgstr "ثبت نشانی جدید"
 
@@ -764,49 +820,65 @@ msgstr "ثبت نشانی جدید"
 msgid "Do You Have Account?"
 msgstr "حساب کاربری دارید؟"
 
+#: .\templates\landing\404.html:4 .\templates\landing\404.html:56
+msgid "Page Not Found"
+msgstr "عدم وجود صفحه"
+
+#: .\templates\landing\404.html:59
+msgid "Sorry, but the page you were trying to view does not exist."
+msgstr "با عرض پوزش؛ صفحه ای که خواستار مشاهده آن بودید وجود ندارد."
+
+#: .\templates\landing\contact.html:37
+msgid "Hi, My Name is Sepehr Bazyar."
+msgstr "سلام؛ اسم من سپهر بازیار است."
+
+#: .\templates\landing\contact.html:38
+msgid "I'm a Python Back-End Developer."
+msgstr "من یک توسعه دهنده سمت سرور به زبان پایتون هستم."
+
+#: .\templates\landing\contact.html:57
+msgid "Send Message"
+msgstr "ارسال پیام"
+
 #: .\templates\order\cart.html:4
 msgid "Cart"
 msgstr "سبد خرید"
 
-#: .\templates\order\cart.html:40 .\templates\order\items.html:4
+#: .\templates\order\cart.html:54 .\templates\order\items.html:4
 msgid "Change Item"
 msgstr "تغییر موارد"
 
-#: .\templates\order\cart.html:50 .\templates\order\orders.html:68
-msgid "Click Me"
-msgstr "کلیک کنید"
+#: .\templates\order\cart.html:71 .\templates\order\items.html:52
+msgid "Change Count"
+msgstr "تغییر تعداد"
 
-#: .\templates\order\cart.html:95
+#: .\templates\order\cart.html:74 .\templates\order\items.html:59
+msgid "Remove"
+msgstr "حذف"
+
+#: .\templates\order\cart.html:122
 msgid "Apply Changes"
 msgstr "ثبت تغییرات"
 
-#: .\templates\order\cart.html:100
+#: .\templates\order\cart.html:127
 msgid "Payment"
 msgstr "پرداخت"
 
-#: .\templates\order\cart.html:104 .\templates\order\orders.html:98
+#: .\templates\order\cart.html:131 .\templates\order\orders.html:104
 msgid "Cancel"
 msgstr "لغو کردن"
 
-#: .\templates\order\cart.html:108
+#: .\templates\order\cart.html:135
 msgid "Empty Basket"
 msgstr "سبد خرید خالی"
 
-#: .\templates\order\cart.html:110
+#: .\templates\order\cart.html:137
 msgid "Hope to Buy Again"
 msgstr "به امید خرید مجدد"
 
 #: .\templates\order\items.html:33
 msgid "Product Title"
 msgstr "نام محصول"
-
-#: .\templates\order\items.html:52
-msgid "Change Count"
-msgstr "تغییر تعداد"
-
-#: .\templates\order\items.html:59
-msgid "Remove"
-msgstr "حذف"
 
 #: .\templates\order\orders.html:33
 msgid "All Orders List"
@@ -829,17 +901,29 @@ msgstr "وضعیت"
 msgid "Details"
 msgstr "جزئیات"
 
+#: .\templates\order\orders.html:68
+msgid "Click Me"
+msgstr "کلیک کنید"
+
 #: .\templates\order\orders.html:79
 msgid "Recepite Detail"
 msgstr "جزئیات صورتحساب"
 
-#: .\templates\order\orders.html:88
+#: .\templates\order\orders.html:86
+msgid "Date"
+msgstr "تاریخ"
+
+#: .\templates\order\orders.html:94
 msgid "Number"
 msgstr "عدد"
 
-#: .\templates\product\product_detail.html:32
+#: .\templates\product\product_detail.html:33
 msgid "Add to Cart"
 msgstr "افزودن به سبد خرید"
+
+#: .\templates\product\product_detail.html:36
+msgid "Unavailable"
+msgstr "ناموجود"
 
 #: .\templates\product\product_list.html:46
 msgid "More Informations"
@@ -879,10 +963,6 @@ msgstr "از اینکه ما را انتخاب کردید بسیار خرسند�
 
 #: .\templates\registration\logged_out.html:23
 msgid "Log in again"
-msgstr ""
-
-#: .\venv\Lib\site-packages\django\contrib\messages\apps.py:7
-msgid "Messages"
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\contrib\sitemaps\apps.py:8
@@ -2067,22 +2147,3 @@ msgstr ""
 #: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:249
 msgid "Connect, get help, or contribute"
 msgstr ""
-
-#~ msgid "Change Passowrd"
-#~ msgstr "ویرایش گذرواژه"
-
-#~ msgid "Change Count Item"
-#~ msgstr "تغییر تعداد مورد"
-
-#~ msgid "Apply Discount Code"
-#~ msgstr "اعمال کد تخفیف"
-
-#~ msgid "Cutomers"
-#~ msgstr "مشتریان"
-
-#~ msgid "About Me"
-#~ msgstr "درباره من"
-
-#~ msgid "Copyright 2021, All Right Reserved Sepehr Bazyar"
-#~ msgstr ""
-#~ "کپی برداری تنها با ذکر منبع؛ تمام حقوق مادی و معنوی متعلق به سپهر بازیار"

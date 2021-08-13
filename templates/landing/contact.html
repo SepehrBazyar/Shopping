@@ -4,17 +4,79 @@
 {% block title %}{% trans "Contact Me" %}{% endblock %}
 
 {% block extra_style %}
+ul > li {
+    list-style-type: none;
+    padding: 1px 0;
+}
 
+li, dt, dd {
+    color: var(--body-quiet-color);
+    font-size: 13px;
+    line-height: 20px;
+}
+
+ul.errorlist li {
+    color: red;
+    background-color: #A9CCE3;
+    font-size: 13px;
+    display: block;
+    margin-bottom: 4px;
+    overflow-wrap: break-word;
+}
 {% endblock %}
 
 {% block body %}
-
 <div class="container">
-<div class="card" style="background-color: #A9CCE3;">
-    <form>
+  <div class="card" style="background-color: #A9CCE3;">
+    <div class="card-header text-center">
 
-    </form>
-</div>
-</div>
+      <img src="{% static 'shared/img/sepehr.jpg' %}" alt="Sepehr Bazyar"
+          style="border-radius: 50%; width: 15rem; height: 15rem;">
+        
+      <div class="mt-3">
+        <h2>{% trans "Hi, My Name is Sepehr Bazyar." %}</h2>
+        <p>{% trans "I'm a Python Back-End Developer." %}</p>
+      </div>
 
+      <hr style="background-color: #1B2631;">
+
+      {{ form.non_field_errors }}
+      <form id="contact">
+        {% csrf_token %}
+        <div class="fieldWrapper">
+          {% for field in form %}
+            {{ field.errors }}
+            <h2>{{ field.label_tag }}</h2>{{ field }}
+            {% if field.help_text %}
+              <p class="help">{{ field.help_text|safe }}</p>
+            {% endif %}
+          {% endfor %}
+        </div><br>
+      </form><br>
+      <button class="btn btn-info" id="send">
+        {% trans "Send Message" %}
+      </button>
+    </div>
+  </div>
+</div>
 {% endblock %}
+
+{% block extra_js %}
+<script>
+  $(document).ready(function() {
+    $('#send').click(function() {
+      $.post('{% url "contact" %}', $('#contact').serialize())
+        .done(function(data, status, xhr) {
+          alert("{% trans 'Your Message was Successfully Received' %}");
+          $('#contact').each(function() {
+            this.reset();
+          });
+        })
+        .fail(function(data, status, xhr) {
+          console.log(data, status, xhr)
+          alert("{% trans 'Please be Careful & Try Again...' %}");
+        });
+    });
+  });
+</script>
+{% endblock  %}

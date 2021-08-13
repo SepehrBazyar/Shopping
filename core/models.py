@@ -65,7 +65,7 @@ class BasicModel(models.Model):
     objects = BasicManager()
 
     deleted = models.BooleanField(default=False, db_index=True)  # column indexing
-    create_timestamp = models.DateTimeField(auto_now_add=True)
+    create_timestamp = models.DateTimeField(auto_now_add=True, verbose_name=_("Create TimeStamp"))
     modify_timestamp = models.DateTimeField(auto_now=True)
     delete_timestamp = models.DateTimeField(default=None, null=True, blank=True)
 

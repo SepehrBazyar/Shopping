@@ -22,12 +22,20 @@ from django.conf.urls.i18n import i18n_patterns
 from core.views import *
 from landing.views import *
 
+handler404 = "landing.views.page_not_found"
+
 urlpatterns = [
+    path('', home, name="index"),
+    path('category/', category, name="category"),
+    path('login/', login, name="login"),
+    path('register/', register, name="register"),
+    path('profile/', profile, name="profile"),
+    path('cart/', cart, name="cart"),
+    path('contact/', send_message, name="contact"),
     path('admin/', admin.site.urls),
     path('language/', change_language, name="change_language"),
     path('product/', include('product.urls')),
     path('customer/', include('customer.urls')),
     path('order/', include('order.urls')),
     path('api/', include('api.urls')),
-    path('contact/', send_message, name="contact"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

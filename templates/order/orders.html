@@ -75,13 +75,19 @@ ul.errorlist li {
 
                             <!-- Modal Header -->
                             <div class="modal-header">
-                                <h4 class="modal-title" style="font-size: 1rem;">
+                                <h2 class="modal-title" style="font-size: 1rem;">
                                     {% trans "Recepite Detail" %}
-                                </h4>
+                                </h2>
                             </div>
 
                             <!-- Modal body -->
                             <div class="modal-body">
+                                <h3>
+                                    {% trans "Date" %}: {{ order.modify_timestamp }}
+                                </h3>
+
+                                <br>
+
                                 {% for item in order.items.all %}
                                     <p>
                                         {{ item.product.title }} &times;

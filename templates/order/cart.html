@@ -29,6 +29,20 @@ ul.errorlist li {
 
 {% block body %}
 <div class="container" style="text-align: center;">
+
+{% if msgs %}
+<ul class="errorlist">
+    {% for msg in msgs %}
+        {% if msg.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+            <li {% if msg.tags %}class="{{ msg.tags }}"{% endif %}>{{ msg }}</li>
+        {% endif %}
+    {% endfor %}
+</ul>
+
+<br>
+
+{% endif %}
+
 {% if order %}
 <div>
     <table class="table table-bordered table-hover">
@@ -41,14 +55,27 @@ ul.errorlist li {
         </tr>
         </thead>
         <tbody>
-        {% for item in order.items.all %}
+        {% for item in items %}
             <tr>
-                <td>{{ forloop.counter }}</td>
-                <td>{{ item.product.title }}</td>
-                <td>{{ item.count }}</td>
-                <td><a href="{% url 'order:count' %}?item={{ item.id }}">
-                    {% trans "Click Me" %}
-                </a></td>
+                {{ item.0.non_field_errors }}
+                <form method="post" action="{% url 'order:count' %}?item={{ item.1.id }}">
+                    {% csrf_token %}
+                    <div class="fieldWrapper">
+                        {% for hidden in item.0.hidden_fields %}
+                            {{ hidden }}
+                        {% endfor %}
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ item.1.product.title }}</td>
+                        {% for field in item.0.visible_fields %}<td>{{ field }}</td>{% endfor %}
+                        <td>
+                            <input type="submit" value="{% trans "Change Count" %}">
+                            <a href="{% url 'order:remove' %}?item={{ item.1.id }}"
+                            class="btn" style="background-color: tomato;">
+                                {% trans "Remove" %} <i class="gb gb_delete"></i>
+                            </a>
+                        </td>
+                    </div>
+                </form>
             </tr>
         {% endfor %}
         </tbody>
@@ -80,7 +107,7 @@ ul.errorlist li {
             </select>
             <p class="help">{% trans "Please Select Address to Send Order There" %}</p>
 
-            <a href="{% url 'customer:address' %}">
+            <a href="{% url 'customer:address' %}?cart=True">
                 <i class="gb gb_add_location"></i> {% trans "Add New Address" %}
             </a>
 
@@ -97,11 +124,11 @@ ul.errorlist li {
 
     <a href="{% url 'order:change' %}?order={{ order.id }}&status=P"
     class="btn" style="background-color: #A9CCE3;">
-        {% trans "Payment" %}
+        {% trans "Payment" %} <i class="gb gb_payment"></i>
     </a>
     <a href="{% url 'order:change' %}?order={{ order.id }}&status=C"
     class="btn" style="background-color: tomato;">
-        {% trans "Cancel" %}
+        {% trans "Cancel" %} <i class="gb gb_cancel"></i>
     </a>
 </div>
 {% else %}
