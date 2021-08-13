@@ -44,3 +44,12 @@ class IsOwnerUser(permissions.BasePermission):
 
     def has_object_permission(self, request, view, obj):
         return request.user.username == obj.customer.username or request.user.is_staff
+
+
+class IsCustomerOwnerParent(permissions.BasePermission):
+    """
+    Permission for Check User Send Request is Owner of Parent of tis Object
+    """
+
+    def has_object_permission(self, request, view, obj):
+        return request.user.username == obj.order.customer.username or request.user.is_staff

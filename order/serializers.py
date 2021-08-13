@@ -44,17 +44,19 @@ class OrderItemBriefSerializer(serializers.ModelSerializer):
         )
 
 
-# class OrderItemSerializer(serializers.ModelSerializer):
-#     """
-#     Serializer for Order Item Model Show All of the Fields
-#     """
+class OrderItemSerializer(serializers.ModelSerializer):
+    """
+    Serializer for Order Item Model Show All of the Fields
+    """
 
-#     class Meta:
-#         model = OrderItem
-#         fields = (
-#             "id", "status", "customer", "address",
-#             "total_price", "final_price", "discount", "items"
-#         )
+    order = serializers.HyperlinkedRelatedField(view_name="api:order_detail",
+        read_only=True, lookup_field='id', lookup_url_kwarg='number')
+
+    class Meta:
+        model = OrderItem
+        fields = (
+            "id", "order", "product", "count"
+        )
 
 
 class OrderBriefSerializer(serializers.ModelSerializer):
@@ -77,11 +79,15 @@ class OrderSerializer(serializers.ModelSerializer):
     Serializer for Order Model Show All of the Fields
     """
 
+    customer = CustomerBriefSerializer(read_only=True)
+    address = serializers.HyperlinkedRelatedField(view_name="api:address_detail",
+        read_only=True, lookup_field='zip_code', lookup_url_kwarg='code')
+    discount = DiscountCodeBriefSerializer(read_only=True)
     items = OrderItemBriefSerializer(read_only=True, many=True)
 
     class Meta:
         model = Order
         fields = (
             "id", "status", "customer", "address",
-            "total_price", "final_price", "discount", "items"
+            "total_price", "final_price", "code", "discount", "items"
         )

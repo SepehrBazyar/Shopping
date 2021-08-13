@@ -59,3 +59,29 @@ class OrderDetailAPIView(viewsets.ModelViewSet):
     permission_classes = [
         IsOwnerUser
     ]
+
+
+class OrderItemListAPIView(viewsets.ModelViewSet):
+    """
+    View for See List of Order Items Just if User is Staff
+    """
+
+    serializer_class = OrderItemBriefSerializer
+    queryset = OrderItem.objects.all()
+    permission_classes = [
+        IsOwnerSite
+    ]
+
+
+class OrderItemDetailAPIView(viewsets.ModelViewSet):
+    """
+    View for See Details of a Order Item Just User is Onwer of Order or is Staff
+    """
+
+    serializer_class = OrderItemSerializer
+    queryset = OrderItem.objects.all()
+    lookup_field = 'id'
+    lookup_url_kwarg = 'number'
+    permission_classes = [
+        IsCustomerOwnerParent
+    ]

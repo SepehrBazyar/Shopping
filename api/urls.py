@@ -18,6 +18,15 @@ order_detail = OrderDetailAPIView.as_view({
     'patch': 'partial_update',
     'delete': 'destroy',
 })
+order_item_list = OrderItemListAPIView.as_view({
+    'get': 'list',
+})
+order_item_detail = OrderItemDetailAPIView.as_view({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy',
+})
 
 urlpatterns = [
     # product app
@@ -39,8 +48,8 @@ urlpatterns = [
     # order app
     path('order/discountcode/', DiscountCodeListAPIView.as_view(), name="discountcode_list"),
     path('order/discountcode/<str:code>/', DiscountCodeDetailAPIView.as_view(), name="discountcode_detail"),
-
     path('order/order/', order_list, name="order_list"),
     path('order/order/<int:number>/', order_detail, name="order_detail"),
-
+    path('order/orderitem/', order_item_list, name="orderitem_list"),
+    path('order/orderitem/<int:number>/', order_item_detail, name="orderitem_detail")
 ]
