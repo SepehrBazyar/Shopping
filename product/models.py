@@ -120,6 +120,17 @@ class Category(DynamicTranslation):
 
         return props
 
+    @property
+    def property_dict(self):
+        """
+        Property Method to Get All of Properties in Two Lang for API View 
+        """
+
+        return {
+            "en": self.property_list(lang='en'),
+            "fa": self.property_list(lang='fa'),
+        }
+
     def save(self, *args, **kwargs):
         if self.properties is None:
             with MongoClient('mongodb://localhost:27017/') as client:
@@ -168,6 +179,8 @@ class Discount(DynamicTranslation):
         verbose_name=_("Start Date"), help_text=_("Please Select the Start Date of the Discount"))
     end_date = models.DateTimeField(default=None, null=True, blank=True,
         verbose_name=_("End Date"), help_text=_("Please Select the End Date of the Discount"))
+    has_code = models.BooleanField(verbose_name=_("Has Code"), default=False, db_index=True,
+        help_text=_("Please Select Check Box if is the Discount Code else Do Nothing."))
 
     def calculate_decrease(self, price: int) -> int:
         """
@@ -280,6 +293,17 @@ class Product(DynamicTranslation):
         """
 
         return self.read_property(lang=get_language())
+
+    @property
+    def property_dict(self):
+        """
+        Property Method to Get All of Properties in Two Lang for API View 
+        """
+
+        return {
+            "en": self.read_property(lang='en'),
+            "fa": self.read_property(lang='fa'),
+        }
 
     def change_inventory(self, new_value: int):
         """
