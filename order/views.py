@@ -53,10 +53,10 @@ class BasketCartView(LoginRequiredMixin, View):
         try: customer = Customer.objects.get(id=request.user.id)
         except Customer.DoesNotExist: return redirect(reverse("customer:logout"))
         order = customer.orders.filter(status='U')[0]
+        order.address = Address.objects.get(id=int(request.POST["address"]))
         form = OrderForm(request.POST)
         if form.is_valid():
             order.code = request.POST["code"] or None
-            order.address = Address.objects.get(id=int(request.POST["address"]))
             order.save()
             data, code = order.readable_final_price, 1
         else:
