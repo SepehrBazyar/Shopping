@@ -42,9 +42,56 @@
                             <strong>{{ product.readable_final_price }}</strong> {% trans "Toman" %}
                         </p>
                         
-                        <a href="{% url 'product:details' product.slug %}" class="btn" style="background-color: #A9CCE3;">
+                        {% comment %} <a href="{% url 'product:details' product.slug %}" class="btn" style="background-color: #A9CCE3;">
                             {% trans "More Informations" %}
-                        </a>
+                        </a> {% endcomment %}
+
+                        <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{ product.slug }}">
+                            {% trans "More Informations" %}
+                        </button>
+
+                        <!-- The Modal -->
+                        <div class="modal fade" id="{{ product.slug }}">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                            
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h2 class="modal-title" style="font-size: 1.25rem;">
+                                        {{ product.title }}
+                                    </h2>
+                                </div>
+                                
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <h3 class="mb-3" style="font-size: 1rem;">
+                                        <i class="gb gb_info"></i> {% trans "Details" %}:
+                                    </h3>
+                                    {% for key, value in product.property_list.items %}
+                                        <span><b>{{ key }}: </b> {% if value %}{{ value }}{% else %}-{% endif %}</span><br>
+                                    {% endfor %}
+                                </div>
+                                
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    {% if product.inventory > 0 %}
+                                        <form id="form-{{ product.slug }}">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="product" value="{{ product.id }}">
+                                        </form>
+                                        <button class="btn btn-success" onclick="AddCart('{{ product.slug }}')">
+                                            {% trans "Add to Cart" %} <i class="gb gb_add"></i>
+                                        </button>
+                                    {% else %}
+                                        <button class="btn btn-success disabled">
+                                            {% trans "Unavailable" %} <i class="gb gb_highlight_off"></i>
+                                        </button>
+                                    {% endif %}
+                                </div>
+                                
+                            </div>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -95,3 +142,14 @@
 
 </div>
 {% endblock %}
+
+{% block extra_js %}
+<script>
+function AddCart(slug) {
+    $.post(`/product/${slug}`, $(`#form-${slug}`).serialize(), function(data) {
+        alert(data.msg);
+        $(`#${slug}`).modal('hide');
+    })
+}
+</script>
+{% endblock  %}
