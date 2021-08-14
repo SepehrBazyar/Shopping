@@ -78,7 +78,7 @@ ul.errorlist li {
                 </form>
                 <td>
                     <button class="btn btn-success" onclick="ChangeCount({{ item.1.id }}, {{ forloop.counter0 }})">
-                        {% trans "Change Count" %}
+                        {% trans "Change Count" %} <i class="gb gb_done"></i>
                     </button>
                     <a href="{% url 'order:remove' %}?item={{ item.1.id }}"
                     class="btn" style="background-color: tomato;">
@@ -136,7 +136,7 @@ ul.errorlist li {
     </form>
 
     <button class="btn btn-success mb-4" id="offcode">
-        {% trans "Apply Changes" %}
+        {% trans "Apply Changes" %} <i class="gb gb_done"></i>
     </button><br>
 
     <a href="{% url 'order:change' %}?order={{ order.id }}&status=P"
@@ -159,8 +159,7 @@ ul.errorlist li {
 {% block extra_js %}
 <script>
 function ChangeCount(id, index) {
-    $.post(`{% url "order:count" %}?item=${id}`, $(`#item${id}`).serialize(), function(data) {
-        let result = JSON.parse(data);
+    $.post(`{% url "order:count" %}?item=${id}`, $(`#item${id}`).serialize(), function(result) {
         if(result.code == 1) {
             document.getElementById("total").innerHTML = result.data.total;
             document.getElementById("final").innerHTML = result.data.final;
@@ -170,13 +169,12 @@ function ChangeCount(id, index) {
         }
     })
 }
+
 $(document).ready(function() {
     $("#offcode").click(function() {
-        $.post('{% url "order:cart" %}', $("#basket").serialize(), function(data) {
-            let result = JSON.parse(data);
+        $.post('{% url "order:cart" %}', $("#basket").serialize(), function(result) {
             if(result.code == 1) {
-                $.post('{% url "order:cart" %}', $("#basket").serialize(), function(data){
-                    let result = JSON.parse(data);
+                $.post('{% url "order:cart" %}', $("#basket").serialize(), function(result){
                     document.getElementById("final").innerHTML = result.data;
                 })
             } else {

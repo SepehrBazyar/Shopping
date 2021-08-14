@@ -1,11 +1,10 @@
 from django.shortcuts import render, redirect, HttpResponse
+from django.http import JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse, reverse_lazy
 from django.views import generic, View
 from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
-
-from json import dumps
 
 from .models import *
 from .forms import *
@@ -63,7 +62,7 @@ class BasketCartView(LoginRequiredMixin, View):
             order.code = None
             order.save()
             data, code = form.errors['__all__'].as_data()[0].messages[0], 0
-        return HttpResponse(dumps({'code': code, 'data': data}))
+        return JsonResponse({'code': code, 'data': data})
 
 
 class ChangeItemView(LoginRequiredMixin, View):
@@ -84,7 +83,7 @@ class ChangeItemView(LoginRequiredMixin, View):
         else:
             key = 'count' if request.POST["count"] == '0' else '__all__'
             code, data = 0, form.errors[key].as_data()[0].messages[0]
-        return HttpResponse(dumps({'code': code, 'data': data, 'count': item.count}))
+        return JsonResponse({'code': code, 'data': data, 'count': item.count})
 
 
 class RemoveItemView(LoginRequiredMixin, View):
