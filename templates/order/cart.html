@@ -170,13 +170,15 @@ function ChangeCount(id, index) {
         }
     })
 }
-
 $(document).ready(function() {
     $("#offcode").click(function() {
         $.post('{% url "order:cart" %}', $("#basket").serialize(), function(data) {
             let result = JSON.parse(data);
             if(result.code == 1) {
-                document.getElementById("final").innerHTML = result.data;
+                $.post('{% url "order:cart" %}', $("#basket").serialize(), function(data){
+                    let result = JSON.parse(data);
+                    document.getElementById("final").innerHTML = result.data;
+                })
             } else {
                 alert(result.data);
                 document.getElementById("id_code").value = '';
