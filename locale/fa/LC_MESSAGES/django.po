@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-13 22:55+0430\n"
+"POT-Creation-Date: 2021-08-14 14:49+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,17 +43,21 @@ msgid "Users"
 msgstr "کاربران"
 
 #: .\core\models.py:30 .\customer\forms.py:17 .\customer\forms.py:33
-#: .\landing\models.py:22
+#: .\landing\models.py:24
 msgid "Phone Number"
 msgstr "شماره تلفن همراه"
 
-#: .\core\models.py:31 .\customer\forms.py:20 .\landing\models.py:23
+#: .\core\models.py:31 .\customer\forms.py:20 .\landing\models.py:25
 msgid "Please Enter Your Phone Number"
 msgstr "لطفا شماره تلفن همراه خود را وارد نمایید"
 
 #: .\core\models.py:68
 msgid "Create TimeStamp"
 msgstr "تاریخ ایجاد"
+
+#: .\core\models.py:69
+msgid "Modify TimeStamp"
+msgstr "تاریخ ویرایش"
 
 #: .\core\validators.py:22
 msgid "Phone Number Must be Start with 09 & Length is 11 Char."
@@ -214,42 +218,50 @@ msgid "Messages"
 msgstr "پیام ها"
 
 #: .\landing\models.py:18
+msgid "Was Read"
+msgstr "خوانده شده"
+
+#: .\landing\models.py:19
+msgid "Please if Read this Message Select the Checkbox to Mark as Read"
+msgstr "لطفا اگر این پیام را خواندید این تیک را بزنید تا علامت گذاری شود"
+
+#: .\landing\models.py:20
 msgid "First Name"
 msgstr "نام"
 
-#: .\landing\models.py:19
+#: .\landing\models.py:21
 msgid "Please Enter Your First Name."
 msgstr "لطفا نام خود را وارد فرمایید"
 
-#: .\landing\models.py:20
+#: .\landing\models.py:22
 msgid "Last Name"
 msgstr "نام خانوادگی"
 
-#: .\landing\models.py:21
+#: .\landing\models.py:23
 msgid "Please Enter Your Last Name."
 msgstr "لطفا نام خانوادگی خود را وارد فرمایید"
 
-#: .\landing\models.py:24
+#: .\landing\models.py:26
 msgid "Email Address"
 msgstr "پست الکترونیکی"
 
-#: .\landing\models.py:25
+#: .\landing\models.py:27
 msgid "Please Enter Your Email Address(Optional)."
 msgstr "لطفا پست الکترونیکی خود را وارد فرمایید(اختیاری)"
 
-#: .\landing\models.py:26
+#: .\landing\models.py:28
 msgid "Message Text"
 msgstr "متن پیام"
 
-#: .\landing\models.py:27
+#: .\landing\models.py:29
 msgid "Please Write Your Message Text..."
 msgstr "لطفا متن پیام خود را بنویسید..."
 
-#: .\landing\views.py:31 .\templates\landing\contact.html:70
+#: .\landing\views.py:31 .\templates\landing\contact.html:74
 msgid "Your Message was Successfully Received"
 msgstr "پیغام شما با موفقیت دریافت گردید"
 
-#: .\landing\views.py:34 .\templates\landing\contact.html:77
+#: .\landing\views.py:34 .\templates\landing\contact.html:81
 msgid "Please be Careful & Try Again..."
 msgstr "لطفا دقت فرموده و مجددا تلاش نمایید..."
 
@@ -836,7 +848,7 @@ msgstr "سلام؛ اسم من سپهر بازیار است."
 msgid "I'm a Python Back-End Developer."
 msgstr "من یک توسعه دهنده سمت سرور به زبان پایتون هستم."
 
-#: .\templates\landing\contact.html:57
+#: .\templates\landing\contact.html:61
 msgid "Send Message"
 msgstr "ارسال پیام"
 

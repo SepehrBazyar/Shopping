@@ -15,6 +15,8 @@ class Message(BasicModel):
     class Meta:
         verbose_name, verbose_name_plural = _("Message"), _("Messages")
 
+    was_read = models.BooleanField(default=False, verbose_name=_("Was Read"),
+        help_text=_("Please if Read this Message Select the Checkbox to Mark as Read"))
     first_name = models.CharField(max_length=100, verbose_name=_("First Name"), 
         help_text=_("Please Enter Your First Name."))
     last_name = models.CharField(max_length=100, verbose_name=_("Last Name"), 
