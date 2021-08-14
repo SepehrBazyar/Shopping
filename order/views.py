@@ -5,6 +5,8 @@ from django.views import generic, View
 from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
 
+from json import dumps
+
 from .models import *
 from .forms import *
 
@@ -56,13 +58,12 @@ class BasketCartView(LoginRequiredMixin, View):
             order.code = request.POST["code"] or None
             order.address = Address.objects.get(id=int(request.POST["address"]))
             order.save()
-            return redirect(reverse("order:cart"))
-        order.code = None
-        order.save()
-        addresses = customer.addresses.all()
-        return render(request, "order/cart.html", {
-            'order': order, 'form': form, 'addresses': addresses,
-        })
+            data, code = order.readable_final_price, 1
+        else:
+            order.code = None
+            order.save()
+            data, code = form.errors['__all__'].as_data()[0].messages[0], 0
+        return HttpResponse(dumps({'code': code, 'data': data}))
 
 
 class ChangeItemView(LoginRequiredMixin, View):

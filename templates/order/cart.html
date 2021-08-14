@@ -84,11 +84,13 @@ ul.errorlist li {
     <hr><br>
     <strong>
         <p>{% trans "Total Price" %}: {{ order.readable_total_price }} {% trans "Toman" %}</p>
-        <p>{% trans "Final Price" %}: {{ order.readable_final_price }} {% trans "Toman" %}</p>
+        <p>{% trans "Final Price" %}:
+            <span id="price">{{ order.readable_final_price }}</span> {% trans "Toman" %}
+        </p>
     </strong>
 
     {{ form.non_field_errors }}
-    <form method="post">
+    <form id="basket">
         {% csrf_token %}
         <div class="fieldWrapper">
             {% for hidden in form.hidden_fields %}
@@ -119,8 +121,12 @@ ul.errorlist li {
                 {% endif %}
             {% endfor %}
         </div><br>
-        <input type="submit" value="{% trans "Apply Changes" %}">
-    </form><br>
+        {% comment %} <input type="submit" value="{% trans "Apply Changes" %}"> {% endcomment %}
+    </form>
+
+    <button class="btn btn-success mb-4" id="offcode">
+        {% trans "Apply Changes" %}
+    </button><br>
 
     <a href="{% url 'order:change' %}?order={{ order.id }}&status=P"
     class="btn" style="background-color: #A9CCE3;">
@@ -138,3 +144,21 @@ ul.errorlist li {
 {% endif %}
 </div>
 {% endblock %}
+
+{% block extra_js %}
+<script>
+$(document).ready(function() {
+    $("#offcode").click(function() {
+        $.post('{% url "order:cart" %}', $("#basket").serialize(), function(data) {
+            let result = JSON.parse(data);
+            if(result.code === 1) {
+                document.getElementById("price").innerHTML = result.data;
+            } else {
+                alert(result.data);
+                document.getElementById("id_code").value = '';
+            }
+        });
+    });
+});
+</script>
+{% endblock  %}
