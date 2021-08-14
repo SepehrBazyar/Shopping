@@ -30,7 +30,7 @@ ul.errorlist li {
 {% block body %}
 <div class="container" style="text-align: center;">
 
-{% if msgs %}
+{% comment %} {% if msgs %}
 <ul class="errorlist">
     {% for msg in msgs %}
         {% if msg.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
@@ -41,7 +41,7 @@ ul.errorlist li {
 
 <br>
 
-{% endif %}
+{% endif %} {% endcomment %}
 
 {% if order %}
 <div>
@@ -58,7 +58,7 @@ ul.errorlist li {
         {% for item in items %}
             <tr>
                 {{ item.0.non_field_errors }}
-                <form method="post" action="{% url 'order:count' %}?item={{ item.1.id }}">
+                <form id="item{{ item.1.id }}">
                     {% csrf_token %}
                     <div class="fieldWrapper">
                         {% for hidden in item.0.hidden_fields %}
@@ -67,15 +67,24 @@ ul.errorlist li {
                         <td>{{ forloop.counter }}</td>
                         <td>{{ item.1.product.title }}</td>
                         {% for field in item.0.visible_fields %}<td>{{ field }}</td>{% endfor %}
-                        <td>
+                        {% comment %} <td>
                             <input type="submit" value="{% trans "Change Count" %}">
                             <a href="{% url 'order:remove' %}?item={{ item.1.id }}"
                             class="btn" style="background-color: tomato;">
                                 {% trans "Remove" %} <i class="gb gb_delete"></i>
                             </a>
-                        </td>
+                        </td> {% endcomment %}
                     </div>
                 </form>
+                <td>
+                    <button class="btn btn-success" onclick="ChangeCount({{ item.1.id }}, {{ forloop.counter0 }})">
+                        {% trans "Change Count" %}
+                    </button>
+                    <a href="{% url 'order:remove' %}?item={{ item.1.id }}"
+                    class="btn" style="background-color: tomato;">
+                        {% trans "Remove" %} <i class="gb gb_delete"></i>
+                    </a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>
@@ -83,9 +92,11 @@ ul.errorlist li {
 
     <hr><br>
     <strong>
-        <p>{% trans "Total Price" %}: {{ order.readable_total_price }} {% trans "Toman" %}</p>
+        <p>{% trans "Total Price" %}:
+            <span id="total">{{ order.readable_total_price }}</span> {% trans "Toman" %}
+        </p>
         <p>{% trans "Final Price" %}:
-            <span id="price">{{ order.readable_final_price }}</span> {% trans "Toman" %}
+            <span id="final">{{ order.readable_final_price }}</span> {% trans "Toman" %}
         </p>
     </strong>
 
@@ -147,12 +158,25 @@ ul.errorlist li {
 
 {% block extra_js %}
 <script>
+function ChangeCount(id, index) {
+    $.post(`{% url "order:count" %}?item=${id}`, $(`#item${id}`).serialize(), function(data) {
+        let result = JSON.parse(data);
+        if(result.code == 1) {
+            document.getElementById("total").innerHTML = result.data.total;
+            document.getElementById("final").innerHTML = result.data.final;
+        } else {
+            alert(result.data);
+            document.getElementsByName("count")[index].value = result.count;
+        }
+    })
+}
+
 $(document).ready(function() {
     $("#offcode").click(function() {
         $.post('{% url "order:cart" %}', $("#basket").serialize(), function(data) {
             let result = JSON.parse(data);
-            if(result.code === 1) {
-                document.getElementById("price").innerHTML = result.data;
+            if(result.code == 1) {
+                document.getElementById("final").innerHTML = result.data;
             } else {
                 alert(result.data);
                 document.getElementById("id_code").value = '';

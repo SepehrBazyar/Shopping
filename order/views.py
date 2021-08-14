@@ -77,10 +77,14 @@ class ChangeItemView(LoginRequiredMixin, View):
         if form.is_valid():
             item.count = request.POST["count"]
             item.save()
+            code, data = 1, {
+                'total': item.order.readable_total_price,
+                'final': item.order.readable_final_price,
+            }
         else:
-            messages.add_message(request, messages.ERROR,
-            _("Inventory of Product Item isn't Enough!"))
-        return redirect(reverse("order:cart"))
+            key = 'count' if request.POST["count"] == '0' else '__all__'
+            code, data = 0, form.errors[key].as_data()[0].messages[0]
+        return HttpResponse(dumps({'code': code, 'data': data, 'count': item.count}))
 
 
 class RemoveItemView(LoginRequiredMixin, View):
