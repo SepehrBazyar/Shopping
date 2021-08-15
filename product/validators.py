@@ -15,7 +15,7 @@ class DiscountValidator:
         if self.unit == 'P' and amount > 100:
             raise ValidationError(_("Percentage Rate Must be Between 0 & 100"))
         if self.unit == 'T' and roof:
-            raise ValidationError(_("Ceiling Just in Percent Unit Available"))
+            raise ValidationError(_("Ceiling is Just Available in Percent Unit"))
 
 
 class DatesValidator:

@@ -34,7 +34,7 @@ class ProductDetailView(generic.DetailView):
     context_object_name = "product"
 
     def post(self, request, *args, **kwargs):
-        resp = JsonResponse({'msg': _("Product Item Successfully Added to Cart")})
+        resp = JsonResponse({'msg': _("Product Item has Successfully been Added to the Cart")})
         cart = request.COOKIES.get("cart", "")
         resp.set_cookie("cart", cart + request.POST["product"] + ',')
         return resp

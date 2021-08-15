@@ -40,8 +40,9 @@ class BasketCartView(LoginRequiredMixin, View):
         form = OrderForm(instance=order)
         addresses = customer.addresses.all()
         items = []
-        for item in order.items.all():
-            items.append((OrderItemForm(instance=item), item))
+        if order is not None:
+            for item in order.items.all():
+                items.append((OrderItemForm(instance=item), item))
         resp = render(request, "order/cart.html", {
             'order': order, 'form': form, 'addresses': addresses, 'items': items, 'msgs': msgs,
         })

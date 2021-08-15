@@ -11,7 +11,7 @@ class CountValidator:
 
     def __call__(self, count: int):
         if count > self.product_item.inventory:
-            raise ValidationError(_("Inventory of Product Item isn't Enough!"))
+            raise ValidationError(_("The Product Item Inventory isn't Enough!"))
 
 
 class DiscountCodeValidator:
@@ -25,9 +25,9 @@ class DiscountCodeValidator:
     def __call__(self, customer):
         if self.discount_code.count() > 0:
             if customer in self.discount_code[0].users.all():
-                raise ValidationError(_("This Discount Code has Expired for You!"))
+                raise ValidationError(_("This Discount Code has been Expired for You!"))
         else:
-            raise ValidationError(_("Not Found Matching Any Discount Code!"))
+            raise ValidationError(_("Not Found Any Matching Discount Code!"))
 
 
 class CustomerAddressValidator:

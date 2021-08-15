@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-15 02:05+0430\n"
+"POT-Creation-Date: 2021-08-15 17:26+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,11 +60,11 @@ msgid "Modify TimeStamp"
 msgstr "تاریخ ویرایش"
 
 #: .\core\validators.py:22
-msgid "Phone Number Must be Start with 09 & Length is 11 Char."
+msgid "Phone Number Must Start with 09 & its Length is 11 Char."
 msgstr "شماره تلفن همراه می بایست با 09 آغاز شود و حاوی 11 رقم باشد"
 
 #: .\core\validators.py:31
-msgid "Postal Code Must be 10 Digits."
+msgid "Zip Code Must be 10 Digits."
 msgstr "کد پستی می بایست دقیقا حاوی 10 رقم باشد"
 
 #: .\customer\admin.py:15 .\customer\models.py:61
@@ -200,7 +200,7 @@ msgid "Please Enter Your Address Longitude"
 msgstr "لطفا طول جغرافیایی مکان خود را وارد فرمایید"
 
 #: .\customer\validators.py:11
-msgid "Your Birth Day Can't be After Now Date Time"
+msgid "Your Birth Day Can't be After Present Date Time"
 msgstr "تاریخ تولد شما نمی تواند پس از تاریخ امروز باشد"
 
 #: .\landing\apps.py:8 .\templates\admin\base.html:68 .\templates\base.html:91
@@ -415,7 +415,7 @@ msgstr "لطفا تخفیفی را از میان کدهای تخفیف انتخ�
 #: .\templates\order\cart.html:98 .\templates\order\cart.html:101
 #: .\templates\order\orders.html:51 .\templates\order\orders.html:52
 #: .\templates\product\product_detail.html:18
-#: .\templates\product\product_list.html:42
+#: .\templates\product\product_list.html:46
 msgid "Toman"
 msgstr "تومان"
 
@@ -450,15 +450,15 @@ msgstr ""
 "گرفته می شود)"
 
 #: .\order\validators.py:14
-msgid "Inventory of Product Item isn't Enough!"
+msgid "The Product Item Inventory isn't Enough!"
 msgstr "موجودی انبار برای این محصول کافی نمی باشد!"
 
 #: .\order\validators.py:28
-msgid "This Discount Code has Expired for You!"
+msgid "This Discount Code has been Expired for You!"
 msgstr "این کد تخفیف برای شما استفاده و منقضی گردیده است!"
 
 #: .\order\validators.py:30
-msgid "Not Found Matching Any Discount Code!"
+msgid "Not Found Any Matching Discount Code!"
 msgstr "هیچ کد تخفیف منطبقی با این مقدار یافت نشد!"
 
 #: .\order\validators.py:43
@@ -698,7 +698,7 @@ msgid "Percentage Rate Must be Between 0 & 100"
 msgstr "درصد می بایست عددی بین 0 تا 100 باشد"
 
 #: .\product\validators.py:18
-msgid "Ceiling Just in Percent Unit Available"
+msgid "Ceiling is Just Available in Percent Unit"
 msgstr "تعیین سقف فقط برای تخفیف درصدی امکان پذیر است"
 
 #: .\product\validators.py:31
@@ -706,7 +706,7 @@ msgid "End Date Should be After the Start Date"
 msgstr "تاریخ اتمام نمی تواند قبل از تاریخ شروع باشد"
 
 #: .\product\views.py:37
-msgid "Product Item Successfully Added to Cart"
+msgid "Product Item has Successfully been Added to the Cart"
 msgstr "محصول با موفقیت به سبد خرید افزوده شد"
 
 #: .\templates\admin\base.html:5 .\templates\base.html:20
@@ -889,7 +889,7 @@ msgid "Empty Basket"
 msgstr "سبد خرید خالی"
 
 #: .\templates\order\cart.html:157
-msgid "Hope to Buy Again"
+msgid "Hope You Buy Again"
 msgstr "به امید خرید مجدد"
 
 #: .\templates\order\items.html:33
@@ -914,7 +914,7 @@ msgstr "وضعیت"
 
 #: .\templates\order\orders.html:55 .\templates\product\product_detail.html:4
 #: .\templates\product\product_detail.html:22
-#: .\templates\product\product_list.html:69
+#: .\templates\product\product_list.html:73
 msgid "Details"
 msgstr "جزئیات"
 
@@ -935,44 +935,44 @@ msgid "Number"
 msgstr "عدد"
 
 #: .\templates\product\product_detail.html:33
-#: .\templates\product\product_list.html:84
+#: .\templates\product\product_list.html:88
 msgid "Add to Cart"
 msgstr "افزودن به سبد خرید"
 
 #: .\templates\product\product_detail.html:36
-#: .\templates\product\product_list.html:88
+#: .\templates\product\product_list.html:92
 msgid "Unavailable"
 msgstr "ناموجود"
 
-#: .\templates\product\product_list.html:51
+#: .\templates\product\product_list.html:55
 msgid "More Informations"
 msgstr "اطلاعات بیشتر"
 
-#: .\templates\product\product_list.html:109
-#: .\templates\product\product_list.html:116
+#: .\templates\product\product_list.html:113
+#: .\templates\product\product_list.html:120
 msgid "First"
 msgstr "نخستین"
 
-#: .\templates\product\product_list.html:112
-#: .\templates\product\product_list.html:119
+#: .\templates\product\product_list.html:116
+#: .\templates\product\product_list.html:123
 msgid "Previous"
 msgstr "قبلی"
 
-#: .\templates\product\product_list.html:124
+#: .\templates\product\product_list.html:128
 msgid "Page"
 msgstr "صفحه"
 
-#: .\templates\product\product_list.html:124
+#: .\templates\product\product_list.html:128
 msgid "of"
 msgstr "از"
 
-#: .\templates\product\product_list.html:129
-#: .\templates\product\product_list.html:136
+#: .\templates\product\product_list.html:133
+#: .\templates\product\product_list.html:140
 msgid "Next"
 msgstr "بعدی"
 
-#: .\templates\product\product_list.html:132
-#: .\templates\product\product_list.html:139
+#: .\templates\product\product_list.html:136
+#: .\templates\product\product_list.html:143
 msgid "Last"
 msgstr "آخرین"
 
