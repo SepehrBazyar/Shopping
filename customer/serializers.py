@@ -50,11 +50,12 @@ class CustomerSerializer(serializers.ModelSerializer):
     staff = serializers.ReadOnlyField(source='is_staff')
     addresses = AddressBriefSerializer(read_only=True, many=True)
     codes = serializers.PrimaryKeyRelatedField(read_only=True, many=True)
-    # TODO: orders
+    orders = serializers.HyperlinkedRelatedField(view_name="api:order_detail",
+        many=True, read_only=True, lookup_field='id', lookup_url_kwarg='number')
 
     class Meta:
         model = Customer
         fields = (
             "id", "username", "first_name", "last_name", "phone_number", "email",
-            "staff", "gender", "birth_day", "photo", "addresses", "codes"
+            "staff", "gender", "birth_day", "photo", "addresses", "codes", "orders"
         )
