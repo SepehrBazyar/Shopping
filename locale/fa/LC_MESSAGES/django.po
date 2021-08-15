@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-15 17:26+0430\n"
+"POT-Creation-Date: 2021-08-16 00:05+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -708,6 +708,16 @@ msgstr "تاریخ اتمام نمی تواند قبل از تاریخ شروع 
 #: .\product\views.py:37
 msgid "Product Item has Successfully been Added to the Cart"
 msgstr "محصول با موفقیت به سبد خرید افزوده شد"
+
+#: .\shopping\settings.py:182
+msgid "Persian"
+msgstr "فارسی"
+
+#: .\shopping\settings.py:183
+#, fuzzy
+#| msgid "English Title"
+msgid "English"
+msgstr "انگلیسی"
 
 #: .\templates\admin\base.html:5 .\templates\base.html:20
 #: .\templates\base.html:80
