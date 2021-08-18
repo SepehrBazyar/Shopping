@@ -169,14 +169,11 @@ function ChangeCount(id, index) {
         }
     })
 }
-
 $(document).ready(function() {
     $("#offcode").click(function() {
         $.post('{% url "order:cart" %}', $("#basket").serialize(), function(result) {
             if(result.code == 1) {
-                $.post('{% url "order:cart" %}', $("#basket").serialize(), function(result){
-                    document.getElementById("final").innerHTML = result.data;
-                })
+                document.getElementById("final").innerHTML = result.data;
             } else {
                 alert(result.data);
                 document.getElementById("id_code").value = '';
