@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-16 00:05+0430\n"
+"POT-Creation-Date: 2021-08-18 14:47+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -203,7 +203,7 @@ msgstr "لطفا طول جغرافیایی مکان خود را وارد فرم�
 msgid "Your Birth Day Can't be After Present Date Time"
 msgstr "تاریخ تولد شما نمی تواند پس از تاریخ امروز باشد"
 
-#: .\landing\apps.py:8 .\templates\admin\base.html:68 .\templates\base.html:91
+#: .\landing\apps.py:8 .\templates\admin\base.html:74 .\templates\base.html:91
 #: .\templates\registration\logged_out.html:4
 msgid "Home"
 msgstr "خانه"
@@ -265,7 +265,7 @@ msgstr "پیغام شما با موفقیت دریافت گردید"
 msgid "Please be Careful & Try Again..."
 msgstr "لطفا دقت فرموده و مجددا تلاش نمایید..."
 
-#: .\order\admin.py:17 .\order\models.py:182
+#: .\order\admin.py:17 .\order\models.py:191
 msgid "Order Items"
 msgstr "موارد سفارش"
 
@@ -411,39 +411,39 @@ msgstr "مقدار تخفیف"
 msgid "Please Select Discount from Discount Codes to Apply on Price"
 msgstr "لطفا تخفیفی را از میان کدهای تخفیف انتخاب فرمایید"
 
-#: .\order\models.py:170 .\product\models.py:169 .\product\models.py:391
-#: .\templates\order\cart.html:98 .\templates\order\cart.html:101
-#: .\templates\order\orders.html:51 .\templates\order\orders.html:52
-#: .\templates\product\product_detail.html:18
+#: .\order\models.py:179 .\product\models.py:169 .\product\models.py:391
+#: .\templates\admin\base.html:40 .\templates\order\cart.html:98
+#: .\templates\order\cart.html:101 .\templates\order\orders.html:51
+#: .\templates\order\orders.html:52 .\templates\product\product_detail.html:18
 #: .\templates\product\product_list.html:46
 msgid "Toman"
 msgstr "تومان"
 
-#: .\order\models.py:182
+#: .\order\models.py:191
 msgid "Order Item"
 msgstr "مورد سفارش"
 
-#: .\order\models.py:185
+#: .\order\models.py:194
 msgid "Recepite Order"
 msgstr "صورتحساب سفارش"
 
-#: .\order\models.py:185
+#: .\order\models.py:194
 msgid "Please Select Your Order"
 msgstr "لطفا سفارش مربوطه خود را انتخاب نمایید"
 
-#: .\order\models.py:187
+#: .\order\models.py:196
 msgid "Product Item"
 msgstr "مورد محصول"
 
-#: .\order\models.py:187
+#: .\order\models.py:196
 msgid "Please Select Product Item to Add"
 msgstr "لطفا مورد محصول را جهت اضافه شدن انتخاب فرمایید"
 
-#: .\order\models.py:189 .\templates\order\cart.html:54
+#: .\order\models.py:198 .\templates\order\cart.html:54
 msgid "Count of Order Item"
 msgstr "تعداد مورد سفارش"
 
-#: .\order\models.py:190
+#: .\order\models.py:199
 msgid "Please Selcet the Count of this Order Item(Minimum Value is 1)."
 msgstr ""
 "لطفا تعداد مورد سفارش خود را وارد نمایید(بطور پیش فرض حداقل مقدار 1 درنظر "
@@ -724,27 +724,31 @@ msgstr "انگلیسی"
 msgid "Sepehr Shopping"
 msgstr "فروشگاه سپهر"
 
-#: .\templates\admin\base.html:41
+#: .\templates\admin\base.html:40
+msgid "Total Income"
+msgstr "درآمد کل"
+
+#: .\templates\admin\base.html:47
 msgid "Welcome,"
 msgstr "خوش آمدید"
 
-#: .\templates\admin\base.html:46
+#: .\templates\admin\base.html:52
 msgid "View site"
 msgstr "مشاهده وبسایت"
 
-#: .\templates\admin\base.html:51
+#: .\templates\admin\base.html:57
 msgid "Documentation"
 msgstr "اسناد"
 
-#: .\templates\admin\base.html:55
+#: .\templates\admin\base.html:61
 msgid "Change password"
 msgstr "ویرایش گذرواژه"
 
-#: .\templates\admin\base.html:57 .\templates\base.html:100
+#: .\templates\admin\base.html:63 .\templates\base.html:100
 msgid "Change Language(فا)"
 msgstr "تغییر زبان(En)"
 
-#: .\templates\admin\base.html:58
+#: .\templates\admin\base.html:64
 msgid "Log out"
 msgstr "خروج"
 

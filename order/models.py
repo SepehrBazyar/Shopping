@@ -73,6 +73,15 @@ class Order(BasicModel):
         if self.status == 'U':
             for item in self.items.all():  # remove items from order if count not enough
                 if item.count > item.product.inventory: item.delete()
+    
+    @classmethod
+    def total_income(cls) -> int:
+        """
+        Class Method Function for Sum of Total Incoming of All Paid Orders
+        """
+
+        result = cls.objects.filter(status__exact='P').aggregate(models.Sum('final_price'))
+        return result["final_price__sum"]
 
     @property
     def readable_total_price(self):

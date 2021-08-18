@@ -34,6 +34,14 @@
         <div id="branding">
         {% block branding %}{% endblock %}
         </div>
+
+        {% if user.is_staff %}
+          <!-- Center -->
+          <p id="incoming">
+            <i class="gb gb_attach_money"></i> {% trans "Total Income" %}: {{ income }} {% trans "Toman" %}
+          </p>
+        {% endif %}
+
         {% block usertools %}
         {% if has_permission %}
         <div id="user-tools">
