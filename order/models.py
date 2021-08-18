@@ -173,6 +173,9 @@ class Order(BasicModel):
                 self.final_price = self.discount.calculate_price(self.final_price)
             else:  # in this state change is adding new item in other model
                 self.total_price, self.final_price = self.update_price()
+            if self.code is not None and self.discount is None:
+                self.discount = DiscountCode.objects.get(code=self.code)
+                self.final_price = self.discount.calculate_price(self.final_price)
             return super(self.__class__, self).save(*args, **kwargs) 
 
     def __str__(self) -> str:
