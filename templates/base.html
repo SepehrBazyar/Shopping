@@ -63,6 +63,27 @@
 
       {% block extra_style %}{% endblock %}
 
+      #carticon:hover {
+        animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+        transform: translate3d(0, 0, 0);
+        perspective: 1000px;
+      }
+
+      @keyframes shake {
+        10%, 90% {
+          transform: translate3d(-1px, 0, 0);
+        }
+        20%, 80% {
+          transform: translate3d(2px, 0, 0);
+        }
+        
+        30%, 50%, 70% {
+          transform: translate3d(-2px, 0, 0);
+        }
+        40%, 60% {
+          transform: translate3d(2px, 0, 0);
+      }
+
     </style>
 
     <!-- Extra Head & Style Css -->
@@ -75,7 +96,7 @@
 <nav class="navbar sticky-top navbar-expand-lg bg-dark mb-4" id="navmenubar">
   <div class="container-fluid">
     <h1 style="color: #1E8449; font-size: 2rem; padding-top: 0.5rem;">
-      <a href="{% url 'cart' %}" class="sabz"><i class="gb gb_shopping_cart"></i></a>
+      <a href="{% url 'cart' %}" class="sabz"><i class="gb gb_shopping_cart" id="carticon"></i></a>
       <a class="navbar-brand" href="#">
         <a href="{% url 'index' %}" class="sabz">{% trans "Sepehr Shopping" %}</a>
       </a>

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from django.http import JsonResponse
 from django.views import View, generic
 from django.urls import reverse, reverse_lazy
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import get_language, gettext_lazy as _
 
 from .models import *
 
@@ -24,6 +24,12 @@ class ProductsListView(generic.ListView):
             result = result.filter(brand__slug=kwargs["brand"])
         return result
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['slides'] = Product.objects.exclude(image='Unknown.jpg').order_by('?')[:3]
+        if get_language() == 'en': context['prev'], context['next'] = "prev", "next"
+        else: context['prev'], context['next'] = "next", "prev"
+        return context
 
 class ProductDetailView(generic.DetailView):
     """
