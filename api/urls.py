@@ -11,7 +11,6 @@ app_name = "api"
 # viewsets
 order_list = OrderListAPIView.as_view({
     'get': 'list',
-    'post': 'create',
 })
 order_detail = OrderDetailAPIView.as_view({
     'get': 'retrieve',

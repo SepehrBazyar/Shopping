@@ -76,8 +76,25 @@ class OrderItemListAPIView(viewsets.ModelViewSet):
     serializer_class = OrderItemBriefSerializer
     queryset = OrderItem.objects.all()
     permission_classes = [
-        IsOwnerSite
+        IsCustomerOwner
     ]
+
+    def get_queryset(self):
+        user = self.request.user
+        result = super().get_queryset()
+        if not user.is_staff:
+            result = result.filter(order__customer__username=user.username)
+        return result
+    
+    def perform_create(self, serializer):
+        customer = Customer.objects.get(username=self.request.user.username)
+        try:
+            order = customer.orders.get(status__exact='U')
+        except Order.DoesNotExist:
+            order = Order.objects.create(
+                customer=customer,
+                address=customer.addresses.first())
+        serializer.save(order=order)
 
 
 class OrderItemDetailAPIView(viewsets.ModelViewSet):
