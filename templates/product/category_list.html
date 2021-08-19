@@ -20,9 +20,9 @@
   <div id="accordion">
     {% for parent in parents %}
         {% if forloop.counter|divisibleby:"2" %}
-        <div class="card animate__animated animate__fadeInLeft" style="background-color: #A9CCE3;">
+        <div class="card animate__animated animate__fadeIn{{ Right }}" style="background-color: #A9CCE3;">
         {% else %}
-        <div class="card animate__animated animate__fadeInRight" style="background-color: #A9CCE3;">
+        <div class="card animate__animated animate__fadeIn{{ Left }}" style="background-color: #A9CCE3;">
         {% endif %}
             <div class="card-header">
                 <h2>

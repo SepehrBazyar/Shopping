@@ -70,8 +70,20 @@ class OrderBriefSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = (
-            "id", "status", "customer", "total_price", "final_price"
+            "id", "status", "customer", "address",
+            "total_price", "final_price", "code", "discount"
         )
+        extra_kwargs = {
+            'address': {
+                "write_only": True,
+            },
+            'code': {
+                "write_only": True,
+            },
+            'discount': {
+                "write_only": True,
+            },
+        }
 
 
 class OrderSerializer(serializers.ModelSerializer):

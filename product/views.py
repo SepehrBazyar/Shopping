@@ -56,3 +56,9 @@ class CategoryListView(generic.ListView):
     def get_queryset(self):
         parents = Category.objects.filter(root=None)
         return parents
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if get_language() == 'en': context['Right'], context['Left'] = "Right", "Left"
+        else: context['Right'], context['Left'] = "Left", "Right"
+        return context

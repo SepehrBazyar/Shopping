@@ -43,8 +43,15 @@ class OrderListAPIView(viewsets.ModelViewSet):
     serializer_class = OrderBriefSerializer
     queryset = Order.objects.all()
     permission_classes = [
-        IsOwnerSite
+        IsStaffAuthenticated
     ]
+
+    def get_queryset(self):
+        user = self.request.user
+        result = super().get_queryset()
+        if not user.is_staff:
+            result = result.filter(customer__username=user.username)
+        return result
 
 
 class OrderDetailAPIView(viewsets.ModelViewSet):
