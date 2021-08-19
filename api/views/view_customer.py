@@ -4,6 +4,7 @@ from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from rest_framework.permissions import IsAuthenticated
 
 from core.permissions import *
 from customer.serializers import *
@@ -43,8 +44,15 @@ class AddressListAPIView(generics.ListAPIView):
     serializer_class = AddressBriefSerializer
     queryset = Address.objects.all()
     permission_classes = [
-        IsOwnerSite
+        IsAuthenticated
     ]
+
+    def get_queryset(self):
+        user = self.request.user
+        result = super().get_queryset()
+        if not user.is_staff:
+            result = result.filter(customer__username=user.username)
+        return result
 
 
 class AddressDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
