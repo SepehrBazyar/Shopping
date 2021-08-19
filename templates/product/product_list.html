@@ -4,6 +4,10 @@
 {% block title %}{% trans "Products" %}{% endblock %}
 
 {% block extra_style %}
+.carousel-inner img {
+    width: 100%;
+}
+
 body.modal-open {
     overflow: visible;
 }
@@ -20,7 +24,7 @@ body.modal-open {
 {% endblock %}
 
 {% block body %}
-{% if page_obj.number == 1 %}
+{% if request.path == '/' and page_obj.number == 1 %}
 <div class="container mb-4">
     <div id="demo" class="carousel slide" data-ride="carousel">
     <ul class="carousel-indicators">

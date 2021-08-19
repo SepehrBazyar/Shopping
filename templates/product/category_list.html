@@ -19,25 +19,29 @@
 <div class="container" style="text-align: center;">
   <div id="accordion">
     {% for parent in parents %}
-        <div class="card" style="background-color: #A9CCE3;">
-        <div class="card-header">
-            <h2>
-                <a class="card-link" data-toggle="collapse" href="#{{ parent.slug }}">
-                    {{ parent.title }}
-                </a>
-            </h2>
-        </div>
-        <div id="{{ parent.slug }}" class="collapse" data-parent="#accordion">
-            <div class="card-body">
-                {% for child in parent.subcategories.all %}
-                    <h3>
-                        <a href="{% url 'product:lists' %}?category={{ child.slug }}">
-                            {{ child.title }}
-                        </a><br>
-                    </h3>
-                {% endfor %}
+        {% if forloop.counter|divisibleby:"2" %}
+        <div class="card animate__animated animate__fadeInLeft" style="background-color: #A9CCE3;">
+        {% else %}
+        <div class="card animate__animated animate__fadeInRight" style="background-color: #A9CCE3;">
+        {% endif %}
+            <div class="card-header">
+                <h2>
+                    <a class="card-link" data-toggle="collapse" href="#{{ parent.slug }}">
+                        {{ parent.title }}
+                    </a>
+                </h2>
             </div>
-        </div>
+            <div id="{{ parent.slug }}" class="collapse" data-parent="#accordion">
+                <div class="card-body">
+                    {% for child in parent.subcategories.all %}
+                        <h3>
+                            <a href="{% url 'product:lists' %}?category={{ child.slug }}">
+                                {{ child.title }}
+                            </a><br>
+                        </h3>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     {% endfor %}
   </div>
