@@ -67,3 +67,17 @@ class IsStaffAuthenticated(permissions.BasePermission):
             if request.method in permissions.SAFE_METHODS:
                 return True
         return False
+
+
+class IsCustomerOwner(permissions.BasePermission):
+    """
+    Access for Create New Object for Only Customers & Staff Users Just Can See List
+    """
+
+    def has_permission(self, request, view):
+        if request.user.is_authenticated:
+            if not request.user.is_staff:
+                return True
+            elif request.method in permissions.SAFE_METHODS:
+                return True
+        return False

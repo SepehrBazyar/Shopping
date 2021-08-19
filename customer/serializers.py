@@ -7,6 +7,8 @@ class AddressBriefSerializer(serializers.ModelSerializer):
     Brief Serializer for Address Model Show Important Fields
     """
 
+    customer = serializers.HiddenField(default=None)
+
     class Meta:
         model = Address
         fields = (
@@ -14,9 +16,6 @@ class AddressBriefSerializer(serializers.ModelSerializer):
             "country", "province", "city", "rest"
         )
         extra_kwargs = {
-            'customer': {
-                "write_only": True,
-            },
             'country': {
                 "write_only": True,
             },

@@ -44,7 +44,7 @@ class AddressListAPIView(generics.ListCreateAPIView):
     serializer_class = AddressBriefSerializer
     queryset = Address.objects.all()
     permission_classes = [
-        IsStaffAuthenticated
+        IsCustomerOwner
     ]
 
     def get_queryset(self):
@@ -53,6 +53,10 @@ class AddressListAPIView(generics.ListCreateAPIView):
         if not user.is_staff:
             result = result.filter(customer__username=user.username)
         return result
+    
+    def perform_create(self, serializer):
+        customer = Customer.objects.get(username=self.request.user.username)
+        serializer.save(customer=customer)
 
 
 class AddressDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
