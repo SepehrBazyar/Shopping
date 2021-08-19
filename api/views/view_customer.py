@@ -36,7 +36,7 @@ class CustomerDetailAPIView(generics.RetrieveUpdateAPIView):
     ]
 
 
-class AddressListAPIView(generics.ListAPIView):
+class AddressListAPIView(generics.ListCreateAPIView):
     """
     View for Just See List of Addresses Just is Staff User
     """
@@ -44,7 +44,7 @@ class AddressListAPIView(generics.ListAPIView):
     serializer_class = AddressBriefSerializer
     queryset = Address.objects.all()
     permission_classes = [
-        IsAuthenticated
+        IsStaffAuthenticated
     ]
 
     def get_queryset(self):

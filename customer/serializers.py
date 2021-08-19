@@ -10,8 +10,26 @@ class AddressBriefSerializer(serializers.ModelSerializer):
     class Meta:
         model = Address
         fields = (
-            "id", "zip_code", "name", "lat", "lng"
+            "id", "customer", "zip_code", "name", "lat", "lng",
+            "country", "province", "city", "rest"
         )
+        extra_kwargs = {
+            'customer': {
+                "write_only": True,
+            },
+            'country': {
+                "write_only": True,
+            },
+            'province': {
+                "write_only": True,
+            },
+            'city': {
+                "write_only": True,
+            },
+            'rest': {
+                "write_only": True,
+            },
+        }
 
 
 class AddressSerializer(serializers.ModelSerializer):
