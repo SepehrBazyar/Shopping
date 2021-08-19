@@ -21,6 +21,7 @@ order_detail = OrderDetailAPIView.as_view({
 })
 order_item_list = OrderItemListAPIView.as_view({
     'get': 'list',
+    'post': 'create',
 })
 order_item_detail = OrderItemDetailAPIView.as_view({
     'get': 'retrieve',

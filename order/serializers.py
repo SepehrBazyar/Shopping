@@ -40,8 +40,14 @@ class OrderItemBriefSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderItem
         fields = (
-            "id", "product", "count"
+            "id", "order", "product", "count"
         )
+        extra_kwargs = {
+            'order': {
+                "write_only": True,
+            },
+        }
+
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
@@ -64,16 +70,19 @@ class OrderBriefSerializer(serializers.ModelSerializer):
     Brief Serializer for Order Model Show Important Fields
     """
 
-    customer = serializers.HyperlinkedRelatedField(view_name="api:customer_detail",
-        read_only=True, lookup_field='username', lookup_url_kwarg='phone')
+    owner = serializers.HyperlinkedRelatedField(view_name="api:customer_detail",
+        read_only=True, lookup_field='username', lookup_url_kwarg='phone', source="customer")
 
     class Meta:
         model = Order
         fields = (
-            "id", "status", "customer", "address",
+            "id", "status", "owner", "customer", "address",
             "total_price", "final_price", "code", "discount"
         )
         extra_kwargs = {
+            'customer': {
+                "write_only": True,
+            },
             'address': {
                 "write_only": True,
             },
