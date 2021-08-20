@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
 
 from .models import Message
 
@@ -10,11 +11,3 @@ class MessageForm(forms.ModelForm):
     class Meta:
         model = Message
         exclude = ['deleted', 'delete_timestamp', 'was_read']
-
-
-class SearchForm(forms.Form):
-    """
-    Form to Create Search Box in Home Page to Filter Product Item
-    """
-
-    search = forms.CharField()

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-18 14:47+0430\n"
+"POT-Creation-Date: 2021-08-20 20:16+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -203,7 +203,7 @@ msgstr "لطفا طول جغرافیایی مکان خود را وارد فرم�
 msgid "Your Birth Day Can't be After Present Date Time"
 msgstr "تاریخ تولد شما نمی تواند پس از تاریخ امروز باشد"
 
-#: .\landing\apps.py:8 .\templates\admin\base.html:74 .\templates\base.html:91
+#: .\landing\apps.py:8 .\templates\admin\base.html:76 .\templates\base.html:115
 #: .\templates\registration\logged_out.html:4
 msgid "Home"
 msgstr "خانه"
@@ -265,7 +265,7 @@ msgstr "پیغام شما با موفقیت دریافت گردید"
 msgid "Please be Careful & Try Again..."
 msgstr "لطفا دقت فرموده و مجددا تلاش نمایید..."
 
-#: .\order\admin.py:17 .\order\models.py:191
+#: .\order\admin.py:17 .\order\models.py:194
 msgid "Order Items"
 msgstr "موارد سفارش"
 
@@ -411,39 +411,38 @@ msgstr "مقدار تخفیف"
 msgid "Please Select Discount from Discount Codes to Apply on Price"
 msgstr "لطفا تخفیفی را از میان کدهای تخفیف انتخاب فرمایید"
 
-#: .\order\models.py:179 .\product\models.py:169 .\product\models.py:391
-#: .\templates\admin\base.html:40 .\templates\order\cart.html:98
+#: .\order\models.py:182 .\product\models.py:169 .\product\models.py:391
+#: .\templates\admin\base.html:41 .\templates\order\cart.html:98
 #: .\templates\order\cart.html:101 .\templates\order\orders.html:51
-#: .\templates\order\orders.html:52 .\templates\product\product_detail.html:18
-#: .\templates\product\product_list.html:46
+#: .\templates\order\orders.html:52 .\templates\product\product_list.html:109
 msgid "Toman"
 msgstr "تومان"
 
-#: .\order\models.py:191
+#: .\order\models.py:194
 msgid "Order Item"
 msgstr "مورد سفارش"
 
-#: .\order\models.py:194
+#: .\order\models.py:197
 msgid "Recepite Order"
 msgstr "صورتحساب سفارش"
 
-#: .\order\models.py:194
+#: .\order\models.py:197
 msgid "Please Select Your Order"
 msgstr "لطفا سفارش مربوطه خود را انتخاب نمایید"
 
-#: .\order\models.py:196
+#: .\order\models.py:199
 msgid "Product Item"
 msgstr "مورد محصول"
 
-#: .\order\models.py:196
+#: .\order\models.py:199
 msgid "Please Select Product Item to Add"
 msgstr "لطفا مورد محصول را جهت اضافه شدن انتخاب فرمایید"
 
-#: .\order\models.py:198 .\templates\order\cart.html:54
+#: .\order\models.py:201 .\templates\order\cart.html:54
 msgid "Count of Order Item"
 msgstr "تعداد مورد سفارش"
 
-#: .\order\models.py:199
+#: .\order\models.py:202
 msgid "Please Selcet the Count of this Order Item(Minimum Value is 1)."
 msgstr ""
 "لطفا تعداد مورد سفارش خود را وارد نمایید(بطور پیش فرض حداقل مقدار 1 درنظر "
@@ -550,7 +549,7 @@ msgstr "لطفا آدرس مربوطه را وارد نمایید"
 msgid "Category"
 msgstr "دسته بندی"
 
-#: .\product\models.py:50 .\templates\base.html:94
+#: .\product\models.py:50 .\templates\base.html:118
 #: .\templates\product\category_list.html:4
 msgid "Categories"
 msgstr "دسته بندی ها"
@@ -705,7 +704,7 @@ msgstr "تعیین سقف فقط برای تخفیف درصدی امکان پذ�
 msgid "End Date Should be After the Start Date"
 msgstr "تاریخ اتمام نمی تواند قبل از تاریخ شروع باشد"
 
-#: .\product\views.py:37
+#: .\product\views.py:55
 msgid "Product Item has Successfully been Added to the Cart"
 msgstr "محصول با موفقیت به سبد خرید افزوده شد"
 
@@ -719,36 +718,36 @@ msgstr "فارسی"
 msgid "English"
 msgstr "انگلیسی"
 
-#: .\templates\admin\base.html:5 .\templates\base.html:20
-#: .\templates\base.html:80
+#: .\templates\admin\base.html:5 .\templates\base.html:23
+#: .\templates\base.html:104
 msgid "Sepehr Shopping"
 msgstr "فروشگاه سپهر"
 
-#: .\templates\admin\base.html:40
+#: .\templates\admin\base.html:41
 msgid "Total Income"
 msgstr "درآمد کل"
 
-#: .\templates\admin\base.html:47
+#: .\templates\admin\base.html:49
 msgid "Welcome,"
 msgstr "خوش آمدید"
 
-#: .\templates\admin\base.html:52
+#: .\templates\admin\base.html:54
 msgid "View site"
 msgstr "مشاهده وبسایت"
 
-#: .\templates\admin\base.html:57
+#: .\templates\admin\base.html:59
 msgid "Documentation"
 msgstr "اسناد"
 
-#: .\templates\admin\base.html:61
+#: .\templates\admin\base.html:63
 msgid "Change password"
 msgstr "ویرایش گذرواژه"
 
-#: .\templates\admin\base.html:63 .\templates\base.html:100
+#: .\templates\admin\base.html:65 .\templates\base.html:124
 msgid "Change Language(فا)"
 msgstr "تغییر زبان(En)"
 
-#: .\templates\admin\base.html:64
+#: .\templates\admin\base.html:66
 msgid "Log out"
 msgstr "خروج"
 
@@ -783,24 +782,24 @@ msgstr ""
 msgid "Log in"
 msgstr "ورود"
 
-#: .\templates\base.html:97 .\templates\landing\contact.html:4
+#: .\templates\base.html:121 .\templates\landing\contact.html:4
 msgid "Contact Me"
 msgstr "تماس با من"
 
-#: .\templates\base.html:109 .\templates\customer\profile.html:4
+#: .\templates\base.html:133 .\templates\customer\profile.html:4
 msgid "Profile"
 msgstr "نمایه"
 
-#: .\templates\base.html:111 .\templates\customer\password.html:4
+#: .\templates\base.html:135 .\templates\customer\password.html:4
 #: .\templates\customer\password.html:46
 msgid "Change Password"
 msgstr "ویرایش گذرواژه"
 
-#: .\templates\base.html:113
+#: .\templates\base.html:137
 msgid "Logout"
 msgstr "خروج"
 
-#: .\templates\base.html:117
+#: .\templates\base.html:141
 msgid "Account"
 msgstr "حساب کاربری"
 
@@ -874,15 +873,15 @@ msgstr "ارسال پیام"
 msgid "Cart"
 msgstr "سبد خرید"
 
-#: .\templates\order\cart.html:55 .\templates\order\items.html:4
+#: .\templates\order\cart.html:55
 msgid "Change Item"
 msgstr "تغییر موارد"
 
-#: .\templates\order\cart.html:83 .\templates\order\items.html:52
+#: .\templates\order\cart.html:83
 msgid "Change Count"
 msgstr "تغییر تعداد"
 
-#: .\templates\order\cart.html:87 .\templates\order\items.html:59
+#: .\templates\order\cart.html:87
 msgid "Remove"
 msgstr "حذف"
 
@@ -906,10 +905,6 @@ msgstr "سبد خرید خالی"
 msgid "Hope You Buy Again"
 msgstr "به امید خرید مجدد"
 
-#: .\templates\order\items.html:33
-msgid "Product Title"
-msgstr "نام محصول"
-
 #: .\templates\order\orders.html:33
 msgid "All Orders List"
 msgstr "لیست تمام سفارشات"
@@ -926,9 +921,7 @@ msgstr "لیست سفارشات لغو شده"
 msgid "Status"
 msgstr "وضعیت"
 
-#: .\templates\order\orders.html:55 .\templates\product\product_detail.html:4
-#: .\templates\product\product_detail.html:22
-#: .\templates\product\product_list.html:73
+#: .\templates\order\orders.html:55 .\templates\product\product_list.html:136
 msgid "Details"
 msgstr "جزئیات"
 
@@ -948,45 +941,52 @@ msgstr "تاریخ"
 msgid "Number"
 msgstr "عدد"
 
-#: .\templates\product\product_detail.html:33
-#: .\templates\product\product_list.html:88
-msgid "Add to Cart"
-msgstr "افزودن به سبد خرید"
+#: .\templates\product\product_list.html:34
+#: .\templates\product\product_list.html:45
+msgid "Search"
+msgstr "جستجو"
 
-#: .\templates\product\product_detail.html:36
-#: .\templates\product\product_list.html:92
-msgid "Unavailable"
-msgstr "ناموجود"
+#: .\templates\product\product_list.html:40
+msgid "Search Whatever You Want!..."
+msgstr "هرچه نیاز دارید به راحتی جستجو کنید!..."
 
-#: .\templates\product\product_list.html:55
+#: .\templates\product\product_list.html:118
 msgid "More Informations"
 msgstr "اطلاعات بیشتر"
 
-#: .\templates\product\product_list.html:113
-#: .\templates\product\product_list.html:120
+#: .\templates\product\product_list.html:151
+msgid "Add to Cart"
+msgstr "افزودن به سبد خرید"
+
+#: .\templates\product\product_list.html:155
+msgid "Unavailable"
+msgstr "ناموجود"
+
+#: .\templates\product\product_list.html:176
+#: .\templates\product\product_list.html:183
 msgid "First"
 msgstr "نخستین"
 
-#: .\templates\product\product_list.html:116
-#: .\templates\product\product_list.html:123
+#: .\templates\product\product_list.html:179
+#: .\templates\product\product_list.html:186
 msgid "Previous"
 msgstr "قبلی"
 
-#: .\templates\product\product_list.html:128
+#: .\templates\product\product_list.html:191
 msgid "Page"
 msgstr "صفحه"
 
-#: .\templates\product\product_list.html:128
+#: .\templates\product\product_list.html:191
 msgid "of"
 msgstr "از"
 
-#: .\templates\product\product_list.html:133
-#: .\templates\product\product_list.html:140
+#: .\templates\product\product_list.html:196
+#: .\templates\product\product_list.html:203
 msgid "Next"
 msgstr "بعدی"
 
-#: .\templates\product\product_list.html:136
-#: .\templates\product\product_list.html:143
+#: .\templates\product\product_list.html:199
+#: .\templates\product\product_list.html:206
 msgid "Last"
 msgstr "آخرین"
 
@@ -2180,3 +2180,6 @@ msgstr ""
 #: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:249
 msgid "Connect, get help, or contribute"
 msgstr ""
+
+#~ msgid "Product Title"
+#~ msgstr "نام محصول"

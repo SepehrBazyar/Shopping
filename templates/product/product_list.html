@@ -25,12 +25,31 @@ body.modal-open {
 
 {% block body %}
 {% if request.path == '/' and page_obj.number == 1 %}
-<form method="get">
-    {{ form }}
-    <input type="submit" value="Search">
-</form>
-
 <div class="container mb-4">
+    <form method="get" dir="ltr">
+        <div class="input-group mb-3">
+            {% if prev == 'prev' %}
+                <input class="form-control" type="text" name="search" dir="ltr"
+                placeholder="{% trans 'Search Whatever You Want!...' %}">
+
+                <div class="input-group-append">
+                    <button class="btn btn-success" type="submit">
+                        {% trans 'Search' %} <i class="gb gb_search"></i>
+                    </button>  
+                </div>
+            {% else %}
+                 <div class="input-group-prepend">
+                    <button class="btn btn-success" type="submit">
+                        <i class="gb gb_search"></i> {% trans 'Search' %}
+                    </button>  
+                </div>
+
+                <input class="form-control" type="text" name="search" dir="rtl"
+                placeholder="{% trans 'Search Whatever You Want!...' %}">
+            {% endif %}
+        </div>
+    </form>
+
     <div id="demo" class="carousel slide" data-ride="carousel">
     <ul class="carousel-indicators">
         <li data-target="#demo" data-slide-to="0" style="list-style: none;" class="active"></li>

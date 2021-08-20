@@ -6,7 +6,6 @@ from django.db.models import Q
 from django.utils.translation import get_language, gettext_lazy as _
 
 from .models import *
-from landing.forms import SearchForm
 
 # Create your views here.
 class ProductsListView(generic.ListView):
@@ -25,22 +24,19 @@ class ProductsListView(generic.ListView):
         if "brand" in kwargs:
             result = result.filter(brand__slug=kwargs["brand"])
         if "search" in kwargs:
-            form = SearchForm(kwargs)
-            if form.is_valid():
-                text = form.cleaned_data['search']
-                result = result.filter(Q(slug__icontains=text)|
-                    Q(title_en__icontains=text) | Q(title_fa__icontains=text) |
-                    Q(category__title_en__icontains=text) | Q(category__title_fa__icontains=text) | 
-                    Q(brand__title_en__icontains=text) | Q(brand__title_fa__icontains=text) | 
-                    Q(category__slug__icontains=text) | Q(brand__slug__icontains=text)
-                )
+            text = kwargs["search"]
+            result = result.filter(
+            Q(title_en__icontains=text) | Q(title_fa__icontains=text) | Q(slug__icontains=text) |
+            Q(category__title_en__icontains=text) | Q(category__title_fa__icontains=text) | 
+            Q(brand__title_en__icontains=text) | Q(brand__title_fa__icontains=text) | 
+            Q(category__slug__icontains=text) | Q(brand__slug__icontains=text)
+            )
         return result
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update({
             'slides': Product.objects.exclude(image='Unknown.jpg').order_by('?')[:3],
-            'form': SearchForm(),
         })
         if get_language() == 'en': context['prev'], context['next'] = "prev", "next"
         else: context['prev'], context['next'] = "next", "prev"
