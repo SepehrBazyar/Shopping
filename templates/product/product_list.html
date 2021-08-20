@@ -63,7 +63,9 @@ body.modal-open {
             {% else %}
             <div class="carousel-item">
             {% endif %}
-                <img src="/media/{{ slide.image }}" alt="{{ slide.slug }}" width="1100" height="500">
+                <a href="{% url 'product:lists' %}?brand={{ slide.brand.slug }}" target="_blank">
+                    <img src="/media/{{ slide.image }}" alt="{{ slide.slug }}" width="1100" height="500">
+                </a>
                 <div class="carousel-caption">
                     <h2 style="font-size: 2rem;">{{ slide.title }}</h2>
                     <p style="font-size: 1rem;">{{ slide.brand.title }}</p>
