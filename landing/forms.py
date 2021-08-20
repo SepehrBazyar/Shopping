@@ -10,3 +10,11 @@ class MessageForm(forms.ModelForm):
     class Meta:
         model = Message
         exclude = ['deleted', 'delete_timestamp', 'was_read']
+
+
+class SearchForm(forms.Form):
+    """
+    Form to Create Search Box in Home Page to Filter Product Item
+    """
+
+    search = forms.CharField()

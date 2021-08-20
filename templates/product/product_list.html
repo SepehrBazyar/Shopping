@@ -25,6 +25,11 @@ body.modal-open {
 
 {% block body %}
 {% if request.path == '/' and page_obj.number == 1 %}
+<form method="get">
+    {{ form }}
+    <input type="submit" value="Search">
+</form>
+
 <div class="container mb-4">
     <div id="demo" class="carousel slide" data-ride="carousel">
     <ul class="carousel-indicators">
