@@ -83,16 +83,29 @@ class ProductBriefSerializer(serializers.ModelSerializer):
     Show Breif Information of Product for Show in List Page
     """
 
-    category = serializers.HyperlinkedRelatedField(view_name="api:category_detail",
-        read_only=True, lookup_field='slug', lookup_url_kwarg='name')
-    brand = serializers.HyperlinkedRelatedField(view_name="api:brand_detail",
-        read_only=True, lookup_field='slug', lookup_url_kwarg='name')
-
     class Meta:
         model = Product
         fields = (
-            "id", "title_en", "title_fa", "slug", "category", "brand", "price"
+            "id", "title_en", "title_fa", "slug", "category", "brand",
+            "price", "inventory", "image", "discount",
         )
+        extra_kwargs = {
+            'category': {
+                "write_only": True,
+            },
+            'brand': {
+                "write_only": True,
+            },
+            'inventory': {
+                "write_only": True,
+            },
+            'image': {
+                "write_only": True,
+            },
+            'discount': {
+                "write_only": True,
+            },
+        }
 
 
 class ProductSerializer(serializers.ModelSerializer):
