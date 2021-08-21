@@ -201,6 +201,14 @@ class OrderItem(BasicModel):
         verbose_name=_("Count of Order Item"), validators=[MinValueValidator(1)],
         help_text=_("Please Selcet the Count of this Order Item(Minimum Value is 1)."))
 
+    @property
+    def total_price(self) -> str:
+        """
+        Make Readable Total Price of Order Item by Mutliply Count in Product Price
+        """
+
+        return readable(self.count * self.product.final_price)
+
     def clean(self):  # clean data from get any form and check inventory value
         if self.order.status == 'U':
             CountValidator(self.product)(self.count)

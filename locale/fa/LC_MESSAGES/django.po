@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-20 20:16+0430\n"
+"POT-Creation-Date: 2021-08-21 16:48+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -125,7 +125,7 @@ msgid "Please Enter Your Birth Day if You Wish."
 msgstr "در صورت تمایل لطفا تاریخ تولد خود را وارد فرمایید"
 
 #: .\customer\models.py:61 .\order\models.py:52
-#: .\templates\customer\address.html:4 .\templates\order\cart.html:113
+#: .\templates\customer\address.html:4 .\templates\order\cart.html:117
 msgid "Address"
 msgstr "نشانی"
 
@@ -376,12 +376,12 @@ msgstr ""
 msgid "Please Select Customer Owner this Order"
 msgstr "لطفا مشتری صاحب این سفارش را انتخاب نمایید"
 
-#: .\order\models.py:52 .\templates\order\cart.html:123
+#: .\order\models.py:52 .\templates\order\cart.html:127
 msgid "Please Select Address to Send Order There"
 msgstr "لطفا نشانی را برای ارسال سفارش به آنجا انتخاب نمایید"
 
-#: .\order\models.py:53 .\templates\order\cart.html:97
-#: .\templates\order\orders.html:51
+#: .\order\models.py:53 .\templates\order\cart.html:56
+#: .\templates\order\cart.html:101 .\templates\order\orders.html:51
 msgid "Total Price"
 msgstr "مجموع قیمت"
 
@@ -389,7 +389,7 @@ msgstr "مجموع قیمت"
 msgid "Total Price is Sum of Pure Price of Product Items for this Order"
 msgstr "مجموع قیمت حاصل جمع قیمت خالص موارد سفارش می باشد"
 
-#: .\order\models.py:55 .\product\models.py:263 .\templates\order\cart.html:100
+#: .\order\models.py:55 .\product\models.py:263 .\templates\order\cart.html:104
 #: .\templates\order\orders.html:52
 msgid "Final Price"
 msgstr "قیمت نهایی"
@@ -412,9 +412,10 @@ msgid "Please Select Discount from Discount Codes to Apply on Price"
 msgstr "لطفا تخفیفی را از میان کدهای تخفیف انتخاب فرمایید"
 
 #: .\order\models.py:182 .\product\models.py:169 .\product\models.py:391
-#: .\templates\admin\base.html:41 .\templates\order\cart.html:98
-#: .\templates\order\cart.html:101 .\templates\order\orders.html:51
-#: .\templates\order\orders.html:52 .\templates\product\product_list.html:109
+#: .\templates\admin\base.html:41 .\templates\order\cart.html:55
+#: .\templates\order\cart.html:56 .\templates\order\cart.html:102
+#: .\templates\order\cart.html:105 .\templates\order\orders.html:51
+#: .\templates\order\orders.html:52 .\templates\product\product_list.html:112
 msgid "Toman"
 msgstr "تومان"
 
@@ -841,7 +842,7 @@ msgstr "سال"
 msgid "Orders List"
 msgstr "لیست سفارشات"
 
-#: .\templates\customer\profile.html:58 .\templates\order\cart.html:126
+#: .\templates\customer\profile.html:58 .\templates\order\cart.html:130
 msgid "Add New Address"
 msgstr "ثبت نشانی جدید"
 
@@ -874,34 +875,38 @@ msgid "Cart"
 msgstr "سبد خرید"
 
 #: .\templates\order\cart.html:55
+msgid "Unit Price"
+msgstr "قیمت واحد"
+
+#: .\templates\order\cart.html:57
 msgid "Change Item"
 msgstr "تغییر موارد"
 
-#: .\templates\order\cart.html:83
+#: .\templates\order\cart.html:87
 msgid "Change Count"
 msgstr "تغییر تعداد"
 
-#: .\templates\order\cart.html:87
+#: .\templates\order\cart.html:91
 msgid "Remove"
 msgstr "حذف"
 
-#: .\templates\order\cart.html:142
+#: .\templates\order\cart.html:146
 msgid "Apply Changes"
 msgstr "ثبت تغییرات"
 
-#: .\templates\order\cart.html:147
+#: .\templates\order\cart.html:151
 msgid "Payment"
 msgstr "پرداخت"
 
-#: .\templates\order\cart.html:151 .\templates\order\orders.html:104
+#: .\templates\order\cart.html:155 .\templates\order\orders.html:104
 msgid "Cancel"
 msgstr "لغو کردن"
 
-#: .\templates\order\cart.html:155
+#: .\templates\order\cart.html:159
 msgid "Empty Basket"
 msgstr "سبد خرید خالی"
 
-#: .\templates\order\cart.html:157
+#: .\templates\order\cart.html:161
 msgid "Hope You Buy Again"
 msgstr "به امید خرید مجدد"
 
@@ -921,7 +926,7 @@ msgstr "لیست سفارشات لغو شده"
 msgid "Status"
 msgstr "وضعیت"
 
-#: .\templates\order\orders.html:55 .\templates\product\product_list.html:136
+#: .\templates\order\orders.html:55 .\templates\product\product_list.html:139
 msgid "Details"
 msgstr "جزئیات"
 
@@ -941,52 +946,53 @@ msgstr "تاریخ"
 msgid "Number"
 msgstr "عدد"
 
-#: .\templates\product\product_list.html:34
-#: .\templates\product\product_list.html:45
-msgid "Search"
-msgstr "جستجو"
-
-#: .\templates\product\product_list.html:40
+#: .\templates\product\product_list.html:33
+#: .\templates\product\product_list.html:48
 msgid "Search Whatever You Want!..."
 msgstr "هرچه نیاز دارید به راحتی جستجو کنید!..."
 
-#: .\templates\product\product_list.html:118
+#: .\templates\product\product_list.html:37
+#: .\templates\product\product_list.html:43
+msgid "Search"
+msgstr "جستجو"
+
+#: .\templates\product\product_list.html:121
 msgid "More Informations"
 msgstr "اطلاعات بیشتر"
 
-#: .\templates\product\product_list.html:151
+#: .\templates\product\product_list.html:154
 msgid "Add to Cart"
 msgstr "افزودن به سبد خرید"
 
-#: .\templates\product\product_list.html:155
+#: .\templates\product\product_list.html:158
 msgid "Unavailable"
 msgstr "ناموجود"
 
-#: .\templates\product\product_list.html:176
-#: .\templates\product\product_list.html:183
+#: .\templates\product\product_list.html:179
+#: .\templates\product\product_list.html:186
 msgid "First"
 msgstr "نخستین"
 
-#: .\templates\product\product_list.html:179
-#: .\templates\product\product_list.html:186
+#: .\templates\product\product_list.html:182
+#: .\templates\product\product_list.html:189
 msgid "Previous"
 msgstr "قبلی"
 
-#: .\templates\product\product_list.html:191
+#: .\templates\product\product_list.html:194
 msgid "Page"
 msgstr "صفحه"
 
-#: .\templates\product\product_list.html:191
+#: .\templates\product\product_list.html:194
 msgid "of"
 msgstr "از"
 
-#: .\templates\product\product_list.html:196
-#: .\templates\product\product_list.html:203
+#: .\templates\product\product_list.html:199
+#: .\templates\product\product_list.html:206
 msgid "Next"
 msgstr "بعدی"
 
-#: .\templates\product\product_list.html:199
-#: .\templates\product\product_list.html:206
+#: .\templates\product\product_list.html:202
+#: .\templates\product\product_list.html:209
 msgid "Last"
 msgstr "آخرین"
 

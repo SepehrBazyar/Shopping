@@ -51,6 +51,8 @@ ul.errorlist li {
             <th style="text-align: center; font-size: 1rem;">#</th>
             <th style="text-align: center; font-size: 1rem;">{% trans "Product" %}</th>
             <th style="text-align: center; font-size: 1rem;">{% trans "Count of Order Item" %}</th>
+            <th style="text-align: center; font-size: 1rem;">{% trans "Unit Price" %}({% trans "Toman" %})</th>
+            <th style="text-align: center; font-size: 1rem;">{% trans "Total Price" %}({% trans "Toman" %})</th>
             <th style="text-align: center; font-size: 1rem;">{% trans "Change Item" %}</th>
         </tr>
         </thead>
@@ -74,6 +76,8 @@ ul.errorlist li {
                                 {% trans "Remove" %} <i class="gb gb_delete"></i>
                             </a>
                         </td> {% endcomment %}
+                        <td style="font-size: 1rem;">{{ item.1.product.readable_final_price }}</td>
+                        <td style="font-size: 1rem;" id="multiply{{ item.1.id }}">{{ item.1.total_price }}</td>
                     </div>
                 </form>
                 <td>
@@ -92,10 +96,10 @@ ul.errorlist li {
 
     <hr><br>
     <strong>
-        <p>{% trans "Total Price" %}:
+        <p style="font-size: 1.25rem;">{% trans "Total Price" %}:
             <span id="total">{{ order.readable_total_price }}</span> {% trans "Toman" %}
         </p>
-        <p>{% trans "Final Price" %}:
+        <p style="font-size: 1.5rem;">{% trans "Final Price" %}:
             <span id="final">{{ order.readable_final_price }}</span> {% trans "Toman" %}
         </p>
     </strong>
@@ -163,6 +167,7 @@ function ChangeCount(id, index) {
         if(result.code == 1) {
             document.getElementById("total").innerHTML = result.data.total;
             document.getElementById("final").innerHTML = result.data.final;
+            document.getElementById(`multiply${id}`).innerHTML = result.data.price;
         } else {
             alert(result.data);
             document.getElementsByName("count")[index].value = result.count;

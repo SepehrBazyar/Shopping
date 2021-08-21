@@ -75,11 +75,12 @@ class ChangeItemView(LoginRequiredMixin, View):
         item = OrderItem.objects.get(id=request.GET['item'])
         form = OrderItemForm(request.POST)
         if form.is_valid():
-            item.count = request.POST["count"]
+            item.count = int(request.POST["count"])
             item.save()
             code, data = 1, {
                 'total': item.order.readable_total_price,
                 'final': item.order.readable_final_price,
+                'price': item.total_price,
             }
         else:
             key = 'count' if request.POST["count"] == '0' else '__all__'
