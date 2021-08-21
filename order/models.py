@@ -81,7 +81,7 @@ class Order(BasicModel):
         """
 
         result = cls.objects.filter(status__exact='P').aggregate(models.Sum('final_price'))
-        return result["final_price__sum"]
+        return result["final_price__sum"] or 0
 
     @property
     def readable_total_price(self):

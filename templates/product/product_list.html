@@ -24,7 +24,7 @@ body.modal-open {
 {% endblock %}
 
 {% block body %}
-{% if request.path == '/' and page_obj.number == 1 %}
+{% if request.path == '/' %}
 <div class="container mb-4">
     <form method="get" dir="ltr">
         <div class="input-group mb-3">
@@ -50,38 +50,50 @@ body.modal-open {
         </div>
     </form>
 
-    <div id="demo" class="carousel slide" data-ride="carousel">
-    <ul class="carousel-indicators">
-        <li data-target="#demo" data-slide-to="0" style="list-style: none;" class="active"></li>
-        <li data-target="#demo" data-slide-to="1" style="list-style: none;"></li>
-        <li data-target="#demo" data-slide-to="2" style="list-style: none;"></li>
-    </ul>
-    <div class="carousel-inner">
-        {% for slide in slides %}
-            {% if forloop.first %}
-            <div class="carousel-item active">
-            {% else %}
-            <div class="carousel-item">
-            {% endif %}
-                <a href="{% url 'product:lists' %}?brand={{ slide.brand.slug }}" target="_blank">
-                    <img src="/media/{{ slide.image }}" alt="{{ slide.slug }}" width="1100" height="500">
+    {% if page_obj.number == 1 %}
+        {% if products %}
+            <div id="demo" class="carousel slide" data-ride="carousel">
+                <ul class="carousel-indicators">
+                    <li data-target="#demo" data-slide-to="0" style="list-style: none;" class="active"></li>
+                    <li data-target="#demo" data-slide-to="1" style="list-style: none;"></li>
+                    <li data-target="#demo" data-slide-to="2" style="list-style: none;"></li>
+                </ul>
+                <div class="carousel-inner">
+                    {% for slide in slides %}
+                        {% if forloop.first %}
+                        <div class="carousel-item active">
+                        {% else %}
+                        <div class="carousel-item">
+                        {% endif %}
+                            <a href="{% url 'product:lists' %}?brand={{ slide.brand.slug }}" target="_blank">
+                                <img src="/media/{{ slide.image }}" alt="{{ slide.slug }}" width="1100" height="500">
+                            </a>
+                            <div class="carousel-caption">
+                                <h2 style="font-size: 2rem;">{{ slide.title }}</h2>
+                                <p style="font-size: 1rem;">{{ slide.brand.title }}</p>
+                            </div> 
+                        </div>
+                    {% endfor %}  
+                </div>
+
+                <a class="carousel-control-prev" href="#demo" data-slide="{{ prev }}">
+                    <span class="carousel-control-prev-icon"></span>
                 </a>
-                <div class="carousel-caption">
-                    <h2 style="font-size: 2rem;">{{ slide.title }}</h2>
-                    <p style="font-size: 1rem;">{{ slide.brand.title }}</p>
-                </div> 
+                <a class="carousel-control-next" href="#demo" data-slide="{{ next }}">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
+
             </div>
-        {% endfor %}  
-    </div>
-
-    <a class="carousel-control-prev" href="#demo" data-slide="{{ prev }}">
-        <span class="carousel-control-prev-icon"></span>
-    </a>
-    <a class="carousel-control-next" href="#demo" data-slide="{{ next }}">
-        <span class="carousel-control-next-icon"></span>
-    </a>
-
-    </div>
+        {% else %}
+            <center>
+                <i class="gb gb_sentiment_dissatisfied" style="font-size: 5rem;"></i>
+                <br>
+                <h2 style="font-size: 2rem;">
+                    {% trans "Result Not Found!" %}
+                </h2>
+            </center>
+        {% endif %}
+    {% endif %}
 </div>
 {% endif %}
 
