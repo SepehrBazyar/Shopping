@@ -32,9 +32,8 @@
             <br>
 
             <p>
-                <a href="{% url 'order:orders' %}">
-                    <i class="gb gb_shopping_basket"></i>
-                    {% trans "Orders List" %}
+                <a href="{% url 'order:orders' %}" class="btn btn-light">
+                    <i class="gb gb_shopping_basket"></i> {% trans "Orders List" %}
                 </a>
             </p>
 
@@ -54,7 +53,7 @@
 
             <br>
 
-            <a href="{% url 'customer:address' %}">
+            <a href="{% url 'customer:address' %}" class="btn btn-light">
                 <i class="gb gb_add_location"></i> {% trans "Add New Address" %}
             </a>
 

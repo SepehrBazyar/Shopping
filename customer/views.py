@@ -1,5 +1,6 @@
 from django.contrib import auth
 from django.shortcuts import render, redirect, HttpResponse
+from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -120,7 +121,13 @@ class CreateNewAddressView(LoginRequiredMixin, View):
             except Customer.DoesNotExist: return redirect(reverse("customer:logout"))
             new_address.customer = customer
             new_address.save()
-            if "cart" in request.GET: return redirect(reverse("order:cart"))
+            if "cart" in request.GET:
+                try: cart = customer.orders.get(status__exact='U')
+                except ObjectDoesNotExist: pass
+                else:
+                    cart.address = new_address
+                    cart.save()
+                return redirect(reverse("order:cart"))
             return redirect(reverse("customer:profile"))
         else:
             return render(request, "customer/address.html", {
