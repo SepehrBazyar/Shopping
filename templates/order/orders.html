@@ -59,8 +59,8 @@ ul.errorlist li {
         {% for order in orders %}
             <tr>
                 <td>{{ forloop.counter }}</td>
-                <td>{{ order.total_price }}</td>
-                <td>{{ order.final_price }}</td>
+                <td style="font-size: 1rem;">{{ order.readable_total_price }}</td>
+                <td style="font-size: 1rem;">{{ order.readable_final_price }}</td>
                 <td>{% if order.code %}{{ order.code }}{% else %}-{% endif %}</td>
                 <td>{{ order.status_name }}</td>
                 <td>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 16:48+0430\n"
+"POT-Creation-Date: 2021-08-22 04:09+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,7 +68,7 @@ msgid "Zip Code Must be 10 Digits."
 msgstr "کد پستی می بایست دقیقا حاوی 10 رقم باشد"
 
 #: .\customer\admin.py:15 .\customer\models.py:61
-#: .\templates\customer\profile.html:43
+#: .\templates\customer\profile.html:42
 msgid "Addresses"
 msgstr "نشانی ها"
 
@@ -142,7 +142,7 @@ msgid "Please Enter Your Address' Name"
 msgstr "لطفا برای این آدرس نامی وارد نمایید"
 
 #: .\customer\models.py:68 .\customer\models.py:84
-#: .\templates\customer\profile.html:48
+#: .\templates\customer\profile.html:47
 msgid "Zip Code"
 msgstr "کد پستی"
 
@@ -415,7 +415,7 @@ msgstr "لطفا تخفیفی را از میان کدهای تخفیف انتخ�
 #: .\templates\admin\base.html:41 .\templates\order\cart.html:55
 #: .\templates\order\cart.html:56 .\templates\order\cart.html:102
 #: .\templates\order\cart.html:105 .\templates\order\orders.html:51
-#: .\templates\order\orders.html:52 .\templates\product\product_list.html:112
+#: .\templates\order\orders.html:52 .\templates\product\product_list.html:124
 msgid "Toman"
 msgstr "تومان"
 
@@ -838,11 +838,11 @@ msgstr "سن"
 msgid "Year"
 msgstr "سال"
 
-#: .\templates\customer\profile.html:37
+#: .\templates\customer\profile.html:36
 msgid "Orders List"
 msgstr "لیست سفارشات"
 
-#: .\templates\customer\profile.html:58 .\templates\order\cart.html:130
+#: .\templates\customer\profile.html:57 .\templates\order\cart.html:130
 msgid "Add New Address"
 msgstr "ثبت نشانی جدید"
 
@@ -926,7 +926,7 @@ msgstr "لیست سفارشات لغو شده"
 msgid "Status"
 msgstr "وضعیت"
 
-#: .\templates\order\orders.html:55 .\templates\product\product_list.html:139
+#: .\templates\order\orders.html:55 .\templates\product\product_list.html:151
 msgid "Details"
 msgstr "جزئیات"
 
@@ -956,43 +956,47 @@ msgstr "هرچه نیاز دارید به راحتی جستجو کنید!..."
 msgid "Search"
 msgstr "جستجو"
 
-#: .\templates\product\product_list.html:121
+#: .\templates\product\product_list.html:92
+msgid "Result Not Found!"
+msgstr "نتیجه ای یافت نشد!"
+
+#: .\templates\product\product_list.html:133
 msgid "More Informations"
 msgstr "اطلاعات بیشتر"
 
-#: .\templates\product\product_list.html:154
+#: .\templates\product\product_list.html:166
 msgid "Add to Cart"
 msgstr "افزودن به سبد خرید"
 
-#: .\templates\product\product_list.html:158
+#: .\templates\product\product_list.html:170
 msgid "Unavailable"
 msgstr "ناموجود"
 
-#: .\templates\product\product_list.html:179
-#: .\templates\product\product_list.html:186
+#: .\templates\product\product_list.html:191
+#: .\templates\product\product_list.html:198
 msgid "First"
 msgstr "نخستین"
 
-#: .\templates\product\product_list.html:182
-#: .\templates\product\product_list.html:189
+#: .\templates\product\product_list.html:194
+#: .\templates\product\product_list.html:201
 msgid "Previous"
 msgstr "قبلی"
 
-#: .\templates\product\product_list.html:194
+#: .\templates\product\product_list.html:206
 msgid "Page"
 msgstr "صفحه"
 
-#: .\templates\product\product_list.html:194
+#: .\templates\product\product_list.html:206
 msgid "of"
 msgstr "از"
 
-#: .\templates\product\product_list.html:199
-#: .\templates\product\product_list.html:206
+#: .\templates\product\product_list.html:211
+#: .\templates\product\product_list.html:218
 msgid "Next"
 msgstr "بعدی"
 
-#: .\templates\product\product_list.html:202
-#: .\templates\product\product_list.html:209
+#: .\templates\product\product_list.html:214
+#: .\templates\product\product_list.html:221
 msgid "Last"
 msgstr "آخرین"
 

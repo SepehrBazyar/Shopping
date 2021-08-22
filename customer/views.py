@@ -21,7 +21,7 @@ class CustomerLoginView(LoginView):
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return redirect(reverse("product:lists"))
+            return redirect(reverse("index"))
         return super().get(request, *args, **kwargs)
 
 
@@ -40,18 +40,18 @@ class CustomerRegisterView(generic.FormView):
 
     form_class = CustomerRegisterForm
     template_name = "customer/register.html"
-    success_url = reverse_lazy("product:lists")
+    success_url = reverse_lazy("profile")
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return redirect(reverse("product:lists"))
+            return redirect(reverse("profile"))
         return super().get(request, *args, **kwargs)
 
     def form_valid(self, form):
         user = Customer.objects.create_user(username=form.data["username"],
                                             password=form.data["password1"])
         login(self.request, user)
-        return redirect(reverse("product:lists"))
+        return redirect(reverse("profile"))
 
 
 class ChangePasswordView(LoginRequiredMixin, PasswordChangeView):
