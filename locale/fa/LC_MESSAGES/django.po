@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-22 04:09+0430\n"
+"POT-Creation-Date: 2021-08-23 12:36+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -204,6 +204,7 @@ msgid "Your Birth Day Can't be After Present Date Time"
 msgstr "تاریخ تولد شما نمی تواند پس از تاریخ امروز باشد"
 
 #: .\landing\apps.py:8 .\templates\admin\base.html:76 .\templates\base.html:115
+#: .\templates\product\product_list.html:6
 #: .\templates\registration\logged_out.html:4
 msgid "Home"
 msgstr "خانه"
@@ -415,7 +416,7 @@ msgstr "لطفا تخفیفی را از میان کدهای تخفیف انتخ�
 #: .\templates\admin\base.html:41 .\templates\order\cart.html:55
 #: .\templates\order\cart.html:56 .\templates\order\cart.html:102
 #: .\templates\order\cart.html:105 .\templates\order\orders.html:51
-#: .\templates\order\orders.html:52 .\templates\product\product_list.html:124
+#: .\templates\order\orders.html:52 .\templates\product\product_list.html:132
 msgid "Toman"
 msgstr "تومان"
 
@@ -518,7 +519,7 @@ msgid "Further information"
 msgstr "اطلاعات تکمیلی"
 
 #: .\product\apps.py:8 .\product\models.py:232
-#: .\templates\product\product_list.html:4
+#: .\templates\product\product_list.html:8
 msgid "Products"
 msgstr "محصولات"
 
@@ -926,7 +927,7 @@ msgstr "لیست سفارشات لغو شده"
 msgid "Status"
 msgstr "وضعیت"
 
-#: .\templates\order\orders.html:55 .\templates\product\product_list.html:151
+#: .\templates\order\orders.html:55 .\templates\product\product_list.html:159
 msgid "Details"
 msgstr "جزئیات"
 
@@ -946,57 +947,57 @@ msgstr "تاریخ"
 msgid "Number"
 msgstr "عدد"
 
-#: .\templates\product\product_list.html:33
-#: .\templates\product\product_list.html:48
+#: .\templates\product\product_list.html:39
+#: .\templates\product\product_list.html:54
 msgid "Search Whatever You Want!..."
 msgstr "هرچه نیاز دارید به راحتی جستجو کنید!..."
 
-#: .\templates\product\product_list.html:37
 #: .\templates\product\product_list.html:43
+#: .\templates\product\product_list.html:49
 msgid "Search"
 msgstr "جستجو"
 
-#: .\templates\product\product_list.html:92
+#: .\templates\product\product_list.html:100
 msgid "Result Not Found!"
 msgstr "نتیجه ای یافت نشد!"
 
-#: .\templates\product\product_list.html:133
+#: .\templates\product\product_list.html:141
 msgid "More Informations"
 msgstr "اطلاعات بیشتر"
 
-#: .\templates\product\product_list.html:166
+#: .\templates\product\product_list.html:174
 msgid "Add to Cart"
 msgstr "افزودن به سبد خرید"
 
-#: .\templates\product\product_list.html:170
+#: .\templates\product\product_list.html:178
 msgid "Unavailable"
 msgstr "ناموجود"
 
-#: .\templates\product\product_list.html:191
-#: .\templates\product\product_list.html:198
+#: .\templates\product\product_list.html:199
+#: .\templates\product\product_list.html:206
 msgid "First"
 msgstr "نخستین"
 
-#: .\templates\product\product_list.html:194
-#: .\templates\product\product_list.html:201
+#: .\templates\product\product_list.html:202
+#: .\templates\product\product_list.html:209
 msgid "Previous"
 msgstr "قبلی"
 
-#: .\templates\product\product_list.html:206
+#: .\templates\product\product_list.html:214
 msgid "Page"
 msgstr "صفحه"
 
-#: .\templates\product\product_list.html:206
+#: .\templates\product\product_list.html:214
 msgid "of"
 msgstr "از"
 
-#: .\templates\product\product_list.html:211
-#: .\templates\product\product_list.html:218
+#: .\templates\product\product_list.html:219
+#: .\templates\product\product_list.html:226
 msgid "Next"
 msgstr "بعدی"
 
-#: .\templates\product\product_list.html:214
-#: .\templates\product\product_list.html:221
+#: .\templates\product\product_list.html:222
+#: .\templates\product\product_list.html:229
 msgid "Last"
 msgstr "آخرین"
 

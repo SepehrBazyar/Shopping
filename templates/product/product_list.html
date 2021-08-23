@@ -1,7 +1,13 @@
 {% extends "base.html" %}
 {% load i18n static %}
 
-{% block title %}{% trans "Products" %}{% endblock %}
+{% block title %}
+    {% if request.path == '/' %}
+        {% trans "Home" %}
+    {% else %}
+        {% trans "Products" %}
+    {% endif %}
+{% endblock %}
 
 {% block extra_style %}
 .carousel-inner img {
